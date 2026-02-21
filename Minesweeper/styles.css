@@ -1,0 +1,94 @@
+* {
+  margin: 0;
+  padding: 0;
+
+  font-family: "Genos", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: weight;
+  font-style: normal;
+}
+
+.main-container {
+  background-color: #FFFFFF;
+  display: grid;
+  
+  border: solid aqua;
+  border-radius: 10px;
+  padding: 50px;
+}
+
+.grid-container {
+  background-color: #FFFFFF;
+
+  display: grid;
+  gap: 0;
+  justify-content: center;
+  align-content: center;
+
+  border: 1px solid red;
+  border-radius: 10px;
+}
+
+.square.hidden {
+  background-color: #C0C0C0;
+  color: black;
+  border: 3px solid;
+  border-color: #EEEEEE #888888 #888888 #EEEEEE;
+  border-radius: 0;
+
+  position: relative;
+
+  /* color: transparent;
+  user-select: none; */
+
+  span {
+    visibility: hidden;
+  }
+  &[data-is-flagged="true"] {
+  background-image: url('./assets/flag.png');
+  background-size: cover;
+  }
+  &.incorrect-flag-square {
+    background-image: url('./assets/x-mark2.png'), url('./assets/flag.png');
+    background-size: cover;
+  }
+}
+
+.square.revealed {
+  background-color: #C0C0C0;
+  color: black;
+  border: 1px solid grey;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  container-type: inline-size;
+
+  & > span {
+    font-size: 100cqw;
+    font-weight: 500;
+  }
+  
+  &[data-type="bomb"] {
+    background-image: url('./assets/bomb.png');
+    background-size: cover;
+  }
+  &.bomb-square-red {
+    background-color: red;
+  }
+  &[data-digit] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &[data-digit="1"] { color: blue; }
+  &[data-digit="2"] { color: green; }
+  &[data-digit="3"] { color: red; }
+  &[data-digit="4"] { color: purple; }
+  &[data-digit="5"] { color: brown; }
+  &[data-digit="6"] { color: #00CCCC; }
+  &[data-digit="7"] { color: black; }
+  &[data-digit="8"] { color: #404040; }
+}
+
