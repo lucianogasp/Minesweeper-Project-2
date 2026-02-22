@@ -1,5 +1,3 @@
-import Transcription from './transcription.js';
-
 class Digit {
 
   #squares;
@@ -8,23 +6,17 @@ class Digit {
     this.#squares = squares;
   }
 
-  applyDigitsMethod(method, patternSkipArr, y_patternOperationArr, x_patternOperationArr) {
+  filteringByNeighboringSquares(squaresArr, targetArr) {
 
-    let dataCoordsTargetList = [];
-    let sla = Transcription.transcribeDataCoordToMatrix([elementArrBomb.dataset.coord]);
-    let targetNumbersCoordsList = method(bombRowCoords, bombColumnCoords, patternSkipArr, y_patternOperationArr, x_patternOperationArr); // must return a matrix of the format [[x_coord, y_coord], ...] of the computed permutation
-    this.#squares.getBombsList().forEach( elementArrBomb => {
-
-      // console.log(targetNumbersCoordsList); //TEST
-      Transcription.transcribeMatrixToDataCoord()
-      this.#squares.getSquareList()
-        .filter( elementArrSquare => dataCoordsTargetList.includes(elementArrSquare.dataset.coords) )
-        .filter( elementDataCoordsTarget => elementDataCoordsTarget.dataset.type !== 'bomb' )
-        .map( elementTarget => this.#incrementDigit(elementTarget) );
-    });
+    return squaresArr.filter( square => targetArr.includes(square.dataset.coords) );
   }
 
-  #incrementDigit(elementTarget) {
+  filteringByNotBombSquares(targetArr) {
+
+    return targetArr.filter( square => square.dataset.type !== 'bomb' );
+  }
+
+  incrementDigit(elementTarget) {
     
     elementTarget.dataset.digit = Number(elementTarget.dataset.digit) + 1;
   }

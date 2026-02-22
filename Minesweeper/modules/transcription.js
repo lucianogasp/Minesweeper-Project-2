@@ -1,18 +1,14 @@
 class Transcription {
 
-  static transcribeDataCoordToMatrix(dataCoordArr) {
-    let matrixArr = [];
-    for (let dataCoord of dataCoordArr) {
-      let [x_coord, y_coord] = dataCoord.split('-').map(coords => Number(coords));
-      matrixArr.push([x_coord, y_coord]);
-    }
+  static transcribeDataCoordToMatrix(dataCoord) {
+    let [x_coord, y_coord] = dataCoord.split('-').map(coords => Number(coords));
 
-    return matrixArr;
+    return [x_coord, y_coord];
   }
 
-  static transcribeMatrixToDataCoord(matrixArr) {
+  static transcribeMatrixToDataCoord(matrix) {
     let dataCoordArr = [];
-    for (let [x, y] of matrixArr) {
+    for (let [x, y] of matrix) {
       dataCoordArr.push(`${x}-${y}`);
     }
     

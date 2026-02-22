@@ -11,13 +11,13 @@ export const shuffle = arr => {
   return shuffledArr;
 };
 
-export const computeTargetCoords = (y_coord, x_coord, patternSkipArr, y_patternOperationArr, x_patternOperationArr) => {
+export const computeTargetCoords = (y_coord, x_coord, patternsOperation) => {
 
   const arr = [];
-  for (let i of y_patternOperationArr) {
-    for (let j of x_patternOperationArr) {
+  for (let i of patternsOperation.y_patternOperation) {
+    for (let j of patternsOperation.x_patternOperation) {
 
-      if ( patternSkipArr.includes(i) && patternSkipArr.includes(j) ) {
+      if ( patternsOperation.y_patternSkip.includes(i) && patternsOperation.x_patternSkip.includes(j) ) {
         continue;
       }
       let [targetYCoords, targetXCoords] = [y_coord + i, x_coord + j];
@@ -28,7 +28,9 @@ export const computeTargetCoords = (y_coord, x_coord, patternSkipArr, y_patternO
   return arr;
 };
 
-export const y_patternOperationArr = [-1, 0, 1];
-export const x_patternOperationArr = [-1, 0, 1];
-
-export const patternSkipArr = [0, 0];
+export const patternsOperation = {
+  y_patternSkip: [0],
+  x_patternSkip: [0],
+  y_patternOperation: [-1, 0, 1],
+  x_patternOperation: [-1, 0, 1],
+};

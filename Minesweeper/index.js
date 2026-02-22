@@ -4,13 +4,15 @@ import Squares from './modules/squares.js';
 import Bomb from './modules/bomb.js';
 import Digit from './modules/digit.js';
 import GameOver from './modules/gameover.js';
-import { shuffle, computeTargetCoords, patternSkipArr, y_patternOperationArr, x_patternOperationArr } from './modules/functionsModules.js';
+import Transcription from './modules/transcription.js';
+import { shuffle, computeTargetCoords, patternsOperation } from './modules/functionsModules.js';
+
 
 // Define variables
 const nRow = 5;
 const nCol = 4;
 const widthSquare = 20;
-const bombRatio = 0.1;
+const bombRatio = 0.3;
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -31,12 +33,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // First click => start game
   gridContainer.addEventListener('click', e => {
-    const excludeFirstClickSquareList = Array.from(squares.getSquareList().filter( square => square !== e.target));
-    squares.setShuffledSquareList(bomb.shuffleSquareMethod(excludeFirstClickSquareList, shuffle));
+
+    const excludedFirstClickSquareList = Array.from(squares.getSquareList().filter( square => square !== e.target));
+    squares.setShuffledSquareList(bomb.shuffleSquareMethod(excludedFirstClickSquareList, shuffle));
     squares.setBombsList(bomb.sliceBombsList());
     bomb.setBombs();
 
-    digit.applyDigitsMethod(computeTargetCoords, patternSkipArr, y_patternOperationArr, x_patternOperationArr);
+    squares.getBombsList().forEach( elementArrBomb => {
+
+      let [bombRowCoords, bombColumnCoords] = Transcription.transcribeDataCoordToMatrix(elementArrBomb.dataset.coords);
+      let targetMatrix = computeTargetCoords(bombRowCoords, bombColumnCoords, patternsOperation); // must return a matrix of the format [[x_coord, y_coord], ...] of the computed coordinates permutation
+      let targetDataCoordArr = Transcription.transcribeMatrixToDataCoord(targetMatrix);
+      let targetElements = [];
+      targetElements = digit.filteringByNeighboringSquares(squares.getSquareList(), targetDataCoordArr);
+      targetElements = digit.filteringByNotBombSquares(targetElements);
+
+      targetElements.forEach( element => digit.incrementDigit(element) );
+    });
+
     digit.setDigits();
 
     // for (let print of squares.getSquareList()) {
@@ -57,8 +71,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   gridContainer.addEventListener('contextmenu', e => {
-    e.target.dataset.isFlagged = e.target.dataset.isFlagged === 'false' ? 'true' : 'false';
     e.preventDefault();
+    e.target.dataset.isFlagged = e.target.dataset.isFlagged === 'false' ? 'true' : 'false';
   });
 
 });
