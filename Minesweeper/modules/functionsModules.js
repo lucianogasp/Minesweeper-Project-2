@@ -1,3 +1,6 @@
+import Transcription from './transcription.js';
+import FilterSquares from './filterSquares.js';
+
 export const shuffle = arr => {
 
   const shuffledArr = Array.from(arr);
@@ -10,6 +13,15 @@ export const shuffle = arr => {
 
   return shuffledArr;
 };
+
+export const findNeighboringSquares = (element, squaresArr) => {
+
+  let [bombRowCoords, bombColumnCoords] = Transcription.transcribeDataCoordToMatrix(element.dataset.coords);
+  let targetMatrix = computeTargetCoords(bombRowCoords, bombColumnCoords, patternsOperation); // must return a matrix of the format [[x_coord, y_coord], ...] of the computed coordinates permutation
+  let targetDataCoordArr = Transcription.transcribeMatrixToDataCoord(targetMatrix);
+  
+  return FilterSquares.filterByNeighboringSquares(squaresArr, targetDataCoordArr);
+}
 
 export const computeTargetCoords = (y_coord, x_coord, patternsOperation) => {
 

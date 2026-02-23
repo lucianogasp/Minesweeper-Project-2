@@ -4,8 +4,8 @@ import Squares from './modules/squares.js';
 import Bomb from './modules/bomb.js';
 import Digit from './modules/digit.js';
 import GameOver from './modules/gameover.js';
-import Transcription from './modules/transcription.js';
-import { shuffle, computeTargetCoords, patternsOperation } from './modules/functionsModules.js';
+import FilterSquares from './modules/filterSquares.js';
+import { shuffle, findNeighboringSquares, computeTargetCoords, patternsOperation } from './modules/functionsModules.js';
 
 
 // Define variables
@@ -39,14 +39,10 @@ document.addEventListener('DOMContentLoaded', () => {
     squares.setBombsList(bomb.sliceBombsList());
     bomb.setBombs();
 
-    squares.getBombsList().forEach( elementArrBomb => {
+    squares.getBombsList().forEach(elementArrBomb => {
 
-      let [bombRowCoords, bombColumnCoords] = Transcription.transcribeDataCoordToMatrix(elementArrBomb.dataset.coords);
-      let targetMatrix = computeTargetCoords(bombRowCoords, bombColumnCoords, patternsOperation); // must return a matrix of the format [[x_coord, y_coord], ...] of the computed coordinates permutation
-      let targetDataCoordArr = Transcription.transcribeMatrixToDataCoord(targetMatrix);
-      let targetElements = [];
-      targetElements = digit.filteringByNeighboringSquares(squares.getSquareList(), targetDataCoordArr);
-      targetElements = digit.filteringByNotBombSquares(targetElements);
+      let targetElements = findNeighboringSquares(elementArrBomb, squares.getSquareList());
+      targetElements = FilterSquares.filterByNotBombSquares(targetElements);
 
       targetElements.forEach( element => digit.incrementDigit(element) );
     });

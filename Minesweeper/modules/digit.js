@@ -6,16 +6,6 @@ class Digit {
     this.#squares = squares;
   }
 
-  filteringByNeighboringSquares(squaresArr, targetArr) {
-
-    return squaresArr.filter( square => targetArr.includes(square.dataset.coords) );
-  }
-
-  filteringByNotBombSquares(targetArr) {
-
-    return targetArr.filter( square => square.dataset.type !== 'bomb' );
-  }
-
   incrementDigit(elementTarget) {
     
     elementTarget.dataset.digit = Number(elementTarget.dataset.digit) + 1;
