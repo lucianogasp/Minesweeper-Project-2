@@ -1,18 +1,19 @@
-  // Imports modules
+  // Import modules
 import Grid from './modules/grid.js';
 import Squares from './modules/squares.js';
 import Bomb from './modules/bomb.js';
 import Digit from './modules/digit.js';
 import GameOver from './modules/gameover.js';
 import FilterSquares from './modules/filterSquares.js';
-import { shuffle, findNeighboringSquares, computeTargetCoords, patternsOperation } from './modules/functionsModules.js';
-
+import Transcription from './modules/transcription.js';
+import FindNeighboringSquares from './modules/findNeighboringSquares.js';
+import { shuffle, computeTargetCoords, patternsOperation } from './modules/functionsModules.js';
 
 // Define variables
 const nRow = 5;
 const nCol = 4;
 const widthSquare = 20;
-const bombRatio = 0.3;
+const bombRatio = 0.2;
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -26,7 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const squares = new Squares(Array.from(gridContainer.children));
   const bomb = new Bomb(bombRatio, grid.getN_Square(), squares); // PARAMETER: ratio of bombs; number of bombs; object of Squares()
-  const digit = new Digit(squares); // PARAMETER: object of Squares()
+  const findNeighboringSquares = new FindNeighboringSquares(Transcription, FilterSquares, squares, computeTargetCoords, patternsOperation); // PARAMETER: FilterSquares(); Transcription(); compute target coords method; patterns of the compute target coords method; object of Squares()
+  const digit = new Digit(FilterSquares, findNeighboringSquares, squares); // PARAMETER: FilterSquares(); object of findNeightboringSquares(); object of Squares()
   const gameover = new GameOver(squares); // PARAMETER: object of Squares()
 
   // Event Listeners
@@ -34,18 +36,12 @@ document.addEventListener('DOMContentLoaded', () => {
   // First click => start game
   gridContainer.addEventListener('click', e => {
 
-    const excludedFirstClickSquareList = Array.from(squares.getSquareList().filter( square => square !== e.target));
+    const excludedFirstClickSquareList = FilterSquares.filterByNotClickedSquare(squares.getSquareList(), e.target);
     squares.setShuffledSquareList(bomb.shuffleSquareMethod(excludedFirstClickSquareList, shuffle));
     squares.setBombsList(bomb.sliceBombsList());
     bomb.setBombs();
 
-    squares.getBombsList().forEach(elementArrBomb => {
-
-      let targetElements = findNeighboringSquares(elementArrBomb, squares.getSquareList());
-      targetElements = FilterSquares.filterByNotBombSquares(targetElements);
-
-      targetElements.forEach( element => digit.incrementDigit(element) );
-    });
+    digit.applyDigitsMethod();
 
     digit.setDigits();
 

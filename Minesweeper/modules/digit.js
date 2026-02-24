@@ -1,12 +1,28 @@
 class Digit {
 
+  #filterSquares;
+  #findNeighboringSquares;
   #squares;
 
-  constructor(squares) {
+  constructor(FilterSquares, FindNeighboringSquares, squares) {
+    this.#filterSquares = FilterSquares;
+    this.#findNeighboringSquares = FindNeighboringSquares;
     this.#squares = squares;
   }
 
-  incrementDigit(elementTarget) {
+  applyDigitsMethod() {
+
+    this.#squares.getBombsList().forEach(elementArrBomb => {
+
+      let targetElements = this.#findNeighboringSquares.findNeighboringSquares(elementArrBomb);
+      targetElements = this.#filterSquares.filterByNotBombSquares(targetElements);
+
+      targetElements.forEach(elementTarget => this.#incrementDigit(elementTarget));
+    });
+
+  }
+
+  #incrementDigit(elementTarget) {
     
     elementTarget.dataset.digit = Number(elementTarget.dataset.digit) + 1;
   }
@@ -18,7 +34,7 @@ class Digit {
         square.dataset.type = 'digit';
         square.innerHTML = `<span>${square.dataset.digit}</span>`;
       }
-    })
+    });
   }
 
 }
