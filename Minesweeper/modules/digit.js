@@ -40,22 +40,3 @@ class Digit {
 }
 
 export default Digit;
-
-
-// BACKUP CACHORRO
-
-  // applyDigitsMethod(method, patternSkipArr, y_patternOperationArr, x_patternOperationArr) {
-
-  //   this.#squares.getBombsList().forEach( elementArrBomb => {
-
-  //     let dataCoordsTargetList = [];
-  //     let [bombRowCoords, bombColumnCoords] = elementArrBomb.dataset.coord.split('-').map(coords => Number(coords));
-  //     let targetNumbersCoordsList = method(bombRowCoords, bombColumnCoords, patternSkipArr, y_patternOperationArr, x_patternOperationArr); // must return a matrix of the format [[x_coord, y_coord], ...] of the computed permutation
-  //     // console.log(targetNumbersCoordsList); //TEST
-  //     Transcription.transcribeMatrixToDataCoord()
-  //     this.#squares.getSquareList()
-  //       .filter( elementArrSquare => dataCoordsTargetList.includes(elementArrSquare.dataset.coords) )
-  //       .filter( elementDataCoordsTarget => elementDataCoordsTarget.dataset.type !== 'bomb' )
-  //       .map( elementTarget => this.#incrementDigit(elementTarget) );
-  //   });
-  // }

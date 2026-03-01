@@ -39,7 +39,7 @@ class Grid {
 
     let newDiv = document.createElement('div');
     newDiv.classList.add('square');
-    newDiv.classList.add('revealed');
+    newDiv.classList.add('hidden');
     newDiv.dataset.type = 'blank';
     newDiv.dataset.isFlagged = 'false';
     newDiv.dataset.digit = "";
