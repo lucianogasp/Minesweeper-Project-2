@@ -1,9 +1,9 @@
 class ExpansionBlank {
 
-  #findNeighSqrs;
+  #findNeighboringSquares;
 
-  constructor(findNeighSqrs) {
-    this.#findNeighSqrs = findNeighSqrs;
+  constructor(findNeighboringSquares) {
+    this.#findNeighboringSquares = findNeighboringSquares;
   }
 
   verifyExpansionBlank(element) {
@@ -16,7 +16,7 @@ class ExpansionBlank {
 
   #expansionBlank(element) {
 
-    let targetElements = this.#findNeighSqrs.findNeighboringSquares(element);
+    let targetElements = this.#findNeighboringSquares.findNeighboringSquares(element);
     targetElements.forEach(square => {
       
       switch (square.dataset.type) {

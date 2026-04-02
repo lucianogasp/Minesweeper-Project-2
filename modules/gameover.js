@@ -21,20 +21,20 @@ class GameOver {
     element.classList.add('bomb-square-red');
   }
 
+  #revealingBombSquares() {
+
+    this.#squares.getSquareList().forEach( square => {
+      if(square.dataset.type === 'bomb') {
+        square.classList.replace('hidden', 'revealed');
+      }
+    });
+  }
+
   #handleIncorrectFlagSquare() {
 
     this.#squares.getSquareList().forEach( square => {
       if( square.dataset.isFlagged === 'true' && square.dataset.type !== 'bomb' ) {
         square.classList.add('incorrect-flag-square');
-      }
-    });
-  }
-
-  #revealingBombSquares() {
-    
-    this.#squares.getSquareList().forEach( square => {
-      if(square.dataset.type === 'bomb') {
-        square.classList.replace('hidden', 'revealed');
       }
     });
   }

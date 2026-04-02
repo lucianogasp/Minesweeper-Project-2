@@ -17,17 +17,65 @@
   padding: 50px;
 }
 
-.grid-container {
-  background-color: #FFFFFF;
+.config-container {
+  background-color: #C0C0C0;
+  border: 3px solid;
+  border-color: #EEEEEE #888888 #888888 #EEEEEE;
+  border-radius: 0;
+  padding: 5px;
+  
+  display: flex;
+  flex-direction: column;
+}
+
+.config-container .header {
+  background-color: #C0C0C0;
+  border: 3px solid;
+  border-color: #888888 #EEEEEE #EEEEEE #888888;
+  border-radius: 0;
+  padding: 5px;
+
+  font-family: "Orbitron", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: weight;
+  font-style: normal;
+
+  display: flex;
+  justify-content: space-between;
+
+  
+  span {
+    border: 3px solid;
+    border-color: #EEEEEE #888888 #888888 #EEEEEE;
+    border-radius: 0;
+    padding: 5px;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center; 
+  }
+  
+  img {
+    width: 20px;
+  }
+}
+
+#count-bombs > img, #timer > img {
+  margin-left: 0px;
+}
+
+.config-container .grid {
+  background-color: #C0C0C0;
+  padding: 5px;
 
   display: grid;
   gap: 0;
   justify-content: center;
   align-content: center;
-
-  border: 1px solid red;
-  border-radius: 10px;
 }
+
+
+
 
 .square.hidden {
   background-color: #C0C0C0;

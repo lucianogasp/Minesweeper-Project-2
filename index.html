@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Genos:ital,wght@0,100..900;1,100..900&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+
+  <link rel="icon" href="./assets/minesweeper-icon.png">
+  <link rel="stylesheet" href="./styles.css">
+  
+  <title>Minesweeper</title>
+</head>
+<body>
+
+  <div class="main-container">
+    <div class="config-container">
+
+      <div class="header">
+        <span id="count-bombs">
+          00
+          <img src="./assets/bomb.png" alt="bomb">
+        </span>
+        <span id="smile">
+          <img src="./assets/smile-face.png" alt="smile">
+        </span>
+        <span id="timer">
+          00:00
+          <img src="./assets/timer.png" alt="timer">
+        </span>
+      </div>
+
+      <div class="grid"></div>
+
+    </div>
+  </div>
+
+  <script type="module" src="./index.js"></script>
+</body>
+</html>
