@@ -1,8 +1,8 @@
 class Digit {
 
-  #filterSquares;
-  #findNeighboringSquares;
-  #squares;
+  #filterSquares; // UTILITY CLASS FilterSquares
+  #findNeighboringSquares; // INSTANCE CLASS of FindNeighboringSquares
+  #squares; // INSTANCE CLASS of Squares
 
   constructor(FilterSquares, FindNeighboringSquares, squares) {
     this.#filterSquares = FilterSquares;
@@ -10,6 +10,7 @@ class Digit {
     this.#squares = squares;
   }
 
+  // Apply Digits to the neighboring squares of a square
   applyDigitsMethod() {
 
     this.#squares.getBombsList().forEach(elementArrBomb => {
@@ -27,6 +28,7 @@ class Digit {
     elementTarget.dataset.digit = Number(elementTarget.dataset.digit) + 1;
   }
 
+  // Set digits at the data attributes' square target
   setDigits() {
 
     this.#squares.getSquareList().forEach( square => {

@@ -1,11 +1,12 @@
 class ExpansionBlank {
 
-  #findNeighboringSquares;
+  #findNeighboringSquares; // INSTANCE CLASS of FindNeighboringSquares
 
   constructor(findNeighboringSquares) {
     this.#findNeighboringSquares = findNeighboringSquares;
   }
 
+  // Verify if square clicked is a blank type to initializate the expansion method
   verifyExpansionBlank(element) {
 
     if( element.dataset.type === 'blank' ) {
@@ -14,6 +15,8 @@ class ExpansionBlank {
 
   }
 
+  // Recursive Function
+  // Initializate expansion method to reveal neighboring blanked squares by recursion
   #expansionBlank(element) {
 
     let targetElements = this.#findNeighboringSquares.findNeighboringSquares(element);

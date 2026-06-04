@@ -6,6 +6,7 @@ class Timer {
     this.#onGoing = onGoing;
   }
 
+  // Starting a timer at config container
   start(timerDiv) {
 
     let min = 0;
@@ -22,10 +23,8 @@ class Timer {
         return;
       }
       timerDiv.textContent = `${min}:${sec}`;
-      console.log(sec, min);
+      console.log(sec, min); // Console Log
     }, 1000);
-
-    
   }
 
 }

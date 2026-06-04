@@ -1,8 +1,8 @@
 class Bomb {
 
-  #bomb_ratio;
-  #n_bomb;
-  #squares;
+  #bomb_ratio; // Ratio of bombs
+  #n_bomb; // Number of bombs
+  #squares; // CLASS INSTANCE of Squares
 
   constructor(bomb_ratio, n_square, squares) {
     this.#bomb_ratio = bomb_ratio;
@@ -10,12 +10,13 @@ class Bomb {
     this.#squares = squares;
   }
 
-  // Using to aply bombs at the squares by randomized method
-  shuffleSquareMethod(arr, method) { // PARAMETERS: Iterrable of squares, shuffle method
+  // Suffle squares list using a shuffled method
+  shuffleSquareMethod(arr, method) {
 
     return method(arr);
   }
 
+  // Slicing shuffled squares list into a bombs list by the Ratio of bombs
   sliceBombsList() {
 
     return this.#squares.getShuffledSquareList().slice(0, this.#n_bomb);

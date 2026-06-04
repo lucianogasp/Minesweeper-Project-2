@@ -1,11 +1,12 @@
 class GameOver {
 
-  #squares;
+  #squares; // INSTANCE CLASS of Squares
 
   constructor(squares) {
     this.#squares = squares;
   }
 
+  // Validate first click bomb: handle cases
   validateFirstClickBomb(element) {
 
     if (element.dataset.type === 'bomb') {

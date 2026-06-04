@@ -1,9 +1,9 @@
 class Grid {
 
-  #n_row;
-  #n_col;
-  #n_square;
-  #width_square;
+  #n_row; // Number of columns
+  #n_col; // Rows
+  #n_square; // Total of square
+  #width_square; // Pixels of width for each square
 
   constructor (n_row, n_col, width_square) {
     this.#n_row = n_row;
@@ -17,11 +17,13 @@ class Grid {
     return this.#n_square;
   }
 
+  // Set template HTML to create grid
   setTemplateGrid(gridContainer) {
     gridContainer.style.gridTemplateColumns = `repeat(${this.#n_col}, ${this.#width_square}px)`;
     gridContainer.style.gridTemplateRows = `repeat(${this.#n_row}, ${this.#width_square}px)`;
   }
 
+  // Create HTML grid with squares associated
   createGrid(gridContainer) {
 
     for (let i = 0; i < this.#n_row; i++) {
@@ -35,6 +37,7 @@ class Grid {
   
   }
 
+  // Set each square with classes and data attributes associated 
   #setSquares() {
 
     let newDiv = document.createElement('div');
@@ -47,6 +50,7 @@ class Grid {
     return newDiv;
   }
 
+  // Set Data Coords at the data attributes' square associated
   #setGridDataCoords(square, y_coord, x_coord) {
     square.setAttribute('data-coords', `${y_coord + 1}-${x_coord + 1}`);
   }

@@ -1,8 +1,8 @@
 class Squares {
 
-  #squareList;
-  #shuffledSquareList;
-  #bombsList;
+  #squareList; // List of squares (DOM Elements)
+  #shuffledSquareList; // List of shuffled squares (DOM Elements) - Default: undefined
+  #bombsList; // List of bombs squares (DOM Elements) - Default: undefined
 
   constructor(squareList) {
     this.#squareList = squareList;

@@ -1,10 +1,10 @@
 class FindNeighboringSquares {
 
-  #Transcription;
-  #FilterSquares;
-  #squares;
-  #computeTargetCoords;
-  #patternsOperation;
+  #Transcription; // UTILITY CLASS Transcription 
+  #FilterSquares; // UTILITY CLASS FilterSquares
+  #squares; // CLASS INSTANCE of Squares
+  #computeTargetCoords; // UTILITIES: compute target coords method
+  #patternsOperation; // UTILITIES: patters of the compute target coords method (Options Objetc)
 
   constructor(Transcription, FilterSquares, squares, computeTargetCoords, patternsOperation) {
     this.#Transcription = Transcription;
@@ -14,6 +14,7 @@ class FindNeighboringSquares {
     this.#patternsOperation = patternsOperation;
   }
 
+  // Return the neighboring squares of a square
   findNeighboringSquares = (element) => {
 
     let [bombRowCoords, bombColumnCoords] = this.#Transcription.transcribeDataCoordToMatrix(element.dataset.coords);
