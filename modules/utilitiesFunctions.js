@@ -29,7 +29,7 @@ export const computeTargetCoords = (y_coord, x_coord, patternsOperation) => {
   return arr;
 };
 
-// UTILITIES: patters of the compute target coords method (Options Objetc)
+// UTILITIES: patters of the compute target coords method (Options Object)
 export const patternsOperation = {
   y_patternSkip: [0],
   x_patternSkip: [0],

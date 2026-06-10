@@ -7,7 +7,7 @@ class GameOver {
   }
 
   // Validate first click bomb: handle cases
-  validateFirstClickBomb(element) {
+  validateClickBomb(element) {
 
     if (element.dataset.type === 'bomb') {
 
@@ -38,6 +38,11 @@ class GameOver {
         square.classList.add('incorrect-flag-square');
       }
     });
+  }
+
+  #stopGame() {
+
+    
   }
 
 }

@@ -12,19 +12,26 @@ class Timer {
     let min = 0;
     let sec = 0;
     
-    let id = setInterval( () => {
-      sec++;
+    const idInterval = setInterval( () => {
+
       if (sec === 60) {
         min++;
         sec = 0;
       }
       if (sec === 60 && min === 60) {
-        clearInterval(id);
-        return;
+        min = 0;
+        sec = 0;
       }
-      timerDiv.textContent = `${min}:${sec}`;
-      console.log(sec, min); // Console Log
+      
+      let timerMin = min.toString().padStart(2, "0");
+      let timerSec = sec.toString().padStart(2, "0");
+      
+      timerDiv.textContent = `${timerMin}:${timerSec}`;
+      
+      sec++;
     }, 1000);
+
+    return idInterval;
   }
 
 }
