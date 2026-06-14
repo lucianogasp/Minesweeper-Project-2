@@ -9,20 +9,15 @@ class GameOver {
   // Validate first click bomb: handle cases
   validateClickBomb(element) {
 
-    if (element.dataset.type === 'bomb') {
-
-      this.#handleBombRedSquare(element);
-      this.#revealingBombSquares();
-      this.#handleIncorrectFlagSquare(element);
-    }
+    return element.dataset.type === 'bomb'? true: false;
   }
 
-  #handleBombRedSquare(element) {
+  handleBombRedSquare(element) {
 
     element.classList.add('bomb-square-red');
   }
 
-  #revealingBombSquares() {
+  revealingBombSquares() {
 
     this.#squares.getSquareList().forEach( square => {
       if(square.dataset.type === 'bomb') {
@@ -31,7 +26,7 @@ class GameOver {
     });
   }
 
-  #handleIncorrectFlagSquare() {
+  handleIncorrectFlagSquare() {
 
     this.#squares.getSquareList().forEach( square => {
       if( square.dataset.isFlagged === 'true' && square.dataset.type !== 'bomb' ) {
@@ -40,11 +35,10 @@ class GameOver {
     });
   }
 
-  #stopGame() {
+  stopTimer(timer) {
 
-    
+    timer.stop();
   }
-
 }
 
 export default GameOver;

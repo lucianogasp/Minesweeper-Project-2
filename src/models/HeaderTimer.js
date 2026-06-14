@@ -1,12 +1,8 @@
-class Timer {
+class HeaderTimer {
 
-  #onGoing;
+  #id;
 
-  constructor(onGoing) {
-    this.#onGoing = onGoing;
-  }
-
-  // Starting a timer at config container
+  // Starts a timer at header
   start(timerDiv) {
 
     let min = 0;
@@ -31,9 +27,16 @@ class Timer {
       sec++;
     }, 1000);
 
-    return idInterval;
+    this.#id = idInterval;
+    return;
   }
 
+  // Stops timer of the header
+  stop() {
+
+    clearInterval(this.#id);
+    return;
+  }
 }
 
-export default Timer;
+export default HeaderTimer;
