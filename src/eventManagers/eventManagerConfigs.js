@@ -1,13 +1,12 @@
 // import modules
 import ClickEventManager from './ClickEventManager.js';
-import { buildGrid, prepareMinefild, executeMove, placeFlag } from './eventManagerFuncions.js';
-import { params } from '../app.js';
+import { buildGrid, prepareMinefild, executeMove, placeFlag } from './eventManagerFunctions.js';
 
 // Define DOM elements
 const smileSpan = document.querySelector('#smile');
 
 // Define local variables
-let clickManager = undefined;
+export let clickManager = undefined;
 
 // Define Starting Game Managers functions
 
@@ -45,15 +44,7 @@ export function disableRightClickListener() {
 }
 
 export function enableRestartListener() {
-
-  // Enable the smile listener from the header to restart game
-  if (clickManager) {
-    smileSpan.addEventListener('click', () => {
-  
-      clickManager.getGridContainer().replaceChildren();
-      startGame();
-    });
-  } else {
-    console.error(`clickManager is undefined: ${clickManager}`);
-  }
+  smileSpan.addEventListener('click', () => {
+    startGame();
+  });
 }

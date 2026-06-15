@@ -1,5 +1,5 @@
 // import modules
-import { startGame } from './eventManagers/eventManagerConfigs.js';
+import { startGame, enableRestartListener } from './eventManagers/eventManagerConfigs.js';
 
 // Define variables
 export const params = {
@@ -11,10 +11,7 @@ export const params = {
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  // Define DOM elements
-  const mainContainer = document.querySelector('.main-container');
-
-  // Define Execute Functions
-  
+  // debugger;
   startGame();
+  enableRestartListener();
 });

@@ -32,14 +32,13 @@ class ClickEventManager {
   #clickCallback = e => {
 
     if (this.#isFirstClick) {
-      const { grid } = this.#returnBuildGrid;
-      this.#returnPrepareMinefild = this.prepareMinefild(e, grid, this.#gridContainer);
+      this.#returnPrepareMinefild = this.prepareMinefild(e, this.#returnBuildGrid);
 
       this.#isFirstClick = false;
     }
       
-    const { squares, findNeighboringSquares, timer } = this.#returnPrepareMinefild;
-    this.executeMove(e, squares, findNeighboringSquares, timer);
+    // debugger;
+    this.executeMove(e, this.#returnPrepareMinefild);
   }
 
   #rightClickCallback = e => {

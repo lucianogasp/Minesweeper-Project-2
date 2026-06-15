@@ -21,23 +21,30 @@ const timerCounter = document.querySelector('#number-timer');
 
 export function buildGrid() {
 
-  // Create grid
-  let gridContainer = document.querySelector('.grid');
-  let grid = new Grid(params.n_row, params.n_col, params.width_square); 
+  // Build grid container and reset it
+  const gridContainer = document.querySelector('.grid');
+  const grid = new Grid(params.n_row, params.n_col, params.width_square); 
+  gridContainer.replaceChildren();
   grid.setTemplateGrid(gridContainer);
   grid.createGrid(gridContainer);
 
   return { grid, gridContainer };
 }
 
-export function prepareMinefild(e, grid, gridContainer) {
+export function prepareMinefild(e, objectResultParams) {
     
+  // Destructuring Assignments of params
+  const { grid, gridContainer } = objectResultParams;
+
   // Instantiate objects
   const timer = new HeaderTimer();
   const squares = new Squares(Array.from(gridContainer.children));
   const bomb = new Bomb(params.bomb_ratio, grid.getN_Square(), squares);
   const findNeighboringSquares = new FindNeighboringSquares(Transcription, FilterSquares, squares, computeTargetCoords, patternsOperation);
-  const digit = new Digit(FilterSquares, findNeighboringSquares, squares); 
+  const digit = new Digit(FilterSquares, findNeighboringSquares, squares);
+
+  const gameover = new GameOver(squares);
+  const expansion = new ExpansionBlank(findNeighboringSquares);
 
   // Starting a timer at header
   timer.start(timerCounter);
@@ -47,33 +54,28 @@ export function prepareMinefild(e, grid, gridContainer) {
   const localShuffledSquareList = bomb.shuffleSquareMethod(excludedFirstClickSquareList, fisherYatesShuffle);
   squares.setShuffledSquareList(localShuffledSquareList);
 
-  // Setting bombs squares list
+  // Setting bombs at squares list and implanting it at the DOM elements
   squares.setBombsList(bomb.sliceBombsList());
-
-  // Implanting bombs at the DOM elements
   bomb.setBombs();
 
-  // Setting digits at the neighboring bomb squares
+  // Setting digits on neighboring bomb squares and implanting it at the DOM elements
   digit.applyDigitsMethod();
-
-  // Implanting digits at the DOM elements
   digit.setDigits();
 
-  return { squares, findNeighboringSquares, timer };
+  return { gameover, expansion, timer };
 }
 
-export function executeMove(e, squares, findNeighboringSquares, timer) {
+export function executeMove(e, objectResultParams) {
 
-  // instantiate objects
-  const gameover = new GameOver(squares);
-  const expansion = new ExpansionBlank(findNeighboringSquares);
+  // Destructuring Assignments of params
+  const { gameover, expansion, timer } = objectResultParams;
 
   // Reveal squares clicked
   e.target.classList.replace('hidden', 'revealed');
 
   // Validate if bomb was clicked
-  const isGameover = gameover.validateClickBomb(e.target);
-  if (isGameover) {
+  const isGameOver = gameover.validateClickBomb(e.target);
+  if (isGameOver) {
     gameover.handleBombRedSquare(e.target);
     gameover.revealingBombSquares();
     gameover.handleIncorrectFlagSquare();
@@ -81,7 +83,6 @@ export function executeMove(e, squares, findNeighboringSquares, timer) {
 
     disableClickListeners();
     disableRightClickListener();
-    enableRestartListener();
     return;
   }
 
