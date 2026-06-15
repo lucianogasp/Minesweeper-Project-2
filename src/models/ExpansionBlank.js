@@ -6,18 +6,18 @@ class ExpansionBlank {
     this.#findNeighboringSquares = findNeighboringSquares;
   }
 
-  // Verify if square clicked is a blank type to initializate the expansion method
-  verifyExpansionBlank(element) {
+  // Validate if clicked square is a blank type to initialize the expansion method
+  validateExpansionBlank(element) {
 
     if( element.dataset.type === 'blank' ) {
-      this.#expansionBlank(element);
+      this.#executeExpansion(element);
     }
 
   }
 
   // Recursive Function
   // Initializate expansion method to reveal neighboring blanked squares by recursion
-  #expansionBlank(element) {
+  #executeExpansion(element) {
 
     let targetElements = this.#findNeighboringSquares.findNeighboringSquares(element);
     targetElements.forEach(square => {
@@ -34,7 +34,7 @@ class ExpansionBlank {
         case 'blank':
           if (square.classList.contains('hidden')) {
             square.classList.replace('hidden', 'revealed');
-            this.#expansionBlank(square);
+            this.#executeExpansion(square);
           }
           break;
       }

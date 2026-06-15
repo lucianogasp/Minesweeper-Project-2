@@ -65,30 +65,45 @@ export function prepareMinefild(e, objectResultParams) {
   return { gameover, expansion, timer };
 }
 
-export function executeMove(e, objectResultParams) {
-
-  // Destructuring Assignments of params
-  const { gameover, expansion, timer } = objectResultParams;
+export function executeMove(e) {
 
   // Reveal squares clicked
   e.target.classList.replace('hidden', 'revealed');
+  return;
+}
+
+export function verifyGameOver(e, objectResultParams) {
+
+  // Destructuring Assignments of params
+  const { gameover, timer } = objectResultParams;
 
   // Validate if bomb was clicked
   const isGameOver = gameover.validateClickBomb(e.target);
+
   if (isGameOver) {
+    // Handle cases of game over
     gameover.handleBombRedSquare(e.target);
     gameover.revealingBombSquares();
     gameover.handleIncorrectFlagSquare();
     gameover.stopTimer(timer);
 
+    // Disable event listeners of click
     disableClickListeners();
     disableRightClickListener();
     return;
   }
+  return;
+}
+
+export function verifyExpansionBlank(e, objectResultParams) {
+
+  // Destructuring Assignments of params
+  const { expansion } = objectResultParams;
 
   // Initialize expansion method to reveal neighboring blanked squares
-  expansion.verifyExpansionBlank(e.target); // Recursive Function
+  expansion.validateExpansionBlank(e.target); // Recursive Function
   return;
+
 }
 
 export function placeFlag(e) {

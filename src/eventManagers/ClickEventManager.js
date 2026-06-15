@@ -5,18 +5,21 @@ class ClickEventManager {
   buildGrid; // Function to configurate the grid, with header params. Return a grid instance
   prepareMinefild; // Function to execute the first click. Return {squares, findNeighboringSquares}, instances
   executeMove; // Function to execute the subsequet clicks. Return void
+  verifyGameOver; // Function to verify the cases of gameover
   placeFlag; // Funciton to execute the right click. Return void
 
   #returnBuildGrid // Save config grid function content
   #returnPrepareMinefild; // Save first click function content
   #isFirstClick; // Verify the first click
   
-  constructor(buildGrid, prepareMinefild, executeMove, placeFlag) {
+  constructor(buildGrid, prepareMinefild, executeMove, verifyGameOver, verifyExpansionBlank, placeFlag) {
     this.#gridContainer = undefined;
 
     this.buildGrid = buildGrid;
     this.prepareMinefild = prepareMinefild;
     this.executeMove = executeMove;
+    this.verifyGameOver = verifyGameOver;
+    this.verifyExpansionBlank = verifyExpansionBlank;
     this.placeFlag = placeFlag;
 
     this.#returnBuildGrid = null;
@@ -38,7 +41,9 @@ class ClickEventManager {
     }
       
     // debugger;
-    this.executeMove(e, this.#returnPrepareMinefild);
+    this.executeMove(e);
+    this.verifyGameOver(e, this.#returnPrepareMinefild);
+    this.verifyExpansionBlank(e, this.#returnPrepareMinefild);
   }
 
   #rightClickCallback = e => {

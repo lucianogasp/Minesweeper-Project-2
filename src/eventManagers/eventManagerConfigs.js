@@ -1,6 +1,6 @@
 // import modules
 import ClickEventManager from './ClickEventManager.js';
-import { buildGrid, prepareMinefild, executeMove, placeFlag } from './eventManagerFunctions.js';
+import { buildGrid, prepareMinefild, executeMove, verifyGameOver, verifyExpansionBlank, placeFlag } from './eventManagerFunctions.js';
 
 // Define DOM elements
 const smileSpan = document.querySelector('#smile');
@@ -17,6 +17,8 @@ export function startGame() {
     buildGrid,
     prepareMinefild,
     executeMove,
+    verifyGameOver,
+    verifyExpansionBlank,
     placeFlag
   );
   
