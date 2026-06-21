@@ -11,7 +11,7 @@ export let clickManager = undefined;
 // Define Starting Game Managers functions
 
 export function startGame() {
-
+  
   // Instantiate the event manager of event listeners 
   clickManager = new ClickEventManager(
     buildGrid,
@@ -21,6 +21,9 @@ export function startGame() {
     verifyExpansionBlank,
     placeFlag
   );
+
+  console.log('new manager');
+  console.log(clickManager);
   
   clickManager.setup();
 }
@@ -46,7 +49,26 @@ export function disableRightClickListener() {
 }
 
 export function enableRestartListener() {
-  smileSpan.addEventListener('click', () => {
-    startGame();
-  });
+
+  // Enable click listener of restart game
+  smileSpan.addEventListener('click', restartGame);
+}
+
+export function disableRestartListener() {
+
+  // Disable click listener of restart game
+  smileSpan.removeEventListener('click', restartGame);
+}
+
+export function restartGame() {
+  debugger;
+
+  console.log('restartGame');
+  console.log(clickManager); 
+
+  disableClickListeners();
+  disableRightClickListener();
+  disableRestartListener();
+  
+  startGame();
 }

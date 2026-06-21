@@ -1,3 +1,6 @@
+// import modules
+import { enableRestartListener } from "./eventManagerConfigs.js";
+
 class ClickEventManager {
 
   #gridContainer; // DOM OBJECT to listen an event. Default: undefined
@@ -33,14 +36,13 @@ class ClickEventManager {
   }
 
   #clickCallback = e => {
-
+    debugger;
     if (this.#isFirstClick) {
       this.#returnPrepareMinefild = this.prepareMinefild(e, this.#returnBuildGrid);
 
       this.#isFirstClick = false;
     }
       
-    // debugger;
     this.executeMove(e);
     this.verifyGameOver(e, this.#returnPrepareMinefild);
     this.verifyExpansionBlank(e, this.#returnPrepareMinefild);
@@ -48,6 +50,7 @@ class ClickEventManager {
 
   #rightClickCallback = e => {
       e.preventDefault();
+      debugger;
       this.placeFlag(e);
   }
 
@@ -55,15 +58,18 @@ class ClickEventManager {
   setup() {
 
     try {
+      // Build grid and gridContainer
       this.#returnBuildGrid = this.buildGrid();
-      
       const { gridContainer } = this.#returnBuildGrid;
       this.#gridContainer = gridContainer;
-  
+
+      // Enable restart game button
+      enableRestartListener();
+      
+      // Define event listeners at grid container
       this.#gridContainer.addEventListener('click', this.#clickCallback);
-  
       this.#gridContainer.addEventListener('contextmenu', this.#rightClickCallback); 
-           
+      
     } catch(err) {
       console.error(err);
     }
