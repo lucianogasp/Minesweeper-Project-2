@@ -1,5 +1,5 @@
 // import modules
-import { startGame, enableRestartListener } from './eventManagers/eventManagerConfigs.js';
+import { startGame, enableRestartListener } from './eventManagers/eventManagerConfig.js';
 
 // Define variables
 export const params = {

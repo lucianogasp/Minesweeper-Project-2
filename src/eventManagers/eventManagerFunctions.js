@@ -12,7 +12,7 @@ import FindNeighboringSquares from '../models/FindNeighboringSquares.js';
 import { fisherYatesShuffle, computeTargetCoords, patternsOperation } from '../utils/utilitiesFunctions.js';
 import { params } from '../app.js';
 
-import { disableClickListeners, disableRightClickListener, enableRestartListener } from './eventManagerConfigs.js';
+import { disableClickListeners, disableRightClickListener, enableRestartListener } from './eventManagerConfig.js';
 
 // Define DOM elements
 const timerCounter = document.querySelector('#number-timer');

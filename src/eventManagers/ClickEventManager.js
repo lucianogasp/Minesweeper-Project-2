@@ -1,5 +1,5 @@
 // import modules
-import { enableRestartListener } from "./eventManagerConfigs.js";
+import { enableRestartListener } from "./eventManagerConfig.js";
 
 class ClickEventManager {
 
