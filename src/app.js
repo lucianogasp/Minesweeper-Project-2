@@ -11,6 +11,6 @@ export const params = {
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  // debugger;
+  debugger;
   startGame();
 });

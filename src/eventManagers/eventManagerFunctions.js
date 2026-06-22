@@ -31,13 +31,21 @@ export function buildGrid() {
   return { grid, gridContainer };
 }
 
+export function setHeaderTimer() {
+
+  // Reset the timer at header
+  const timer = new HeaderTimer();
+  timer.reset(timerCounter);
+
+  return { timer };
+}
+
 export function prepareMinefild(e, objectResultParams) {
     
   // Destructuring Assignments of params
-  const { grid, gridContainer } = objectResultParams;
+  const { grid, gridContainer, timer } = objectResultParams;
 
   // Instantiate objects
-  const timer = new HeaderTimer();
   const squares = new Squares(Array.from(gridContainer.children));
   const bomb = new Bomb(params.bomb_ratio, grid.getN_Square(), squares);
   const findNeighboringSquares = new FindNeighboringSquares(Transcription, FilterSquares, squares, computeTargetCoords, patternsOperation);

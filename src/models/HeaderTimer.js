@@ -2,6 +2,12 @@ class HeaderTimer {
 
   #id;
 
+  reset(timerDiv) {
+
+    timerDiv.textContent = '00:00';
+    return;
+  }
+
   // Starts a timer at header
   start(timerDiv) {
 

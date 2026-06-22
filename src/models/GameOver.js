@@ -3,7 +3,7 @@ class GameOver {
   #squares; // INSTANCE CLASS of Squares
 
   constructor(squares) {
-    this.#squares = squares;
+    this.#squares = squares;  
   }
 
   // Validate first click bomb: handle cases
