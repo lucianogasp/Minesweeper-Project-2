@@ -9,6 +9,7 @@ import ExpansionBlank from '../models/ExpansionBlank.js';
 import Transcription from '../utils/Transcription.js';
 import FilterSquares from '../utils/FilterSquares.js';
 import FindNeighboringSquares from '../models/FindNeighboringSquares.js';
+import FlagCounter from '../models/FlagCounter.js';
 import { fisherYatesShuffle, computeTargetCoords, patternsOperation } from '../utils/utilitiesFunctions.js';
 import { params } from '../app.js';
 
@@ -53,6 +54,7 @@ export function prepareMinefild(e, objectResultParams) {
 
   const gameover = new GameOver(squares);
   const expansion = new ExpansionBlank(findNeighboringSquares);
+  const flagCounter = new FlagCounter(bomb.getN_Bomb());
 
   // Starting a timer at header
   timer.start(timerCounter);
@@ -70,7 +72,7 @@ export function prepareMinefild(e, objectResultParams) {
   digit.applyDigitsMethod();
   digit.setDigits();
 
-  return { gameover, expansion, timer };
+  return { gameover, expansion, flagCounter };
 }
 
 export function executeMove(e) {
@@ -114,9 +116,24 @@ export function verifyExpansionBlank(e, objectResultParams) {
 
 }
 
-export function placeFlag(e) {
+export function placeFlag(e, objectResultParams) {
+
+  const { flagCounter } = objectResultParams;
 
   // Switch the flagged status' right clicked square
-  e.target.dataset.isFlagged = e.target.dataset.isFlagged === 'false' ? 'true' : 'false';
+  // if number of flags placed is bigger than number of bombs remaining
+  if(flagCounter.flags > 0) {
+
+    // if a flag is placed, decremente number of flags remaing
+    if ( e.target.dataset.isFlagged === 'false' ) {
+      e.target.dataset.isFlagged = 'true';
+      flagCounter.flags--;
+
+    // else increment
+    } else {
+      e.target.dataset.isFlagged = 'false';
+      flagCounter.flags++;
+    }
+  }
   return;
 }

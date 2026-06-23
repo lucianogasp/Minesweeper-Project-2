@@ -10,6 +10,11 @@ class Bomb {
     this.#squares = squares;
   }
 
+  getN_Bomb() {
+
+    return this.#n_bomb;
+  }
+
   // Suffle squares list using a shuffled method
   shuffleSquareMethod(arr, method) {
 

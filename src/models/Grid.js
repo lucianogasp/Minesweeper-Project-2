@@ -1,7 +1,7 @@
 class Grid {
 
   #n_row; // Number of columns
-  #n_col; // Rows
+  #n_col; // Number of rows
   #n_square; // Total of square
   #width_square; // Pixels of width for each square
 

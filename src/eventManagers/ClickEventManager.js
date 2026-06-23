@@ -14,7 +14,7 @@ class ClickEventManager {
 
   #returnBuildGrid // Save config grid function content
   #returnSetHeaderTimer // Save config timer function content
-  #returnPrepareMinefild; // Save first click function content
+  #returnPrepareMinefield; // Save first click function content
   #isFirstClick; // Verify the first click
   
   constructor(buildGrid, setHeaderTimer, prepareMinefild, executeMove, verifyGameOver, verifyExpansionBlank, placeFlag) {
@@ -30,7 +30,7 @@ class ClickEventManager {
 
     this.#returnBuildGrid = null;
     this.#returnSetHeaderTimer = null;
-    this.#returnPrepareMinefild = null;
+    this.#returnPrepareMinefield = null;
     this.#isFirstClick = true;
   }
 
@@ -41,22 +41,32 @@ class ClickEventManager {
 
   #clickCallback = e => {
     if (this.#isFirstClick) {
-      this.#returnPrepareMinefild = this.prepareMinefild(e, {
+      this.#returnPrepareMinefield = this.prepareMinefild(e, {
         ...this.#returnBuildGrid,
         ...this.#returnSetHeaderTimer
       });
+
+      this.#gridContainer.addEventListener('contextmenu', this.#rightClickCallback); 
 
       this.#isFirstClick = false;
     }
       
     this.executeMove(e);
-    this.verifyGameOver(e, this.#returnPrepareMinefild);
-    this.verifyExpansionBlank(e, this.#returnPrepareMinefild);
+    this.verifyGameOver(e, { 
+      ...this.#returnPrepareMinefield,
+      ...this.#returnSetHeaderTimer
+    });
+    this.verifyExpansionBlank(e, this.#returnPrepareMinefield);
   }
 
   #rightClickCallback = e => {
+    debugger;
       e.preventDefault();
-      this.placeFlag(e);
+      if (this.#returnPrepareMinefield) {
+        this.placeFlag(e, this.#returnPrepareMinefield);
+      } else {
+        console.error(`#returnPrepareMinefield is unefined: ${this.#returnPrepareMinefield}`);
+      }
   }
 
   // Setup the module responsable for start the grid's click events
@@ -76,7 +86,6 @@ class ClickEventManager {
       
       // Define event listeners at grid container
       this.#gridContainer.addEventListener('click', this.#clickCallback);
-      this.#gridContainer.addEventListener('contextmenu', this.#rightClickCallback); 
       
     } catch(err) {
       console.error(err);
