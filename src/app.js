@@ -3,8 +3,8 @@ import { startGame } from './managers/startGameManager.js';
 
 // Define variables
 export const params = {
-  n_row: 16,
-  n_col: 16,
+  n_row: 5,
+  n_col: 5,
   width_square: 20,
   bomb_ratio: 0.1
 }
@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentGame;
 
   function handleRestart() {
+    debugger;
 
     if(currentGame) {
       currentGame.restart(); // Restart Game

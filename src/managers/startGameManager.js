@@ -1,6 +1,6 @@
 // import modules
 import FlagCounter from '../models/FlagCounter.js';
-import { buildGrid, setHeaderTimer, resetHeaderTimer, stopHeaderTimer, resetCounterBombs, prepareMinefild, executeMove, verifyGameOver, verifyExpansionBlank, placeFlag } from './managerFunctions.js';
+import { buildGrid, setHeaderTimer, resetHeaderTimer, stopHeaderTimer, resetCounterBombs, prepareMinefild, executeMove, verifyGameOver, verifyExpansionBlank, verifyEndGame, placeFlag } from './managerFunctions.js';
 
 export function startGame() {
 
@@ -17,6 +17,7 @@ export function startGame() {
   };
 
   const clickCallback = e => {
+    debugger;
 
     // if event clicks of grid container is enabled
     if (!gameState.enableClick) { return; }
@@ -43,9 +44,11 @@ export function startGame() {
     executeMove(e);
     gameState.enableClick = verifyGameOver(e, gameState.gameover, gameState.timer);
     verifyExpansionBlank(e, gameState.expansion);
+    // verifyEndGame(gameState.gameover);
   };
 
   const rightClickCallback = e => {
+    debugger;
 
     e.preventDefault();
 
@@ -55,6 +58,7 @@ export function startGame() {
     if (gameState.flagCounter instanceof FlagCounter) {
 
       placeFlag(e, gameState.flagCounter);
+      // verifyEndGame(gameState.gameover);
 
     } else {
       console.error(`flagCounter is not instance of FlagCounter: ${gameState.flagCounter}`);
@@ -70,7 +74,7 @@ export function startGame() {
 
   const disableRightClickListener = () => {
 
-    gameState.gridContainer.removeEventListener('click', rightClickCallback);
+    gameState.gridContainer.removeEventListener('contextmenu', rightClickCallback);
   };
 
   // Build grid and gridContainer
@@ -95,8 +99,8 @@ export function startGame() {
     restart: () => {
       disableClickListener();
       disableRightClickListener();
-      resetHeaderTimer(gameState.timer);
       stopHeaderTimer(gameState.timer);
+      resetHeaderTimer(gameState.timer);
 
       console.log('Listeners removed successfully...');
     }

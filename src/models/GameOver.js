@@ -39,6 +39,16 @@ class GameOver {
 
     timer.stop();
   }
+
+  validateEndGame() {
+
+    for ( let [index, square] of this.#squares.getSquareList().entries() ) {
+      if ( square.dataset.type !== 'bomb' && square.classList.contains('hidden') ) { return; }
+      if ( square.dataset.type === 'bomb' && square.dataset.isFlagged === 'false' ) { return; }
+
+      if ( index === this.#squares.getSquareList().length - 1 ) alert('The game was ended!!!');
+    }
+  }
 }
 
 export default GameOver;

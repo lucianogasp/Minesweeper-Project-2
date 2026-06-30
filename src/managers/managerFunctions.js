@@ -62,6 +62,11 @@ export function resetCounterBombs() {
 };
 
 export function prepareMinefild(e, grid, gridContainer, timer) {
+
+  if(e.target === e.currentTarget) {
+    console.error(`e.target === e.currentTarget. The first click does not captured any of squares`);
+    return;
+  }
     
   // Instantiate objects
   const squares = new Squares(Array.from(gridContainer.children));
@@ -126,6 +131,12 @@ export function verifyExpansionBlank(e, expansion) {
 
   // Initialize expansion method to reveal neighboring blanked squares
   expansion.validateExpansionBlank(e.target); // Recursive Function
+  return;
+}
+
+export function verifyEndGame(gameover) {
+
+  gameover.validateEndGame();
   return;
 }
 
