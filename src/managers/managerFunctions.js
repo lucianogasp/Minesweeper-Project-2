@@ -13,10 +13,9 @@ import FlagCounter from '../models/FlagCounter.js';
 import { fisherYatesShuffle, computeTargetCoords, patternsOperation } from '../utils/utilitiesFunctions.js';
 import { params } from '../app.js';
 
-import { disableClickListeners, disableRightClickListener, enableRestartListener } from './eventManagerConfig.js';
-
 // Define DOM elements
 const timerCounter = document.querySelector('#number-timer');
+const bombCounter = document.querySelector('#number-count-bombs');
 
 // Define Event Managers Functions
 
@@ -34,18 +33,36 @@ export function buildGrid() {
 
 export function setHeaderTimer() {
 
-  // Reset the timer at header
-  const timer = new HeaderTimer();
-  timer.reset(timerCounter);
+  // Set the timer at header
+  const timer = new HeaderTimer(timerCounter);
 
   return { timer };
 }
 
-export function prepareMinefild(e, objectResultParams) {
-    
-  // Destructuring Assignments of params
-  const { grid, gridContainer, timer } = objectResultParams;
+export function resetHeaderTimer(timer) {
 
+  // Reset the timer at header
+  timer.reset();
+  return;
+}
+
+export function stopHeaderTimer(timer) {
+
+  // Stop the timer at header
+  timer.stop();
+  return;
+}
+
+export function resetCounterBombs() {
+  
+  // Reset the number of bombs of header
+  bombCounter.textContent = '00';
+
+  return;
+};
+
+export function prepareMinefild(e, grid, gridContainer, timer) {
+    
   // Instantiate objects
   const squares = new Squares(Array.from(gridContainer.children));
   const bomb = new Bomb(params.bomb_ratio, grid.getN_Square(), squares);
@@ -54,10 +71,14 @@ export function prepareMinefild(e, objectResultParams) {
 
   const gameover = new GameOver(squares);
   const expansion = new ExpansionBlank(findNeighboringSquares);
-  const flagCounter = new FlagCounter(bomb.getN_Bomb());
+  const flagCounter = new FlagCounter(bombCounter, squares, bomb.getN_Bomb());
 
   // Starting a timer at header
-  timer.start(timerCounter);
+  timer.start();
+
+  // Starting the bombs counter at header
+  const flagsRemaining = flagCounter.countFlags();
+  flagCounter.update(flagsRemaining);
 
   // Setting shuffled squares list excluding the first square clicked
   const excludedFirstClickSquareList = FilterSquares.filterByNotClickedSquare(squares.getSquareList(), e.target);
@@ -82,13 +103,11 @@ export function executeMove(e) {
   return;
 }
 
-export function verifyGameOver(e, objectResultParams) {
-
-  // Destructuring Assignments of params
-  const { gameover, timer } = objectResultParams;
+export function verifyGameOver(e, gameover, timer) {
 
   // Validate if bomb was clicked
   const isGameOver = gameover.validateClickBomb(e.target);
+  let enableClick = true;
 
   if (isGameOver) {
     // Handle cases of game over
@@ -97,43 +116,41 @@ export function verifyGameOver(e, objectResultParams) {
     gameover.handleIncorrectFlagSquare();
     gameover.stopTimer(timer);
 
-    // Disable event listeners of click
-    disableClickListeners();
-    disableRightClickListener();
-    return;
+    enableClick = false;
   }
-  return;
+  
+  return enableClick;
 }
 
-export function verifyExpansionBlank(e, objectResultParams) {
-
-  // Destructuring Assignments of params
-  const { expansion } = objectResultParams;
+export function verifyExpansionBlank(e, expansion) {
 
   // Initialize expansion method to reveal neighboring blanked squares
   expansion.validateExpansionBlank(e.target); // Recursive Function
   return;
-
 }
 
-export function placeFlag(e, objectResultParams) {
+export function placeFlag(e, flagCounter) {
 
-  const { flagCounter } = objectResultParams;
-
+  // Cuunting number of flags remaining to place on grid
+  let flagsRemaining = flagCounter.countFlags();
+  
   // Switch the flagged status' right clicked square
-  // if number of flags placed is bigger than number of bombs remaining
-  if(flagCounter.flags > 0) {
+  switch (e.target.dataset.isFlagged) {
+    case 'false':
+      if (flagsRemaining <= 0) { return; }
 
-    // if a flag is placed, decremente number of flags remaing
-    if ( e.target.dataset.isFlagged === 'false' ) {
       e.target.dataset.isFlagged = 'true';
-      flagCounter.flags--;
-
-    // else increment
-    } else {
+      flagsRemaining--;
+      break;
+    
+    case 'true':
       e.target.dataset.isFlagged = 'false';
-      flagCounter.flags++;
-    }
+      flagsRemaining++;
+      break;
   }
+
+  // Update number of bombs remainig at header
+  flagCounter.update(flagsRemaining);
+
   return;
 }

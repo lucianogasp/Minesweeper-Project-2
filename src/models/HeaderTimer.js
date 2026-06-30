@@ -1,15 +1,20 @@
 class HeaderTimer {
 
-  #id;
+  #timerDiv; // DOM of timer counter's container
+  #id; // ID of the setInterval
 
-  reset(timerDiv) {
+  constructor(timerDiv) {
+    this.#timerDiv = timerDiv;
+    this.#id = null;
+  }
 
-    timerDiv.textContent = '00:00';
-    return;
+  reset() {
+
+    this.#timerDiv.textContent = '00:00';
   }
 
   // Starts a timer at header
-  start(timerDiv) {
+  start() {
 
     let min = 0;
     let sec = 0;
@@ -28,20 +33,18 @@ class HeaderTimer {
       let timerMin = min.toString().padStart(2, "0");
       let timerSec = sec.toString().padStart(2, "0");
       
-      timerDiv.textContent = `${timerMin}:${timerSec}`;
+      this.#timerDiv.textContent = `${timerMin}:${timerSec}`;
       
       sec++;
     }, 1000);
 
     this.#id = idInterval;
-    return;
   }
 
   // Stops timer of the header
   stop() {
 
     clearInterval(this.#id);
-    return;
   }
 }
 

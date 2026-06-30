@@ -20,19 +20,24 @@ class ExpansionBlank {
   #executeExpansion(element) {
 
     let targetElements = this.#findNeighboringSquares.findNeighboringSquares(element);
-    targetElements.forEach(square => {
+    
+    targetElements.forEach( square => {
+
+      if ( square.classList.contains('revealed') || square.dataset.isFlagged === 'true') { return; }
       
-      switch (square.dataset.type) {
+      switch ( square.dataset.type ) {
         case 'bomb':
           console.error('Unexpected Error - bomb around a blank square...');
           break;
 
         case 'digit':
-          square.classList.replace('hidden', 'revealed');
+          if ( square.dataset.isFlagged === 'false' ) {
+            square.classList.replace('hidden', 'revealed');
+          }
           break;
 
         case 'blank':
-          if (square.classList.contains('hidden')) {
+          if ( square.dataset.isFlagged === 'false' ) {
             square.classList.replace('hidden', 'revealed');
             this.#executeExpansion(square);
           }
