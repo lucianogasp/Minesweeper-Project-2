@@ -81,17 +81,17 @@ export function startGame() {
     return;
   };
 
-  // Disable the click callback of grid
-  const disableClickListener = () => {
+  const removeContainer = () => {
 
-    gameState.gridContainer.removeEventListener('click', clickCallback);
-  };
+    if (gameState.gridContainer) {
 
-  // Disable the right click callback of grid
-  const disableRightClickListener = () => {
+      const configContainer = document.querySelector('.config-container');
+      configContainer.removeChild(gameState.gridContainer);
 
-    gameState.gridContainer.removeEventListener('contextmenu', rightClickCallback);
-  };
+    } else {
+      console.error(`gridContainer is not reference of a DOM element: ${gridContainer}`);
+    }
+  }
 
   // Build grid and gridContainer
   const { grid, gridContainer } = buildGrid();
@@ -112,13 +112,10 @@ export function startGame() {
 
   // Return config object to restart game
   return {
-    restart: () => {
-      disableClickListener();
-      disableRightClickListener();
+    restart: () => {      
       stopHeaderTimer(gameState.timer);
       resetHeaderTimer(gameState.timer);
-
-      console.log('Listeners removed successfully...');
+      removeContainer();      
     }
   };
 }

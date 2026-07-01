@@ -22,9 +22,12 @@ const bombCounter = document.querySelector('#number-count-bombs');
 export function buildGrid() {
 
   // Build grid container and reset it
-  const gridContainer = document.querySelector('.grid');
-  const grid = new Grid(params.n_row, params.n_col, params.width_square); 
-  gridContainer.replaceChildren();
+  const configContainer = document.querySelector('.config-container');
+  const gridContainer = document.createElement('div');
+  gridContainer.classList.add('grid');
+  configContainer.appendChild(gridContainer);
+
+  const grid = new Grid(params.n_row, params.n_col, params.width_square);
   grid.setTemplateGrid(gridContainer);
   grid.createGrid(gridContainer);
 

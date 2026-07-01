@@ -20,12 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
     smileSpan.addEventListener('click', handleRestart);
   }
 
-  function disableRestartListener() {
-
-    // Disable click listener of restart game
-    smileSpan.removeEventListener('click', handleRestart);
-  }
-
   let currentGame;
 
   function handleRestart() {
