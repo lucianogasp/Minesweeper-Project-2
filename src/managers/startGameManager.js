@@ -18,18 +18,20 @@ export function startGame() {
 
     verifyGameOver: (isGameOver) => {
       if (isGameOver) {
-        // Prevents the clicks callback again
+        // Prevents the clicks callback over again
         gameState.callbackStatus = 'disabled';
       }
     }
   };
 
   const clickCallback = e => {
-
     let isGameOver;
 
     // If event clicks of grid container is enabled
     if (gameState.callbackStatus === 'disabled') { return; }
+
+    // Prevents the click callback over a flagged square
+    if (e.target.dataset.isFlagged === 'true') { return; }
       
     // If is the first click of grid container
     if (gameState.isFirstClick) {
@@ -67,9 +69,7 @@ export function startGame() {
   };
 
   const rightClickCallback = e => {
-
     e.preventDefault();
-
     let isGameOver;
 
     // If event clicks of grid container is enabled
@@ -87,14 +87,13 @@ export function startGame() {
     } else {
       console.error(`flagCounter is not instance of FlagCounter: ${gameState.flagCounter}`);
     }
-
-    return;
   };
 
-  const removeContainer = () => {
+  const removeGridContainer = () => {
 
     if (gameState.gridContainer) {
 
+      // Revome gridContainer from de config container DOM element
       const configContainer = document.querySelector('.config-container');
       configContainer.removeChild(gameState.gridContainer);
 
@@ -125,7 +124,7 @@ export function startGame() {
     restart: () => {      
       stopHeaderTimer(gameState.timer);
       resetHeaderTimer(gameState.timer);
-      removeContainer();      
+      removeGridContainer();      
     }
   };
 }
