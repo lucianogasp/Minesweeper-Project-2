@@ -1,6 +1,6 @@
 // import modules
 import FlagCounter from '../models/FlagCounter.js';
-import { buildGrid, setHeaderTimer, resetHeaderTimer, stopHeaderTimer, resetCounterBombs, prepareMinefild, revealSquare, verifyGameOver, verifyExpansionBlank, verifyEndGame, placeFlag } from './managerFunctions.js';
+import { buildGrid, setHeaderTimer, resetHeaderTimer, stopHeaderTimer, resetCounterBombs, prepareMinefild, revealSquare, verifyClickBomb, verifyExpansionBlank, verifyEndGame, placeFlag } from './managerFunctions.js';
 
 export function startGame() {
 
@@ -14,10 +14,19 @@ export function startGame() {
     timer: null,
     gameover: null,
     expansion: null,
-    flagCounter: null
+    flagCounter: null,
+
+    verifyGameOver: (isGameOver) => {
+      if (isGameOver) {
+        // Prevents the clicks callback again
+        gameState.callbackStatus = 'disabled';
+      }
+    }
   };
 
   const clickCallback = e => {
+
+    let isGameOver;
 
     // If event clicks of grid container is enabled
     if (gameState.callbackStatus === 'disabled') { return; }
@@ -46,22 +55,22 @@ export function startGame() {
     revealSquare(e);
 
     // Verify if the click resulted in a game over
-    const isGameOver = verifyGameOver(e, gameState.gameover, gameState.timer);
-    if (isGameOver) {
-      // Prevents the clicks callback again
-      gameState.callbackStatus = 'disabled';
-    }
+    isGameOver = verifyClickBomb(e, gameState.gameover, gameState.timer);
+    gameState.verifyGameOver(isGameOver);
 
     // Verify if the click resulted in a blank to expand in a chain
     verifyExpansionBlank(e, gameState.expansion);
 
     // Verify if the click resulted in a end game
-    verifyEndGame(gameState.gameover);
+    isGameOver = verifyEndGame(gameState.gameover, gameState.timer);
+    gameState.verifyGameOver(isGameOver);
   };
 
   const rightClickCallback = e => {
 
     e.preventDefault();
+
+    let isGameOver;
 
     // If event clicks of grid container is enabled
     if (gameState.callbackStatus === 'disabled') { return; }
@@ -72,7 +81,8 @@ export function startGame() {
       placeFlag(e, gameState.flagCounter);
 
       // Verify if the click resulted in a end game
-      verifyEndGame(gameState.gameover);
+      isGameOver = verifyEndGame(gameState.gameover, gameState.timer);
+      gameState.verifyGameOver(isGameOver);
 
     } else {
       console.error(`flagCounter is not instance of FlagCounter: ${gameState.flagCounter}`);

@@ -113,7 +113,7 @@ export function revealSquare(e) {
   return;
 }
 
-export function verifyGameOver(e, gameover, timer) {
+export function verifyClickBomb(e, gameover, timer) {
 
   // Validate if bomb was clicked
   const isGameOver = gameover.validateClickBomb(e.target);
@@ -136,11 +136,16 @@ export function verifyExpansionBlank(e, expansion) {
   return;
 }
 
-export function verifyEndGame(gameover) {
+export function verifyEndGame(gameover, timer) {
 
   // Validate if the game is ended
-  gameover.validateEndGame();
-  return;
+  const isGameOver = gameover.validateEndGame();
+  if (isGameOver) {
+    stopHeaderTimer(timer);
+    alert('The game was ended!!!');
+  }
+
+  return isGameOver;
 }
 
 export function placeFlag(e, flagCounter) {

@@ -42,12 +42,18 @@ class GameOver {
 
   validateEndGame() {
 
+    let isGameOver = false;
+
     for ( let [index, square] of this.#squares.getSquareList().entries() ) {
       if ( square.dataset.type !== 'bomb' && square.classList.contains('hidden') ) { return; }
       if ( square.dataset.type === 'bomb' && square.dataset.isFlagged === 'false' ) { return; }
 
-      if ( index === this.#squares.getSquareList().length - 1 ) alert('The game was ended!!!');
+      if ( index === this.#squares.getSquareList().length - 1 ) {
+        isGameOver = true;
+      }
     }
+
+    return isGameOver;
   }
 }
 
