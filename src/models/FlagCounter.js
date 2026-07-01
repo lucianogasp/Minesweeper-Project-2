@@ -1,16 +1,16 @@
 class FlagCounter {
 
-  #bombDiv; // DOM of bomb counter's container
+  #bombDiv; // DOM element of bomb counter's container
   #squares; // INSTANCE CLASS of Squares
-  #n_bombs; // Number of total of bombs remaining
+  n_bombs; // Total number of bombs remaining
 
   constructor(bombDiv, squares, n_bombs) {
     this.#bombDiv = bombDiv;
     this.#squares = squares;
-    this.#n_bombs = n_bombs;
+    this.n_bombs = n_bombs;
   }
 
-  countFlags() {
+  countFlaggedSquares() {
 
     let flagsPlaced = 0;
     this.#squares.getSquareList().forEach( square => {
@@ -20,14 +20,14 @@ class FlagCounter {
       }
     });
 
-    const flagsRemaining = this.#n_bombs - flagsPlaced;
+    const flagsRemaining = this.n_bombs - flagsPlaced;
     return flagsRemaining;
   }
 
   update(flagsRemaining) {
 
-    let counterFlagsRemaining = flagsRemaining.toString().padStart(2, "0");
-    this.#bombDiv.textContent = `${counterFlagsRemaining}`;
+    let totalFlagsRemaining = flagsRemaining.toString().padStart(2, "0");
+    this.#bombDiv.textContent = `${totalFlagsRemaining}`;
   }
 }
 

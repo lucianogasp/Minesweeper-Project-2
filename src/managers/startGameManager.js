@@ -1,6 +1,6 @@
 // import modules
 import FlagCounter from '../models/FlagCounter.js';
-import { buildGrid, setHeaderTimer, resetHeaderTimer, stopHeaderTimer, resetCounterBombs, prepareMinefild, revealSquare, verifyClickBomb, verifyExpansionBlank, verifyEndGame, placeFlag } from './managerFunctions.js';
+import managerFn from '../managers/managerFunctions.js';
 
 export function startGame() {
 
@@ -36,7 +36,7 @@ export function startGame() {
     // If is the first click of grid container
     if (gameState.isFirstClick) {
 
-      const { gameover, expansion, flagCounter } = prepareMinefild(
+      const { gameover, expansion, flagCounter } = managerFn.prepareMinefild(
         e,
         gameState.grid,
         gameState.gridContainer,
@@ -54,17 +54,17 @@ export function startGame() {
     }
 
     // Reveal clicked square
-    revealSquare(e);
+    managerFn.revealSquare(e);
 
     // Verify if the click resulted in a game over
-    isGameOver = verifyClickBomb(e, gameState.gameover, gameState.timer);
+    isGameOver = managerFn.verifyClickBomb(e, gameState.gameover, gameState.timer);
     gameState.verifyGameOver(isGameOver);
 
     // Verify if the click resulted in a blank to expand in a chain
-    verifyExpansionBlank(e, gameState.expansion);
+    managerFn.verifyExpansionBlank(e, gameState.expansion);
 
     // Verify if the click resulted in a end game
-    isGameOver = verifyEndGame(gameState.gameover, gameState.timer);
+    isGameOver = managerFn.verifyEndGame(gameState.gameover, gameState.timer);
     gameState.verifyGameOver(isGameOver);
   };
 
@@ -78,10 +78,10 @@ export function startGame() {
     if (gameState.flagCounter instanceof FlagCounter) {
 
       // Place the flags at the squares of grid
-      placeFlag(e, gameState.flagCounter);
+      managerFn.placeFlag(e, gameState.flagCounter);
 
       // Verify if the click resulted in a end game
-      isGameOver = verifyEndGame(gameState.gameover, gameState.timer);
+      isGameOver = managerFn.verifyEndGame(gameState.gameover, gameState.timer);
       gameState.verifyGameOver(isGameOver);
 
     } else {
@@ -103,14 +103,14 @@ export function startGame() {
   }
 
   // Build grid and gridContainer
-  const { grid, gridContainer } = buildGrid();
+  const { grid, gridContainer } = managerFn.buildGrid();
 
   // Set/Reset timer at header
-  const { timer } = setHeaderTimer();
-  resetHeaderTimer(timer);
+  const { timer } = managerFn.setHeaderTimer();
+  managerFn.resetHeaderTimer(timer);
 
   // Set/Reset number of bombs at header
-  resetCounterBombs();
+  managerFn.resetCounterBombs();
 
   gameState.grid = grid;
   gameState.gridContainer = gridContainer;
@@ -122,8 +122,8 @@ export function startGame() {
   // Return config object to restart game
   return {
     restart: () => {      
-      stopHeaderTimer(gameState.timer);
-      resetHeaderTimer(gameState.timer);
+      managerFn.stopHeaderTimer(gameState.timer);
+      managerFn.resetHeaderTimer(gameState.timer);
       removeGridContainer();      
     }
   };

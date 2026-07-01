@@ -19,7 +19,7 @@ const bombCounter = document.querySelector('#number-count-bombs');
 
 // Define Event Managers Functions
 
-export function buildGrid() {
+function buildGrid() {
 
   // Build grid container and reset it
   const configContainer = document.querySelector('.config-container');
@@ -34,7 +34,7 @@ export function buildGrid() {
   return { grid, gridContainer };
 }
 
-export function setHeaderTimer() {
+function setHeaderTimer() {
 
   // Set the timer at header
   const timer = new HeaderTimer(timerCounter);
@@ -42,21 +42,21 @@ export function setHeaderTimer() {
   return { timer };
 }
 
-export function resetHeaderTimer(timer) {
+function resetHeaderTimer(timer) {
 
   // Reset the timer at header
   timer.reset();
   return;
 }
 
-export function stopHeaderTimer(timer) {
+function stopHeaderTimer(timer) {
 
   // Stop the timer at header
   timer.stop();
   return;
 }
 
-export function resetCounterBombs() {
+function resetCounterBombs() {
   
   // Reset the number of bombs of header
   bombCounter.textContent = '00';
@@ -64,7 +64,7 @@ export function resetCounterBombs() {
   return;
 };
 
-export function prepareMinefild(e, grid, gridContainer, timer) {
+function prepareMinefild(e, grid, gridContainer, timer) {
 
   // Prevents to execute a click off the grid square
   if(e.target === e.currentTarget) {
@@ -86,7 +86,7 @@ export function prepareMinefild(e, grid, gridContainer, timer) {
   timer.start();
 
   // Starting the bombs counter at header
-  const flagsRemaining = flagCounter.countFlags();
+  const flagsRemaining = flagCounter.countFlaggedSquares();
   flagCounter.update(flagsRemaining);
 
   // Setting shuffled squares list excluding the first square clicked
@@ -106,14 +106,14 @@ export function prepareMinefild(e, grid, gridContainer, timer) {
   return { gameover, expansion, flagCounter };
 }
 
-export function revealSquare(e) {
+function revealSquare(e) {
 
   // Reveal squares clicked
   e.target.classList.replace('hidden', 'revealed');
   return;
 }
 
-export function verifyClickBomb(e, gameover, timer) {
+function verifyClickBomb(e, gameover, timer) {
 
   // Validate if bomb was clicked
   const isGameOver = gameover.validateClickBomb(e.target);
@@ -129,14 +129,14 @@ export function verifyClickBomb(e, gameover, timer) {
   return isGameOver;
 }
 
-export function verifyExpansionBlank(e, expansion) {
+function verifyExpansionBlank(e, expansion) {
 
   // Initialize expansion method to reveal neighboring blanked squares
   expansion.validateExpansionBlank(e.target); // Recursive Function
   return;
 }
 
-export function verifyEndGame(gameover, timer) {
+function verifyEndGame(gameover, timer) {
 
   // Validate if the game is ended
   const isGameOver = gameover.validateEndGame();
@@ -148,21 +148,23 @@ export function verifyEndGame(gameover, timer) {
   return isGameOver;
 }
 
-export function placeFlag(e, flagCounter) {
+function placeFlag(e, flagCounter) {
 
   // Counting number of flags remaining to place on grid
-  let flagsRemaining = flagCounter.countFlags();
+  let flagsRemaining = flagCounter.countFlaggedSquares();
   
   // Switch the flagged status' right clicked square
   switch (e.target.dataset.isFlagged) {
     case 'false':
-      if (flagsRemaining <= 0) { return; }
+      if ( flagsRemaining <= 0 ) { return; }
 
       e.target.dataset.isFlagged = 'true';
       flagsRemaining--;
       break;
     
     case 'true':
+      if ( flagsRemaining >= flagCounter.n_bombs ) { return; }
+
       e.target.dataset.isFlagged = 'false';
       flagsRemaining++;
       break;
@@ -172,4 +174,18 @@ export function placeFlag(e, flagCounter) {
   flagCounter.update(flagsRemaining);
 
   return;
+}
+
+export default {
+  buildGrid,
+  setHeaderTimer,
+  resetHeaderTimer,
+  stopHeaderTimer,
+  resetCounterBombs,
+  prepareMinefild,
+  revealSquare,
+  verifyClickBomb,
+  verifyExpansionBlank,
+  verifyEndGame,
+  placeFlag,
 }
