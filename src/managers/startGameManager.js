@@ -1,13 +1,14 @@
 // import modules
 import FlagCounter from '../models/FlagCounter.js';
-import { buildGrid, setHeaderTimer, resetHeaderTimer, stopHeaderTimer, resetCounterBombs, prepareMinefild, executeMove, verifyGameOver, verifyExpansionBlank, verifyEndGame, placeFlag } from './managerFunctions.js';
+import { buildGrid, setHeaderTimer, resetHeaderTimer, stopHeaderTimer, resetCounterBombs, prepareMinefild, revealSquare, verifyGameOver, verifyExpansionBlank, verifyEndGame, placeFlag } from './managerFunctions.js';
 
 export function startGame() {
 
-  // Define local variables
+  // Define config object of variables and instances
   const gameState = {
-    enableClick: true,
+    callbackStatus: 'enabled', // Enabled/Disabled the clicks callback
     isFirstClick: true,
+
     grid: null,
     gridContainer: null,
     timer: null,
@@ -17,12 +18,11 @@ export function startGame() {
   };
 
   const clickCallback = e => {
-    debugger;
 
-    // if event clicks of grid container is enabled
-    if (!gameState.enableClick) { return; }
+    // If event clicks of grid container is enabled
+    if (gameState.callbackStatus === 'disabled') { return; }
       
-    // if is the first click of grid container
+    // If is the first click of grid container
     if (gameState.isFirstClick) {
 
       const { gameover, expansion, flagCounter } = prepareMinefild(
@@ -38,27 +38,41 @@ export function startGame() {
       // Define event listeners at grid container to the right clicks
       gameState.gridContainer.addEventListener('contextmenu', rightClickCallback);
 
+      // Remove the first click of the flow
       gameState.isFirstClick = false;
     }
 
-    executeMove(e);
-    gameState.enableClick = verifyGameOver(e, gameState.gameover, gameState.timer);
+    // Reveal clicked square
+    revealSquare(e);
+
+    // Verify if the click resulted in a game over
+    const isGameOver = verifyGameOver(e, gameState.gameover, gameState.timer);
+    if (isGameOver) {
+      // Prevents the clicks callback again
+      gameState.callbackStatus = 'disabled';
+    }
+
+    // Verify if the click resulted in a blank to expand in a chain
     verifyExpansionBlank(e, gameState.expansion);
-    // verifyEndGame(gameState.gameover);
+
+    // Verify if the click resulted in a end game
+    verifyEndGame(gameState.gameover);
   };
 
   const rightClickCallback = e => {
-    debugger;
 
     e.preventDefault();
 
-    // if event clicks of grid container is enabled
-    if (!gameState.enableClick) { return; }
+    // If event clicks of grid container is enabled
+    if (gameState.callbackStatus === 'disabled') { return; }
 
     if (gameState.flagCounter instanceof FlagCounter) {
 
+      // Place the flags at the squares of grid
       placeFlag(e, gameState.flagCounter);
-      // verifyEndGame(gameState.gameover);
+
+      // Verify if the click resulted in a end game
+      verifyEndGame(gameState.gameover);
 
     } else {
       console.error(`flagCounter is not instance of FlagCounter: ${gameState.flagCounter}`);
@@ -67,11 +81,13 @@ export function startGame() {
     return;
   };
 
+  // Disable the click callback of grid
   const disableClickListener = () => {
 
     gameState.gridContainer.removeEventListener('click', clickCallback);
   };
 
+  // Disable the right click callback of grid
   const disableRightClickListener = () => {
 
     gameState.gridContainer.removeEventListener('contextmenu', rightClickCallback);

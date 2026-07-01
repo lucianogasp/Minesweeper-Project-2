@@ -29,7 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentGame;
 
   function handleRestart() {
-    debugger;
 
     if(currentGame) {
       currentGame.restart(); // Restart Game

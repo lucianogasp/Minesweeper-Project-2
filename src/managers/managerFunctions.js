@@ -63,6 +63,7 @@ export function resetCounterBombs() {
 
 export function prepareMinefild(e, grid, gridContainer, timer) {
 
+  // Prevents to execute a click off the grid square
   if(e.target === e.currentTarget) {
     console.error(`e.target === e.currentTarget. The first click does not captured any of squares`);
     return;
@@ -98,10 +99,11 @@ export function prepareMinefild(e, grid, gridContainer, timer) {
   digit.applyDigitsMethod();
   digit.setDigits();
 
+  // Return instances to save the config object gameState
   return { gameover, expansion, flagCounter };
 }
 
-export function executeMove(e) {
+export function revealSquare(e) {
 
   // Reveal squares clicked
   e.target.classList.replace('hidden', 'revealed');
@@ -112,19 +114,16 @@ export function verifyGameOver(e, gameover, timer) {
 
   // Validate if bomb was clicked
   const isGameOver = gameover.validateClickBomb(e.target);
-  let enableClick = true;
 
   if (isGameOver) {
     // Handle cases of game over
     gameover.handleBombRedSquare(e.target);
     gameover.revealingBombSquares();
     gameover.handleIncorrectFlagSquare();
-    gameover.stopTimer(timer);
-
-    enableClick = false;
+    stopHeaderTimer(timer);
   }
   
-  return enableClick;
+  return isGameOver;
 }
 
 export function verifyExpansionBlank(e, expansion) {
@@ -136,13 +135,14 @@ export function verifyExpansionBlank(e, expansion) {
 
 export function verifyEndGame(gameover) {
 
+  // Validate if the game is ended
   gameover.validateEndGame();
   return;
 }
 
 export function placeFlag(e, flagCounter) {
 
-  // Cuunting number of flags remaining to place on grid
+  // Counting number of flags remaining to place on grid
   let flagsRemaining = flagCounter.countFlags();
   
   // Switch the flagged status' right clicked square

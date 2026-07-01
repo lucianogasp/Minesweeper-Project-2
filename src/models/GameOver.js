@@ -9,7 +9,7 @@ class GameOver {
   // Validate first click bomb: handle cases
   validateClickBomb(element) {
 
-    return element.dataset.type === 'bomb'? true: false;
+    return element.dataset.type === 'bomb' ? true: false;
   }
 
   handleBombRedSquare(element) {
