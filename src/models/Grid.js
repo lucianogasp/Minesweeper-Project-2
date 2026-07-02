@@ -17,6 +17,15 @@ class Grid {
     return this.#n_square;
   }
 
+  createGridContainer() {
+    const gridContainer = document.createElement('div');
+
+    // Define css classes
+    gridContainer.classList.add('grid');
+
+    return gridContainer;
+  }
+
   // Set template HTML to create grid
   setTemplateGrid(gridContainer) {
     gridContainer.style.gridTemplateColumns = `repeat(${this.#n_col}, ${this.#width_square}px)`;
@@ -29,7 +38,7 @@ class Grid {
     for (let i = 0; i < this.#n_row; i++) {
       for (let j = 0; j < this.#n_col; j++) {
 
-        let square = this.#setSquares();
+        let square = this.#createSquares();
         this.#setGridDataCoords(square, i, j);
         gridContainer.appendChild(square);
       }
@@ -38,11 +47,14 @@ class Grid {
   }
 
   // Set each square with classes and data attributes associated 
-  #setSquares() {
-
+  #createSquares() {
     let newDiv = document.createElement('div');
+
+    // Define css styles
     newDiv.classList.add('square');
     newDiv.classList.add('hidden');
+
+    // Define css data attributes
     newDiv.dataset.type = 'blank';
     newDiv.dataset.isFlagged = 'false';
     newDiv.dataset.digit = "";

@@ -14,7 +14,7 @@
   <title>Minesweeper</title>
 </head>
 <body>
-
+<!-- 
   <div class="main-container">
     <div class="config-container">
 
@@ -35,6 +35,48 @@
       </div>
 
     </div>
+  </div>
+ -->
+  <div class="main-container">
+
+    <div class="header
+                back-c-gray
+                border-base border-c-2 font-orbitron
+                d-flex jc-space_between"
+    >
+
+      <span class="count-bombs
+                   border-base border-c-1
+                   d-flex al-i-center jc-space_around"
+      >
+        <span id="number-count-bombs">00</span>
+        <img src="./assets/bomb.png" alt="bomb">
+      </span>
+
+      <span id="smile" 
+            class="border-base border-c-1
+                   d-flex al-i-center jc-space_around"
+      >
+        <img src="./assets/smile-face.png" alt="smile">
+      </span>
+
+      <span class="timer
+                   border-base border-c-1
+                   d-flex al-i-center jc-space_around"
+      >
+        <span id="number-timer">00:00</span>
+        <img src="./assets/timer.png" alt="timer">
+      </span>
+
+    </div>
+    
+    <div class="game-body">
+
+      <div class="config"></div>
+      <!-- <div class="grid"></div> -->
+
+    </div>
+
   </div>
 
   <script type="module" src="./src/app.js"></script>

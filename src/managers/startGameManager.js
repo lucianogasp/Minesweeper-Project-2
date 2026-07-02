@@ -94,8 +94,8 @@ export function startGame() {
     if (gameState.gridContainer) {
 
       // Revome gridContainer from de config container DOM element
-      const configContainer = document.querySelector('.config-container');
-      configContainer.removeChild(gameState.gridContainer);
+      const gameBody = document.querySelector('.game-body');
+      gameBody.removeChild(gameState.gridContainer);
 
     } else {
       console.error(`gridContainer is not reference of a DOM element: ${gridContainer}`);

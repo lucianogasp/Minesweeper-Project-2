@@ -21,15 +21,15 @@ const bombCounter = document.querySelector('#number-count-bombs');
 
 function buildGrid() {
 
-  // Build grid container and reset it
-  const configContainer = document.querySelector('.config-container');
-  const gridContainer = document.createElement('div');
-  gridContainer.classList.add('grid');
-  configContainer.appendChild(gridContainer);
-
+  // instantiate grid and config gridContainer
   const grid = new Grid(params.n_row, params.n_col, params.width_square);
+  const gridContainer = grid.createGridContainer();
   grid.setTemplateGrid(gridContainer);
   grid.createGrid(gridContainer);
+  
+  // Indent grid at gameBody
+  const gameBody = document.querySelector('.game-body');
+  gameBody.appendChild(gridContainer);
 
   return { grid, gridContainer };
 }
