@@ -75,6 +75,9 @@ export function startGame() {
     // If event clicks of grid container is enabled
     if (gameState.callbackStatus === 'disabled') { return; }
 
+    // Prevents the right click callback over a revealed square
+    if (e.target.classList.contains('revealed')) { return; }
+
     if (gameState.flagCounter instanceof FlagCounter) {
 
       // Place the flags at the squares of grid
