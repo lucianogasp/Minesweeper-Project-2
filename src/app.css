@@ -5,6 +5,10 @@
   box-sizing: border-box;
 }
 
+html {
+  font-size: 62.5%;
+}
+
 body {
   color: black;
 }
@@ -13,7 +17,7 @@ body {
 
 /* Padding */
 .padding-base {
-  padding: 5px;
+  padding: .5rem;
 }
 
 /* Background Color */
@@ -26,12 +30,12 @@ body {
 
 /* Border */
 .border-base {
-  border: 3px solid;
+  border: .5rem solid;
   border-radius: 0;
-  padding: 5px;
+  padding: .5rem;
 }
 .border-rev_squ {
-  border: 1px solid gray;
+  border: .1rem solid gray;
 }
 .border-c-1 {
   border-color: #EEEEEE #888888 #888888 #EEEEEE;
@@ -52,20 +56,23 @@ body {
   font-optical-sizing: auto;
   font-weight: weight;
   font-style: normal;
+  font-size: 1.5rem;
 }
 
-/* Display */
+/* Display Flex */
 .d-flex {
   display: flex;
-}
-.d-grid {
-  display: grid;
 }
 .flex-d-column {
   flex-direction: column;
 }
 .flex-d-row {
   flex-direction: row;
+}
+
+/* Display Grid */
+.d-grid {
+  display: grid;
 }
 
 /* Centralization */
@@ -77,6 +84,21 @@ body {
 }
 .jc-space_around {
   justify-content: space-around;
+}
+.ji-space_around {
+  justify-items: space-around;
+}
+.ji-space_between {
+  justify-items: space-between;
+}
+.js-center {
+  justify-self: center;
+}
+.js-start {
+  justify-self: start;
+}
+.js-end {
+  justify-self: end;
 }
 .al-i-center {
   align-items: center; 
@@ -101,20 +123,29 @@ body {
 /* DOM ELEMENT STYLE */
 
 /* Static HTML element */
-.header span img {
-  width: 20px;
-}
-.header .count-bombs {
-  width: 70px;
-}
-.header .timer {
-  width: 100px;
+.header {
+  grid-template-columns: 1fr auto 1fr;
+
+  span img {
+    width: 2rem;
+  }
+
+  .count-bombs {
+    width: 7rem;
+  }
+  .timer {
+    width: 10rem;
+  }
 }
 
 /* Dinamic HTML element (build via js) */
 .game-body .grid {
   background-color: #C0C0C0;
-  padding: 5px;
+  /* padding: .5rem; */
+
+  border: .5rem solid;
+  border-radius: 0;
+  border-color: #888888 #EEEEEE #EEEEEE #888888;
 
   display: grid;
   justify-content: center;
@@ -124,7 +155,7 @@ body {
 .game-body .grid .square.hidden{
   background-color: #C0C0C0;
 
-  border: 3px solid;
+  border: .3rem solid;
   border-radius: 0;
   border-color: #EEEEEE #888888 #888888 #EEEEEE;
 
@@ -145,7 +176,7 @@ body {
 .game-body .grid .square.revealed{
   background-color: #C0C0C0;
 
-  border: 1px solid gray;
+  border: .1rem solid gray;
   
   display: flex;
   align-items: center;
