@@ -6,11 +6,11 @@ import Bomb from '../models/Bomb.js';
 import Digit from '../models/Digit.js';
 import GameOver from '../models/GameOver.js';
 import ExpansionBlank from '../models/ExpansionBlank.js';
-import Transcription from '../utils/Transcription.js';
-import FilterSquares from '../utils/FilterSquares.js';
+import Transcription from '../../utils/Transcription.js';
+import FilterSquares from '../../utils/FilterSquares.js';
 import FindNeighboringSquares from '../models/FindNeighboringSquares.js';
 import FlagCounter from '../models/FlagCounter.js';
-import { fisherYatesShuffle, computeTargetCoords, patternsOperation } from '../utils/utilitiesFunctions.js';
+import { fisherYatesShuffle, computeTargetCoords, patternsOperation } from '../../utils/utilitiesFunctions.js';
 
 // Define DOM elements
 const timerCounter = document.querySelector('#number-timer');

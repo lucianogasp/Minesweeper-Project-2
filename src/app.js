@@ -1,14 +1,6 @@
 // import modules
-import { startGame } from './managers/startGameManager.js';
-import { linkBombRatioInputSlider, linkSquareWidthInputSlider } from './managers/configSliderManager.js';
-
-// Define variables
-// export const params = {
-//   n_row: 16,
-//   n_col: 24,
-//   width_square: 15,
-//   bomb_ratio: 0.1
-// }
+import { startGame } from './gridContainer/managers/startGameManager.js';
+import { linkBombRatioInputSlider, linkSquareWidthInputSlider } from './configContainer/linkInputSliders.js';
 
 document.addEventListener('DOMContentLoaded', () => {
 

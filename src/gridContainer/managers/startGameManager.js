@@ -1,7 +1,7 @@
 // import modules
 import FlagCounter from '../models/FlagCounter.js';
-import managerFn from '../managers/managerFunctions.js';
-import { getParams } from '../configParams/getParams.js';
+import managerFn from './managerFunctions.js';
+import { getParams } from '../../configContainer/getParams.js';
 
 export function startGame() {
 
