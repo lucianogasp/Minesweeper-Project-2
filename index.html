@@ -14,50 +14,146 @@
   <title>Minesweeper</title>
 </head>
 <body>
-  <div class="main-container">
+  <!-- Main Container -->
+  <div class="main-container
+              back-c-gray
+              border-base border-c-1
+              padding-base
+              d-flex flex-d-column gap-p5"
+  >
 
+    <!-- Header Container -->
     <div class="header
-                back-c-gray
-                border-base border-c-2 font-orbitron
+                back-c-gray font-orbitron
+                border-base border-c-2
                 d-grid"
     >
 
+      <!-- Header > Count Bombs -->
       <span class="count-bombs
                    border-base border-c-1
-                   d-flex al-i-center js-start"
+                   d-flex al-i-center jc-space_between js-start"
       >
         <span id="number-count-bombs">00</span>
         <img src="./assets/bomb.png" alt="bomb">
       </span>
-
+      <!-- Header > Smile Button -->
       <span id="smile" 
             class="border-base border-c-1
                    d-flex al-i-center js-center"
       >
         <img src="./assets/smile-face.png" alt="smile">
       </span>
-
+      <!-- Header > Timer -->
       <span class="timer
                    border-base border-c-1
-                   d-flex al-i-center js-end"
+                   d-flex al-i-center jc-space_between js-end"
       >
         <span id="number-timer">00:00</span>
         <img src="./assets/timer.png" alt="timer">
       </span>
 
     </div>
-    
+
+    <!-- Game Body Container -->
     <div class="game-body
-                back-c-gray
-                padding-base
-                d-flex jc-center al-i-center">
+                back-c-gray font-orbitron font-s-1p2
+                border-base border-c-2 padding-base
+                d-flex jc-center al-i-start gap-p5"
+    >
 
-      <!-- <div class="config">
-        <input id="n-row" type="number" value="16">
-        <input id="n-column" type="number" value="16">
-      </div> -->
+      <!-- Game Body > Config Container -->
+      <div class="config
+                  border-base border-c-2 padding-base
+                  d-flex flex-d-column gap-1"
+      >
 
-      <!-- *div* Grid Container */div* -->
+        <!-- Config > Advanced settings Button -->
+        <div class="settings
+                    border-p3 border-c-1 padding-p1
+                    d-flex al-s-start"
+        >
+          <img src="./assets/settings.png" alt="settings">
+        </div>
+        <!-- Config > Rows and Columns -->
+        <div class="row-col-container 
+                    d-flex flex-d-row jc-space_between gap-p5"
+        >
+          <!-- Rows -->
+          <div class="input-field 
+                      d-flex flex-d-column"
+          >
+            <label for="row">Rows</label>
+            <input id="row"
+                   class="padding-p1" 
+                   name="rows" 
+                   type="number" 
+                   value="16"
+            >
+          </div>
+          <!-- Columns -->
+          <div class="input-field 
+                      d-flex flex-d-column"
+          >
+            <label for="column">Columns</label>
+            <input id="column"
+                   class="padding-p1" 
+                   name="columns" 
+                   type="number" 
+                   value="16"
+            >
+          </div>
+        </div>
+        <!-- Config > Bomb Ratio -->
+        <div class="bomb-ratio-container 
+                    d-flex flex-d-row jc-space_between al-i-center gap-p5"
+        >
+          <div class="input-field
+                      d-flex flex-d-row al-i-center gap-p5"
+          >
+            <input id="bomb-ratio-number" 
+                   class="padding-p1"
+                   name="bomb-ratio-number" 
+                   type="number" min="1" max="50" step="1" value="10"
+            >
+            <span>%</span>
+          </div>
+          <div class="slider-field
+                    d-flex flex-d-column"
+          >
+            <label for="bomb-ratio-slider">Bomb Ratio</label>
+            <input id="bomb-ratio-slider" 
+                   name="bomb-ratio-slider" 
+                   type="range" min="1" max="50" step="1" value="10"
+            >
+          </div>
+        </div>
+        <!-- Config > Square Width Container -->
+        <div class="square-width-container 
+                    d-flex flex-d-row jc-space_between al-i-center gap-p5"
+        >
+          <div class="input-field
+                      d-flex flex-d-row al-i-center gap-p5"
+          >
+            <input id="square-width-number"
+                   class="padding-p1"
+                   name="square-width-number" 
+                   type="number" min="15" max="45" step="1" value="20"
+            >
+            <span>px</span>
+          </div>
+          <div class="slider-field
+                      d-flex flex-d-column"
+          >
+            <label for="square-width-slider">Square Width</label>
+            <input id="square-width-slider" 
+                   name="square-width-slider" 
+                   type="range" min="15" max="45" step="'" value="20">
+          </div>
+        </div>
+
+      <!-- Game Body > Grid Container -->
+      <!-- ... -->
 
     </div>
 

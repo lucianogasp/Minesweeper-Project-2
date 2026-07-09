@@ -11,7 +11,6 @@ import FilterSquares from '../utils/FilterSquares.js';
 import FindNeighboringSquares from '../models/FindNeighboringSquares.js';
 import FlagCounter from '../models/FlagCounter.js';
 import { fisherYatesShuffle, computeTargetCoords, patternsOperation } from '../utils/utilitiesFunctions.js';
-import { params } from '../app.js';
 
 // Define DOM elements
 const timerCounter = document.querySelector('#number-timer');
@@ -19,10 +18,10 @@ const bombCounter = document.querySelector('#number-count-bombs');
 
 // Define Event Managers Functions
 
-function buildGrid() {
+function buildGrid(currentParams) {
 
   // instantiate grid and config gridContainer
-  const grid = new Grid(params.n_row, params.n_col, params.width_square);
+  const grid = new Grid(currentParams.n_row, currentParams.n_col, currentParams.width_square);
   const gridContainer = grid.createGridContainer();
   grid.setTemplateGrid(gridContainer);
   grid.createGrid(gridContainer);
@@ -64,17 +63,11 @@ function resetCounterBombs() {
   return;
 };
 
-function prepareMinefild(e, grid, gridContainer, timer) {
-
-  // Prevents to execute a click off the grid square
-  if(e.target === e.currentTarget) {
-    console.error(`e.target === e.currentTarget. The first click does not captured any of squares`);
-    return;
-  }
+function prepareMinefild(e, currentParams, grid, gridContainer, timer) {
     
   // Instantiate objects
   const squares = new Squares(Array.from(gridContainer.children));
-  const bomb = new Bomb(params.bomb_ratio, grid.getN_Square(), squares);
+  const bomb = new Bomb(currentParams.bomb_ratio, grid.getN_Square(), squares);
   const findNeighboringSquares = new FindNeighboringSquares(Transcription, FilterSquares, squares, computeTargetCoords, patternsOperation);
   const digit = new Digit(FilterSquares, findNeighboringSquares, squares);
 

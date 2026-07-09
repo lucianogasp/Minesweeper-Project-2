@@ -1,6 +1,7 @@
 // import modules
 import FlagCounter from '../models/FlagCounter.js';
 import managerFn from '../managers/managerFunctions.js';
+import { getParams } from '../configParams/getParams.js';
 
 export function startGame() {
 
@@ -16,6 +17,8 @@ export function startGame() {
     expansion: null,
     flagCounter: null,
 
+    currentParams: {},
+
     verifyGameOver: (isGameOver) => {
       if (isGameOver) {
         // Prevents the clicks callback over again
@@ -27,6 +30,12 @@ export function startGame() {
   const clickCallback = e => {
     let isGameOver;
 
+    // Prevents to execute a click off the grid square
+    if(e.target === e.currentTarget) {
+      console.error(`e.target === e.currentTarget. The first click does not captured any of squares`);
+      return;
+    }
+    
     // If event clicks of grid container is enabled
     if (gameState.callbackStatus === 'disabled') { return; }
 
@@ -38,6 +47,7 @@ export function startGame() {
 
       const { gameover, expansion, flagCounter } = managerFn.prepareMinefild(
         e,
+        gameState.currentParams,
         gameState.grid,
         gameState.gridContainer,
         gameState.timer,
@@ -105,19 +115,21 @@ export function startGame() {
     }
   }
 
+  // Define object params from the app's front-end
+  gameState.currentParams = getParams();
+
   // Build grid and gridContainer
-  const { grid, gridContainer } = managerFn.buildGrid();
+  const { grid, gridContainer } = managerFn.buildGrid(gameState.currentParams);
+  gameState.grid = grid;
+  gameState.gridContainer = gridContainer;
 
   // Set/Reset timer at header
   const { timer } = managerFn.setHeaderTimer();
+  gameState.timer = timer;
   managerFn.resetHeaderTimer(timer);
 
   // Set/Reset number of bombs at header
   managerFn.resetCounterBombs();
-
-  gameState.grid = grid;
-  gameState.gridContainer = gridContainer;
-  gameState.timer = timer;
 
   // Define event listeners at grid container to the clicks
   gameState.gridContainer.addEventListener('click', clickCallback);
