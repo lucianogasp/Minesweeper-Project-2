@@ -1,24 +1,38 @@
 // import modules
 import { startGame } from './gridContainer/managers/startGameManager.js';
-import { linkBombRatioInputSlider, linkSquareWidthInputSlider } from './configContainer/linkInputSliders.js';
+import { linkElementValue } from './configContainer/linkInputSliders.js';
+import { linkElementSize } from './configContainer/linkInputPreviewBox.js';
 
 document.addEventListener('DOMContentLoaded', () => {
 
   // Define DOM Elements
   const smileSpan = document.querySelector('#smile');
+  const bombRatioInput = document.querySelector('#bomb-ratio-number');
+  const bombRatioSlider = document.querySelector('#bomb-ratio-slider');
+  const squareWidthInput = document.querySelector('#square-width-number');
+  const squareWidthSlider = document.querySelector('#square-width-slider');
+  const previewSquare = document.querySelector('.preview-square');
 
+  // Link bombRatio input value to its slider
+  bombRatioInput.addEventListener('input', linkElementValue(bombRatioSlider));
+  bombRatioSlider.addEventListener('input', linkElementValue(bombRatioInput));
 
-  // Define the listener to restart the game
+  // Link squareWidth input value to its slider
+  squareWidthInput.addEventListener('input', linkElementValue(squareWidthSlider));
+  squareWidthSlider.addEventListener('input', linkElementValue(squareWidthInput));
+
+  // Link squareWidth input value to its box preview
+  squareWidthInput.addEventListener('change', () => linkElementSize(squareWidthInput, previewSquare));
+  squareWidthSlider.addEventListener('change', () => linkElementSize(squareWidthSlider, previewSquare));
+
+  // Enable click listener to restart game
   function enableRestartListener() {
-
-    // Enable click listener of restart game
     smileSpan.addEventListener('click', handleRestart);
   }
 
   // Define a method to handle the restart game method
   let currentGame;
   function handleRestart() {
-
     if(currentGame) {
       currentGame.restart(); // Restart Game
     }
@@ -27,9 +41,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize Application
 
+  // Link and validate the input value to its slider
+
+  linkElementSize(squareWidthInput, previewSquare) // Link the first squareWidth input value to its box preview
   enableRestartListener(); // Enable the first smile button listener
-  linkBombRatioInputSlider(); // Link and validate the input value of Bomb Ratio Config to its slider
-  linkSquareWidthInputSlider(); // Link and validate the input value of Square Width Config to its slider
+
   currentGame = startGame(); // Start the first game
 
 });

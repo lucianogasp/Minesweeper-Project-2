@@ -62,23 +62,26 @@
                 d-flex jc-center al-i-start gap-p5"
     >
 
+      <!-- Game Body > Settings Container-->
+      <div id="settings-button" 
+           class="settings
+                  border-w-p3 border-s-sol border-c-1 padding-p1
+                  d-flex al-s-start"
+      >
+        <img src="./assets/settings.png" alt="settings">
+      </div>
+
       <!-- Game Body > Config Container -->
       <div class="config
                   border-base border-c-2 padding-base
                   d-flex flex-d-column gap-1"
       >
 
-        <!-- Config > Advanced settings Button -->
-        <div class="settings
-                    border-p3 border-c-1 padding-p1
-                    d-flex al-s-start"
-        >
-          <img src="./assets/settings.png" alt="settings">
-        </div>
         <!-- Config > Rows and Columns -->
         <div class="row-col-container 
                     d-flex flex-d-row jc-space_between gap-p5"
         >
+
           <!-- Rows -->
           <div class="input-field 
                       d-flex flex-d-column"
@@ -103,6 +106,7 @@
                    value="16"
             >
           </div>
+
         </div>
         <!-- Config > Bomb Ratio -->
         <div class="bomb-ratio-container 
@@ -112,9 +116,9 @@
                       d-flex flex-d-row al-i-center gap-p5"
           >
             <input id="bomb-ratio-number" 
-                   class="padding-p1"
-                   name="bomb-ratio-number" 
-                   type="number" min="1" max="50" step="1" value="10"
+                  class="padding-p1"
+                  name="bomb-ratio-number" 
+                  type="number" min="1" max="50" step="1" value="10"
             >
             <span>%</span>
           </div>
@@ -123,32 +127,53 @@
           >
             <label for="bomb-ratio-slider">Bomb Ratio</label>
             <input id="bomb-ratio-slider" 
-                   name="bomb-ratio-slider" 
-                   type="range" min="1" max="50" step="1" value="10"
+                  name="bomb-ratio-slider" 
+                  type="range" min="1" max="50" step="1" value="10"
             >
           </div>
         </div>
         <!-- Config > Square Width Container -->
-        <div class="square-width-container 
-                    d-flex flex-d-row jc-space_between al-i-center gap-p5"
+        <div class="square-width-container
+                    d-flex flex-d-column gap-1"
         >
-          <div class="input-field
-                      d-flex flex-d-row al-i-center gap-p5"
+          <div class="d-flex flex-d-row jc-space_between al-i-center gap-p5"
           >
-            <input id="square-width-number"
-                   class="padding-p1"
-                   name="square-width-number" 
-                   type="number" min="15" max="45" step="1" value="20"
+            
+            <div class="input-field
+                        d-flex flex-d-row al-i-center gap-p5"
             >
-            <span>px</span>
+              <input id="square-width-number"
+                     class="padding-p1"
+                     name="square-width-number" 
+                     type="number" min="15" max="45" step="1" value="20"
+              >
+              <span>px</span>
+            </div>
+            <div class="slider-field
+                        d-flex flex-d-column"
+            >
+              <label for="square-width-slider">Square Width</label>
+              <input id="square-width-slider" 
+                     name="square-width-slider" 
+                     type="range" min="15" max="45" step="1" value="20">
+            </div>
+
           </div>
-          <div class="slider-field
-                      d-flex flex-d-column"
+          <!-- HIDDEN CONTENT: Config > Square Width Container > Preview-Box -->
+          <div class="size-preview-box 
+                      d-flex flex-d-row jc-space_around al-i-center gap-1"
           >
-            <label for="square-width-slider">Square Width</label>
-            <input id="square-width-slider" 
-                   name="square-width-slider" 
-                   type="range" min="15" max="45" step="'" value="20">
+
+            <div>
+              <span>Size :</span>
+            </div>
+            <div id="preview-box" 
+                 class="d-flex jc-center al-i-center 
+                        height-6 width-6 border-w-p1 border-s-dash border-c-gray"
+            >
+              <div class="preview-square square hidden"></div>
+            </div>
+
           </div>
         </div>
 

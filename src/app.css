@@ -15,6 +15,14 @@ body {
 
 /* BASE STYLE ============================================================= */
 
+/* Background Color */
+.back-c-white {
+  background-color: #FFFFFF;
+}
+.back-c-gray {
+  background-color: #C0C0C0;
+}
+
 /* Padding */
 .padding-base {
   padding: .5rem;
@@ -25,13 +33,16 @@ body {
 .padding-p3 {
   padding: .3rem;
 }
-
-/* Background Color */
-.back-c-white {
-  background-color: #FFFFFF;
+.margin-1 {
+  margin: 1rem;
 }
-.back-c-gray {
-  background-color: #C0C0C0;
+
+/* Height */
+.width-6 {
+  width: 6rem;
+}
+.height-6 {
+  height: 6rem;
 }
 
 /* Border */
@@ -41,14 +52,20 @@ body {
   padding: .5rem;
   border-color: gray;
 }
-.border-p1 {
-  border: .1rem solid;
+.border-w-p1 {
+  border-width: .1rem;
 }
-.border-p3 {
-  border: .3rem solid;
+.border-w-p3 {
+  border-width: .3rem;
 }
-.border-p5 {
-  border: .5rem solid;
+.border-w-p5 {
+  border-width: .5rem;
+}
+.border-s-dash {
+  border-style: dashed;
+}
+.border-s-sol {
+  border-style: solid;
 }
 .border-c-gray {
   border-color: gray;
@@ -79,6 +96,11 @@ body {
   font-weight: 500;
 }
 
+/* Display */
+.d-none {
+  display: none;
+}
+
 /* Display Flex */
 .d-flex {
   display: flex;
@@ -96,7 +118,6 @@ body {
 }
 
 /* Gapping */
-
 .gap-p5 {
   gap: .5rem;
 }
@@ -178,8 +199,19 @@ body {
   }
 }
 
+.game-body .settings {
+  
+  /* Animating Elements */
+  img {
+    transition: transform .2s ease;
+  }
+  img:hover {
+    transform: rotate(60deg);
+  }
+}
+
 .game-body .config {
-  max-width: 20rem;
+  max-width: 21rem;
   
   label {
     padding-bottom: .3rem;
@@ -197,14 +229,6 @@ body {
   .square-width-container input[type="number"]::-webkit-outer-spin-button,
   .square-width-container input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
-  }
-
-  /* Animating Elements */
-  .settings img {
-    transition: transform .5s ease-out;
-  }
-  .settings img:hover {
-    transform: rotate(90deg);
   }
 
   /* Input Slider Style */
@@ -253,7 +277,7 @@ body {
   align-content: center;  
   gap: 0;
 }
-.game-body .grid .square.hidden{
+.square.hidden{
   background-color: #C0C0C0;
 
   border: .3rem solid;
@@ -263,7 +287,7 @@ body {
   span {
     visibility: hidden;
   }
-  
+
   &[data-is-flagged="true"] {
     background-image: url('../assets/flag.png');
     background-size: cover;
@@ -273,7 +297,7 @@ body {
     }
   }
 }
-.game-body .grid .square.revealed{
+.square.revealed{
   background-color: #C0C0C0;
 
   border: .1rem solid gray;

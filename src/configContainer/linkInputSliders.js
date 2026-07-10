@@ -1,40 +1,8 @@
-function validateInputValue(element) {
+import { validateInputSliderValue } from '../utils/validateInputSliderValue.js';
+import { updateElementValue } from '../utils/updateElementValue.js';
 
-  let inputValue = Math.round(element.value);
-  inputValue = Math.max(element.min, Math.min(element.max, element.value));
-  return inputValue;
-}
+export const linkElementValue = domElement => e => {
 
-export function linkBombRatioInputSlider() {
-
-  const bombRatioInput = document.querySelector('#bomb-ratio-number');
-  const bombRatioSlider = document.querySelector('#bomb-ratio-slider');
-
-  bombRatioInput.addEventListener('input', e => {
-
-    const inputValue = validateInputValue(e.target);
-    bombRatioSlider.value = inputValue;
-  });
-
-  bombRatioSlider.addEventListener('input', e => {
-
-    bombRatioInput.value = bombRatioSlider.value;
-  });
-}
-
-export function linkSquareWidthInputSlider() {
-
-  const squareWidthInput = document.querySelector('#square-width-number');
-  const squareWidthSlider = document.querySelector('#square-width-slider');
-
-  squareWidthInput.addEventListener('input', e => {
-
-    const inputValue = validateInputValue(e.target);
-    squareWidthSlider.value = inputValue;
-  });
-
-  squareWidthSlider.addEventListener('input', e => {
-
-    squareWidthInput.value = squareWidthSlider.value;
-  });
+  const validValue = validateInputSliderValue(e.target);
+  updateElementValue(domElement, validValue);
 }
