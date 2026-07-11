@@ -43,7 +43,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if(currentGame) {
       currentGame.restart(); // Restart Game
     }
-    currentGame = startGame(); // Start a new game
   }
 
   linkElementSize(squareWidthInput, previewSquare) // Link the first squareWidth input value to its box preview

@@ -271,14 +271,14 @@ body {
   opacity: 0;
 
   transition: grid-template-rows .4s ease,
-              opacity .3s ease;
+              opacity .2s ease;
 }
 .preview-wrapper.revealed {
   grid-template-rows: 1fr;
   opacity: 1;
-  
+
   transition: grid-template-rows .4s ease,
-              opacity .3s ease;
+              opacity .8s ease;
 }
 
 /* ELEMENTS STYLE BUILT VIA JS ============================================================= */
