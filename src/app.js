@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const previewSquare = document.querySelector('.preview-square');
   
   const settingsButton = document.querySelector('#settings-button');
-  const sizePreviewBox = document.querySelector('.size-preview-box');
+  const previewWrapper= document.querySelector('.preview-wrapper');
   const smileSpan = document.querySelector('#smile');
 
   // Link bombRatio input value to its slider
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
   squareWidthSlider.addEventListener('change', () => linkElementSize(squareWidthSlider, previewSquare));
 
   // Enable listener to settings button
-  settingsButton.addEventListener('click', () => handleSettingsToggle(sizePreviewBox));
+  settingsButton.addEventListener('click', () => handleSettingsToggle(previewWrapper));
 
   // Enable click listener to restart game
   function enableRestartListener() {

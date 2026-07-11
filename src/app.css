@@ -37,7 +37,7 @@ body {
   margin: 1rem;
 }
 
-/* Height */
+/* Size */
 .width-6 {
   width: 6rem;
 }
@@ -179,13 +179,10 @@ body {
   visibility: hidden;
 }
 
-/* STATIC ELEMENTS STYLE ============================================================= */
+/* PRESET ELEMENTS STYLE ============================================================= */
 
-.main-container {
-
-  img {
+.main-container img {
     width: 2rem;
-  }
 }
 
 .header {
@@ -196,17 +193,6 @@ body {
   }
   .timer {
     width: 10rem;
-  }
-}
-
-.game-body .settings {
-  
-  /* Animating Elements */
-  img {
-    transition: transform .2s ease;
-  }
-  img:hover {
-    transform: rotate(60deg);
   }
 }
 
@@ -263,7 +249,39 @@ body {
   }
 }
 
-/* DINAMIC ELEMENTS STYLE (build via js) ============================================================= */
+/* DINAMIC PRESET ELEMENTS STYLE ============================================================= */
+
+/* Animating Elements */
+.settings img {  
+  transition: transform .2s ease;
+}
+.settings img:hover {  
+  transform: rotate(60deg);
+}
+
+/* Hidden preview-wrapper > size preview box */
+.preview-wrapper {
+  overflow: hidden;
+}
+.preview-wrapper > div {
+  min-height: 0;
+}
+.preview-wrapper.hidden {
+  grid-template-rows: 0fr;
+  opacity: 0;
+
+  transition: grid-template-rows .4s ease,
+              opacity .3s ease;
+}
+.preview-wrapper.revealed {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  
+  transition: grid-template-rows .4s ease,
+              opacity .3s ease;
+}
+
+/* ELEMENTS STYLE BUILT VIA JS ============================================================= */
 
 .game-body .grid {
   background-color: #C0C0C0;

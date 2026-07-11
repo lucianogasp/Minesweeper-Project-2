@@ -1,5 +1,5 @@
-export function handleSettingsToggle(sizePreviewBox) {
+export function handleSettingsToggle(previewWrapper) {
 
-  const isHidden = sizePreviewBox.classList.toggle('d-none');
-  sizePreviewBox.classList.toggle('d-flex', !isHidden);
+  const isHidden = previewWrapper.classList.toggle('hidden');
+  previewWrapper.classList.toggle('revealed', !isHidden);
 }
