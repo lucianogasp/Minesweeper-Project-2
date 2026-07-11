@@ -1,11 +1,5 @@
-export function setSettings() {
+export function handleSettingsToggle(sizePreviewBox) {
 
-  // Define DOM Elements
-  const settingsButton = document.querySelector('#settings-button');
-
-  // Define Listener to show advanced settings
-  settingsButton.addEventListener('click', e => {
-    
-    return;
-  });
+  const isHidden = sizePreviewBox.classList.toggle('d-none');
+  sizePreviewBox.classList.toggle('d-flex', !isHidden);
 }
