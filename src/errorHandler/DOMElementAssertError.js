@@ -1,4 +1,4 @@
-class ExpansionBlankError extends Error {
+class DOMElementAssertError extends Error {
 
   constructor(message) {
     super(message);
@@ -6,4 +6,4 @@ class ExpansionBlankError extends Error {
   }
 }
 
-export default ExpansionBlankError;
+export default DOMElementAssertError;

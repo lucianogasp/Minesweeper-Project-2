@@ -1,14 +1,23 @@
-// Define DOM Elements
+// import modules
+import { assertDomElement } from "./assertDomElement.js";
+
 export default {
-  bombRatioInput: document.querySelector('#bomb-ratio-number'),
-  bombRatioSlider: document.querySelector('#bomb-ratio-slider'),
-  squareWidthInput: document.querySelector('#square-width-number'),
-  squareWidthSlider: document.querySelector('#square-width-slider'),
-  previewSquare: document.querySelector('.preview-square'),
-  settingsButton: document.querySelector('#settings-button'),
-  previewWrappe: document.querySelector('.preview-wrapper'),
-  smileSpan: document.querySelector('#smile'),
-  timerCounter: document.querySelector('#number-timer'),
-  bombCounter: document.querySelector('#number-count-bombs'),
-  gameBody: document.querySelector('.game-body')
+  bombRatioInput: domQuery('#bomb-ratio-number'),
+  bombRatioSlider: domQuery('#bomb-ratio-slider'),
+  squareWidthInput: domQuery('#square-width-number'),
+  squareWidthSlider: domQuery('#square-width-slider'),
+  previewSquare: domQuery('.preview-square'),
+  settingsButton: domQuery('#settings-button'),
+  previewWrapper: domQuery('.preview-wrapper'),
+  smileSpan: domQuery('#smile'),
+  timerCounter: domQuery('#number-timer'),
+  bombCounter: domQuery('#number-count-bombs'),
+  gameBody: domQuery('.game-body')
+}
+
+function domQuery(query) {
+  
+  const domElement = document.querySelector(query);
+  assertDomElement(domElement);
+  return domElement;
 }

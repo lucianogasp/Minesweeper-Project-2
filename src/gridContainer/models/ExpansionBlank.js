@@ -1,4 +1,4 @@
-import { ExpansionBlankError } from "../../errorHandler/ExpansionBlankError.js";
+import ExpansionBlankError from "../../errorHandler/ExpansionBlankError.js";
 
 class ExpansionBlank {
 
@@ -29,7 +29,7 @@ class ExpansionBlank {
       
       switch ( square.dataset.type ) {
         case 'bomb':
-          throw new ExpansionBlankError(`Bomb around a blank square...`);
+          throw new ExpansionBlankError(`Bomb around a blank square... In a standart game, the logic should make it impossible to happen`);
           break;
 
         case 'digit':
