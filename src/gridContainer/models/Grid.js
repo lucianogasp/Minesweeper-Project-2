@@ -43,7 +43,6 @@ class Grid {
         gridContainer.appendChild(square);
       }
     }
-  
   }
 
   // Set each square with classes and data attributes associated 

@@ -13,6 +13,7 @@ export function startGame() {
   const gameState = {
 
     callbackStatus: 'enabled', // Enabled/Disabled the clicks callback
+    currentParams: null, // Current Params captured from front-end layout
     isFirstClick: true, // Define the flow code of first click callback from listener
 
     grid: null,
@@ -41,11 +42,11 @@ export function startGame() {
 
     if (gameState.callbackStatus === 'disabled') return;
     if (e.target.dataset.isFlagged === 'true') return;
-      
+
     // If is the first click of grid container
     if (gameState.isFirstClick) {
       const { gameover, expansion, flagCounter } = managerFn.prepareMinefild(
-        e,
+        e.target,
         gameState.currentParams,
         gameState.grid,
         gameState.gridContainer,
@@ -62,12 +63,12 @@ export function startGame() {
       gameState.isFirstClick = false;
     }
 
-    managerFn.revealSquare(e);
+    managerFn.revealSquare(e.target);
 
     // Verify if the click resulted in a blank square to expand in a chain
-    managerFn.verifyExpansionBlank(e, gameState.expansion);
+    managerFn.verifyExpansionBlank(e.target, gameState.expansion);
 
-    isGameOver = managerFn.verifyClickBomb(e, gameState.gameover, gameState.timer);
+    isGameOver = managerFn.verifyClickBomb(e.target, gameState.gameover, gameState.timer);
     gameState.verifyGameOver(isGameOver);
 
     isGameOver = managerFn.verifyEndGame(gameState.gameover, gameState.timer);
@@ -134,7 +135,7 @@ export function startGame() {
     restart: () => {      
       managerFn.stopHeaderTimer(gameState.timer);
       managerFn.resetHeaderTimer(gameState.timer);
-      removeGridContainer();      
+      removeGridContainer();
     }
   };
 }

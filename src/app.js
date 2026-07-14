@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const squareWidthInput = document.querySelector('#square-width-number');
   const squareWidthSlider = document.querySelector('#square-width-slider');
   const previewSquare = document.querySelector('.preview-square');
-  
+
   const settingsButton = document.querySelector('#settings-button');
   const previewWrapper= document.querySelector('.preview-wrapper');
   const smileSpan = document.querySelector('#smile');
@@ -33,9 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
   settingsButton.addEventListener('click', () => handleSettingsToggle(previewWrapper));
 
   // Enable click listener to restart game
-  function enableRestartListener() {
-    smileSpan.addEventListener('click', handleRestart);
-  }
+  smileSpan.addEventListener('click', handleRestart);
 
   // Define a method to handle the restart game method
   let currentGame;
@@ -43,10 +41,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if(currentGame) {
       currentGame.restart(); // Restart Game
     }
+    currentGame = startGame();
   }
 
   linkElementSize(squareWidthInput, previewSquare) // Link the first squareWidth input value to its box preview
-  enableRestartListener(); // Enable the first smile button listener
-
   currentGame = startGame(); // Start the first game
 });

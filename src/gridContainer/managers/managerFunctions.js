@@ -25,7 +25,7 @@ function buildGrid(currentParams) {
   const gridContainer = grid.createGridContainer();
   grid.setTemplateGrid(gridContainer);
   grid.createGrid(gridContainer);
-  
+
   // Indent grid at gameBody
   const gameBody = document.querySelector('.game-body');
   gameBody.appendChild(gridContainer);
@@ -63,8 +63,8 @@ function resetCounterBombs() {
   return;
 };
 
-function prepareMinefild(e, currentParams, grid, gridContainer, timer) {
-    
+function prepareMinefild(element, currentParams, grid, gridContainer, timer) {
+
   // Instantiate objects
   const squares = new Squares(Array.from(gridContainer.children));
   const bomb = new Bomb(currentParams.bomb_ratio, grid.getN_Square(), squares);
@@ -83,7 +83,7 @@ function prepareMinefild(e, currentParams, grid, gridContainer, timer) {
   flagCounter.update(flagsRemaining);
 
   // Setting shuffled squares list excluding the first square clicked
-  const excludedFirstClickSquareList = FilterSquares.filterByNotClickedSquare(squares.getSquareList(), e.target);
+  const excludedFirstClickSquareList = FilterSquares.filterByNotClickedSquare(squares.getSquareList(), element);
   const localShuffledSquareList = bomb.shuffleSquareMethod(excludedFirstClickSquareList, fisherYatesShuffle);
   squares.setShuffledSquareList(localShuffledSquareList);
 
@@ -99,21 +99,21 @@ function prepareMinefild(e, currentParams, grid, gridContainer, timer) {
   return { gameover, expansion, flagCounter };
 }
 
-function revealSquare(e) {
+function revealSquare(element) {
 
   // Reveal squares clicked
-  e.target.classList.replace('hidden', 'revealed');
+  element.classList.replace('hidden', 'revealed');
   return;
 }
 
-function verifyClickBomb(e, gameover, timer) {
+function verifyClickBomb(element, gameover, timer) {
 
   // Validate if bomb was clicked
-  const isGameOver = gameover.validateClickBomb(e.target);
+  const isGameOver = gameover.validateClickBomb(element);
 
   if (isGameOver) {
     // Handle cases of game over
-    gameover.handleBombRedSquare(e.target);
+    gameover.handleBombRedSquare(element);
     gameover.revealingBombSquares();
     gameover.handleIncorrectFlagSquare();
     stopHeaderTimer(timer);
@@ -122,10 +122,10 @@ function verifyClickBomb(e, gameover, timer) {
   return isGameOver;
 }
 
-function verifyExpansionBlank(e, expansion) {
+function verifyExpansionBlank(element, expansion) {
 
   // Initialize expansion method to reveal neighboring blanked squares
-  expansion.validateExpansionBlank(e.target); // Recursive Function
+  expansion.validateExpansionBlank(element); // Recursive Function
   return;
 }
 
