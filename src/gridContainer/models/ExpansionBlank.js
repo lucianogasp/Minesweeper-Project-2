@@ -1,3 +1,5 @@
+import { ExpansionBlankError } from "../../errorHandler/ExpansionBlankError.js";
+
 class ExpansionBlank {
 
   #findNeighboringSquares; // INSTANCE CLASS of FindNeighboringSquares
@@ -27,7 +29,7 @@ class ExpansionBlank {
       
       switch ( square.dataset.type ) {
         case 'bomb':
-          console.error('Unexpected Error - bomb around a blank square...');
+          throw new ExpansionBlankError(`Bomb around a blank square...`);
           break;
 
         case 'digit':
