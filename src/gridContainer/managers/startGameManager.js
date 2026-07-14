@@ -1,14 +1,14 @@
 // import modules
+import domElements from '../../DOMElements/domElements.js';
 import FlagCounter from '../models/FlagCounter.js';
 import managerFn from './managerFunctions.js';
+
 import { getParams } from '../../configContainer/getParams.js';
 import { updateSmileFace } from '../../headerContainer/toggleSmileFace.js';
 
 export function startGame() {
 
   // STATE & CONFIGURATIONS :===========================================================:
-
-  const gameBodyContainer = document.querySelector('.game-body');
 
   // Define config object of variables and instances
   const gameState = {
@@ -100,7 +100,7 @@ export function startGame() {
   const removeGridContainer = () => {
 
     if (gameState.gridContainer) {
-      gameBodyContainer.removeChild(gameState.gridContainer);
+      domElements.gameBody.removeChild(gameState.gridContainer);
 
     } else {
       console.error(`gridContainer is not reference of a DOM element: ${gameState.gridContainer}`);

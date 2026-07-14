@@ -10,14 +10,11 @@ import Transcription from '../../utils/Transcription.js';
 import FilterSquares from '../../utils/FilterSquares.js';
 import FindNeighboringSquares from '../models/FindNeighboringSquares.js';
 import FlagCounter from '../models/FlagCounter.js';
+import domElements from '../../DOMElements/domElements.js';
+
 import { fisherYatesShuffle, computeTargetCoords, patternsOperation } from '../../utils/utilitiesFunctions.js';
 import { gameOverMessage, endGameMessage } from '../../utils/userMessage.js';
 import { updateSadFace } from '../../headerContainer/toggleSmileFace.js';
-
-// Define DOM elements
-const timerCounter = document.querySelector('#number-timer');
-const bombCounter = document.querySelector('#number-count-bombs');
-const gameBody = document.querySelector('.game-body');
 
 // Define Event Managers Functions
 
@@ -29,8 +26,8 @@ function buildGrid(currentParams) {
   grid.setTemplateGrid(gridContainer);
   grid.createGrid(gridContainer);
 
-  // Indent grid at gameBody
-  gameBody.appendChild(gridContainer);
+  // Indent grid at its parant container
+  domElements.gameBody.appendChild(gridContainer);
 
   return { grid, gridContainer };
 }
@@ -38,7 +35,7 @@ function buildGrid(currentParams) {
 function setHeaderTimer() {
 
   // Set the timer at header
-  const timer = new HeaderTimer(timerCounter);
+  const timer = new HeaderTimer(domElements.timerCounter);
 
   return { timer };
 }
@@ -60,7 +57,7 @@ function stopHeaderTimer(timer) {
 function resetCounterBombs() {
   
   // Reset the number of bombs of header
-  bombCounter.textContent = '00';
+  domElements.bombCounter.textContent = '00';
 
   return;
 };
@@ -75,7 +72,7 @@ function prepareMinefild(element, currentParams, grid, gridContainer, timer) {
 
   const gameover = new GameOver(squares);
   const expansion = new ExpansionBlank(findNeighboringSquares);
-  const flagCounter = new FlagCounter(bombCounter, squares, bomb.getN_Bomb());
+  const flagCounter = new FlagCounter(domElements.bombCounter, squares, bomb.getN_Bomb());
 
   // Starting a timer at header
   timer.start();

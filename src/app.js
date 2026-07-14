@@ -1,4 +1,6 @@
 // import modules
+import domElements from './DOMElements/domElements.js';
+
 import { startGame } from './gridContainer/managers/startGameManager.js';
 import { linkElementValue } from './configContainer/linkInputSliders.js';
 import { linkElementSize } from './configContainer/linkInputPreviewBox.js';
@@ -6,34 +8,23 @@ import { handleSettingsToggle } from './configContainer/settings.js';
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  // Define DOM Elements
-  const bombRatioInput = document.querySelector('#bomb-ratio-number');
-  const bombRatioSlider = document.querySelector('#bomb-ratio-slider');
-  const squareWidthInput = document.querySelector('#square-width-number');
-  const squareWidthSlider = document.querySelector('#square-width-slider');
-  const previewSquare = document.querySelector('.preview-square');
-
-  const settingsButton = document.querySelector('#settings-button');
-  const previewWrapper= document.querySelector('.preview-wrapper');
-  const smileSpan = document.querySelector('#smile');
-
   // Link bombRatio input value to its slider
-  bombRatioInput.addEventListener('input', linkElementValue(bombRatioSlider));
-  bombRatioSlider.addEventListener('input', linkElementValue(bombRatioInput));
+  domElements.bombRatioInput.addEventListener('input', linkElementValue(domElements.bombRatioSlider));
+  domElements.bombRatioSlider.addEventListener('input', linkElementValue(domElements.bombRatioInput));
 
   // Link squareWidth input value to its slider
-  squareWidthInput.addEventListener('input', linkElementValue(squareWidthSlider));
-  squareWidthSlider.addEventListener('input', linkElementValue(squareWidthInput));
+  domElements.squareWidthInput.addEventListener('input', linkElementValue(domElements.squareWidthSlider));
+  domElements.squareWidthSlider.addEventListener('input', linkElementValue(domElements.squareWidthInput));
 
   // Link squareWidth input value to its box preview
-  squareWidthInput.addEventListener('change', () => linkElementSize(squareWidthInput, previewSquare));
-  squareWidthSlider.addEventListener('change', () => linkElementSize(squareWidthSlider, previewSquare));
+  domElements.squareWidthInput.addEventListener('change', () => linkElementSize(domElements.squareWidthInput, domElements.previewSquare));
+  domElements.squareWidthSlider.addEventListener('change', () => linkElementSize(domElements.squareWidthSlider, domElements.previewSquare));
 
   // Enable listener to settings button
-  settingsButton.addEventListener('click', () => handleSettingsToggle(previewWrapper));
+  domElements.settingsButton.addEventListener('click', () => handleSettingsToggle(domElements.previewWrapper));
 
   // Enable click listener to restart game
-  smileSpan.addEventListener('click', handleRestart);
+  domElements.smileSpan.addEventListener('click', handleRestart);
 
   // Define a method to handle the restart game method
   let currentGame;
@@ -44,6 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
     currentGame = startGame();
   }
 
-  linkElementSize(squareWidthInput, previewSquare) // Link the first squareWidth input value to its box preview
+  linkElementSize(domElements.squareWidthInput, domElements.previewSquare) // Link the first squareWidth input value to its box preview
   currentGame = startGame(); // Start the first game
 });
