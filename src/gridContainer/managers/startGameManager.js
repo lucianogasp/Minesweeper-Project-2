@@ -2,6 +2,7 @@
 import FlagCounter from '../models/FlagCounter.js';
 import managerFn from './managerFunctions.js';
 import { getParams } from '../../configContainer/getParams.js';
+import { updateSmileFace } from '../../headerContainer/toggleSmileFace.js';
 
 export function startGame() {
 
@@ -34,12 +35,7 @@ export function startGame() {
   const clickCallback = e => {
     let isGameOver;
 
-    // Prevents to execute a click off the grid square
-    if(e.target === e.currentTarget) {
-      console.error(`e.target === e.currentTarget. The first click does not captured any of squares`);
-      return;
-    }
-
+    if(e.target === e.currentTarget) return; // Prevents to execute a click off the grid square
     if (gameState.callbackStatus === 'disabled') return;
     if (e.target.dataset.isFlagged === 'true') return;
 
@@ -112,6 +108,8 @@ export function startGame() {
   }
 
   // INITIALIZATION :===================================================================:
+
+  updateSmileFace();
 
   // Define object params from the app's front-end
   gameState.currentParams = getParams();

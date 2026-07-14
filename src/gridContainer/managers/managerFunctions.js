@@ -11,10 +11,13 @@ import FilterSquares from '../../utils/FilterSquares.js';
 import FindNeighboringSquares from '../models/FindNeighboringSquares.js';
 import FlagCounter from '../models/FlagCounter.js';
 import { fisherYatesShuffle, computeTargetCoords, patternsOperation } from '../../utils/utilitiesFunctions.js';
+import { gameOverMessage, endGameMessage } from '../../utils/userMessage.js';
+import { updateSadFace } from '../../headerContainer/toggleSmileFace.js';
 
 // Define DOM elements
 const timerCounter = document.querySelector('#number-timer');
 const bombCounter = document.querySelector('#number-count-bombs');
+const gameBody = document.querySelector('.game-body');
 
 // Define Event Managers Functions
 
@@ -27,7 +30,6 @@ function buildGrid(currentParams) {
   grid.createGrid(gridContainer);
 
   // Indent grid at gameBody
-  const gameBody = document.querySelector('.game-body');
   gameBody.appendChild(gridContainer);
 
   return { grid, gridContainer };
@@ -110,13 +112,13 @@ function verifyClickBomb(element, gameover, timer) {
 
   // Validate if bomb was clicked
   const isGameOver = gameover.validateClickBomb(element);
-
   if (isGameOver) {
-    // Handle cases of game over
     gameover.handleBombRedSquare(element);
     gameover.revealingBombSquares();
     gameover.handleIncorrectFlagSquare();
     stopHeaderTimer(timer);
+    updateSadFace();
+    gameOverMessage();
   }
   
   return isGameOver;
@@ -131,11 +133,11 @@ function verifyExpansionBlank(element, expansion) {
 
 function verifyEndGame(gameover, timer) {
 
-  // Validate if the game is ended
+  // Validate if the game was ended
   const isGameOver = gameover.validateEndGame();
   if (isGameOver) {
     stopHeaderTimer(timer);
-    alert('The game was ended!!!');
+    endGameMessage();
   }
 
   return isGameOver;
