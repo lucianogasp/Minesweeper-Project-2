@@ -1,4 +1,4 @@
-class ExpansionBlankError extends Error {
+class RemoveGridContainerError extends Error {
 
   constructor(message, isFatal=false) {
     super(message);
@@ -7,4 +7,4 @@ class ExpansionBlankError extends Error {
   }
 }
 
-export default ExpansionBlankError;
+export default RemoveGridContainerError;

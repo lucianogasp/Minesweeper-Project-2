@@ -1,7 +1,8 @@
 // import modules
-import domElements from '../../DOMElements/domElements.js';
 import FlagCounter from '../models/FlagCounter.js';
+import domElements from '../../DOMElements/domElements.js';
 import managerFn from './managerFunctions.js';
+import RemoveGridContainerError from '../../errorHandler/removeGridContainerError.js';
 
 import { getParams } from '../../configContainer/getParams.js';
 import { updateSmileFace } from '../../headerContainer/toggleSmileFace.js';
@@ -99,12 +100,11 @@ export function startGame() {
 
   const removeGridContainer = () => {
 
-    if (gameState.gridContainer) {
-      domElements.gameBody.removeChild(gameState.gridContainer);
-
-    } else {
-      console.error(`gridContainer is not reference of a DOM element: ${gameState.gridContainer}`);
+    if (!gameState.gridContainer) {
+      throw new RemoveGridContainerError(`gridContainer is an undefined or null DOM Element. In a standart game, the logic shold make it impossible to happen`, true);
     }
+    domElements.gameBody.removeChild(gameState.gridContainer);
+    return;
   }
 
   // INITIALIZATION :===================================================================:

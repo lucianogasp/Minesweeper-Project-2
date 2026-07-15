@@ -29,8 +29,8 @@ class ExpansionBlank {
       if ( square.classList.contains('revealed') || square.dataset.isFlagged === 'true') { return; }
       
       switch ( square.dataset.type ) {
-        case 'bomb':
-          throw new ExpansionBlankError(`Bomb around a blank square... In a standart game, the logic should make it impossible to happen.`);
+        case 'blank':
+          throw new ExpansionBlankError(`Bomb around a blank square... In a standart game, the logic should make it impossible to happen`, true);
           break;
 
         case 'digit':

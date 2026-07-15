@@ -1,18 +1,32 @@
 import DOMElementAssertError from "./DOMElementAssertError.js";
 import ExpansionBlankError from "./ExpansionBlankError.js";
+import RemoveGridContainerError from "./removeGridContainerError.js";
+
+function handleCatchError(err) {
+  let userMessage = '';
+
+  if(err.isFatal) {
+    userMessage += ` FATAL ERROR: \n`;
+  }
+  userMessage += `${err.stack}:`;
+  
+  console.error(userMessage);
+}
 
 export const errorHandler = (callback) => (...args) => {
   try {
     return callback(...args);
   } catch(err) {
     if(err instanceof ExpansionBlankError) {
-      const userMessage = `${err.name}: ${err.message}`;
-      console.error(userMessage);
-      return; 
+      handleCatchError(err);
+      return;
     }
     if(err instanceof DOMElementAssertError) {
-      const userMessage = `${err.name}: ${err.message}. The query was '${err.domQuery}'`;
-      console.error(userMessage);
+      handleCatchError(err);
+      return;
+    }
+    if(err instanceof RemoveGridContainerError) {
+      handleCatchError(err);
       return;
     }
 

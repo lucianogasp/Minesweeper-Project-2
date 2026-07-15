@@ -5,6 +5,7 @@ import { startGame } from './gridContainer/managers/startGameManager.js';
 import { linkElementValue } from './configContainer/linkInputSliders.js';
 import { linkElementSize } from './configContainer/linkInputPreviewBox.js';
 import { handleSettingsToggle } from './configContainer/settings.js';
+import { errorHandler } from './errorHandler/errorHandler.js';
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -26,17 +27,17 @@ document.addEventListener('DOMContentLoaded', () => {
   domElements.settingsButton.addEventListener('click', () => handleSettingsToggle(domElements.previewWrapper));
 
   // Enable click listener to restart game
-  domElements.smileSpan.addEventListener('click', handleRestart);
+  domElements.smileSpan.addEventListener('click', errorHandler(handleRestart));
 
   // Define a method to handle the restart game method
   let currentGame;
   function handleRestart() {
     if(currentGame) {
-      currentGame.restart(); // Restart Game
+      currentGame.restart();
     }
-    currentGame = startGame();
+    currentGame = startGame(); // Start a New Game
   }
 
   linkElementSize(domElements.squareWidthInput, domElements.previewSquare) // Link the first squareWidth input value to its box preview
-  currentGame = startGame(); // Start the first game
+  currentGame = startGame(); // Start the First Game
 });
