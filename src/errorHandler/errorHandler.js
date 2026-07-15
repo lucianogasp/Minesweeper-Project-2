@@ -9,7 +9,7 @@ function handleCatchError(err) {
     userMessage += ` FATAL ERROR: \n`;
   }
   userMessage += `${err.stack}:`;
-  
+
   console.error(userMessage);
 }
 
