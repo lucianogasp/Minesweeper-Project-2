@@ -13,7 +13,7 @@ import FlagCounter from '../models/FlagCounter.js';
 import domElements from '../../DOMElements/domElements.js';
 
 import { fisherYatesShuffle, computeTargetCoords, patternsOperation } from '../../utils/utilitiesFunctions.js';
-import { gameOverMessage, endGameMessage } from '../../utils/userMessage.js';
+import { userMessage } from '../../utils/userMessage.js';
 import { updateSadFace } from '../../headerContainer/toggleSmileFace.js';
 
 // Define Event Managers Functions
@@ -115,7 +115,8 @@ function verifyClickBomb(element, gameover, timer) {
     gameover.handleIncorrectFlagSquare();
     stopHeaderTimer(timer);
     updateSadFace();
-    gameOverMessage();
+    const message = `Sorry... The game was ended. Please, try again!`;
+    userMessage(message);
   }
   
   return isGameOver;
@@ -134,7 +135,8 @@ function verifyEndGame(gameover, timer) {
   const isGameOver = gameover.validateEndGame();
   if (isGameOver) {
     stopHeaderTimer(timer);
-    endGameMessage();
+    const message = `Congrats!!! You have finished the game...`;
+    userMessage(message);
   }
 
   return isGameOver;

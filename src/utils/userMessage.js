@@ -1,9 +1,11 @@
-export function gameOverMessage() {
+export async function userMessage(message) {
 
-  alert(`Sorry... The game was ended. Please, try again!`);
+  await delay(0);
+  alert(message);
 }
 
-export function endGameMessage() {
-
-  alert(`Congrats!!! You have finished the game...`);
+function delay(ms) {
+  return new Promise( resolve => {
+    setTimeout(resolve, ms);
+  });
 }

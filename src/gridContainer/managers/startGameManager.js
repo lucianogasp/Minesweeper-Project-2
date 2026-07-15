@@ -29,6 +29,7 @@ export function startGame() {
     verifyGameOver: isGameOver => {
       // Prevents the clicks callback over again
       if (isGameOver) gameState.callbackStatus = 'disabled';
+      return;
     }
   };
 
