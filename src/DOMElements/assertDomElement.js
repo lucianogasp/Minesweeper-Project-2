@@ -1,8 +1,8 @@
 // import modules
 import DOMElementAssertError from "../errorHandler/DOMElementAssertError.js";
 
-export function assertDomElement(domElement) {
+export function assertDomElement(domElement, query) {
 
-  if(!domElement) throw new DOMElementAssertError('the DOM Element is undefined or null');
+  if(!domElement) throw new DOMElementAssertError('The DOM Element is undefined or null', query);
   return;
 }

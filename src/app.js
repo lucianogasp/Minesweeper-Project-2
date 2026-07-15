@@ -8,6 +8,8 @@ import { handleSettingsToggle } from './configContainer/settings.js';
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  domElements.mainContainer.addEventListener('contextmenu', e => { e.preventDefault(); });
+
   // Link bombRatio input value to its slider
   domElements.bombRatioInput.addEventListener('input', linkElementValue(domElements.bombRatioSlider));
   domElements.bombRatioSlider.addEventListener('input', linkElementValue(domElements.bombRatioInput));

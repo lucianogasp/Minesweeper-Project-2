@@ -5,6 +5,7 @@ import managerFn from './managerFunctions.js';
 
 import { getParams } from '../../configContainer/getParams.js';
 import { updateSmileFace } from '../../headerContainer/toggleSmileFace.js';
+import { errorHandler } from '../../errorHandler/errorHandler.js';
 
 export function startGame() {
 
@@ -53,7 +54,7 @@ export function startGame() {
       gameState.flagCounter = flagCounter;
 
       // Define event listener to the right clicks
-      gameState.gridContainer.addEventListener('contextmenu', rightClickCallback);
+      gameState.gridContainer.addEventListener('contextmenu', errorHandler(rightClickCallback));
 
       // Remove the first click of the flow
       gameState.isFirstClick = false;
@@ -72,7 +73,6 @@ export function startGame() {
   };
 
   const rightClickCallback = e => {
-    e.preventDefault();
     let isGameOver;
 
     // Prevents to execute a click off the grid square
@@ -125,7 +125,7 @@ export function startGame() {
   managerFn.resetCounterBombs();
 
   // Define event listeners to the clicks
-  gameState.gridContainer.addEventListener('click', clickCallback);
+  gameState.gridContainer.addEventListener('click', errorHandler(clickCallback));
 
   // EXTERNAL CONTROLLER & CONFIG OBJECT :==============================================:
 

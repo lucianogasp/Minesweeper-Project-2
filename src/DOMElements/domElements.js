@@ -1,7 +1,9 @@
 // import modules
 import { assertDomElement } from "./assertDomElement.js";
+import { errorHandler } from "../errorHandler/errorHandler.js";
 
 export default {
+  mainContainer: domQuery('.main-container'),
   bombRatioInput: domQuery('#bomb-ratio-number'),
   bombRatioSlider: domQuery('#bomb-ratio-slider'),
   squareWidthInput: domQuery('#square-width-number'),
@@ -18,6 +20,6 @@ export default {
 function domQuery(query) {
   
   const domElement = document.querySelector(query);
-  assertDomElement(domElement);
+  errorHandler(assertDomElement)(domElement, query);
   return domElement;
 }
