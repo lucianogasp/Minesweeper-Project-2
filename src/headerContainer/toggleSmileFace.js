@@ -1,11 +1,10 @@
-const smileFace = document.querySelector('#smile-face');
+// Import modules
+import domElements from "../DOMElements/domElements.js";
 
 export function updateSmileFace() {
-
-  smileFace.src = `./assets/smile-face3.png`;
+  domElements.smileFace.src = `./assets/smile-face3.png`;
 }
 
 export function updateSadFace() {
-
-  smileFace.src = `./assets/sad-face2.png`;
+  domElements.smileFace.src = `./assets/sad-face2.png`;
 }

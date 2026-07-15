@@ -14,6 +14,9 @@ export default {
   previewWrapper: domQuery('.preview-wrapper'),
   smileSpan: domQuery('#smile'),
 
+  //At ./headerContainer/toggleSmileFace.js
+  smileFace: domQuery('#smile-face'),
+
   // At ./gridContainer/manager/managerFunctions.js
   timerCounter: domQuery('#number-timer'),
   bombCounter: domQuery('#number-count-bombs'),
