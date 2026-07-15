@@ -1,3 +1,4 @@
+//Import modules
 import ExpansionBlankError from "../../errorHandler/ExpansionBlankError.js";
 
 class ExpansionBlank {

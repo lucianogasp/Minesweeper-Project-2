@@ -1,13 +1,9 @@
-// Define params from the app's front-end
-const row = document.querySelector('#row');
-const column = document.querySelector('#column');
-const bombRatioNumber = document.querySelector('#bomb-ratio-number');
-const squareWidthNumber = document.querySelector('#square-width-number');
+// Import modules
+import domElements from "../DOMElements/domElements.js";
 
-// Define a method to get the params from the app's front-end
 export const getParams = () => ({
-  n_row: parseInt(row.value),
-  n_col: parseInt(column.value),
-  bomb_ratio: parseInt(bombRatioNumber.value) / 100,
-  width_square: parseInt(squareWidthNumber.value),
+  n_row: parseInt(domElements.row.value),
+  n_col: parseInt(domElements.column.value),
+  bomb_ratio: parseInt(domElements.bombRatioNumber.value) / 100,
+  width_square: parseInt(domElements.squareWidthNumber.value),
 });

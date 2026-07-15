@@ -1,4 +1,4 @@
-// import modules
+// Import modules
 import DOMElementAssertError from "../errorHandler/DOMElementAssertError.js";
 
 export function assertDomElement(domElement, query) {

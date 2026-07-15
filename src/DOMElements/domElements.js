@@ -1,20 +1,29 @@
-// import modules
+// Import modules
 import { assertDomElement } from "./assertDomElement.js";
 import { errorHandler } from "../errorHandler/errorHandler.js";
 
 export default {
+  // At ./app.js
   mainContainer: domQuery('.main-container'),
   bombRatioInput: domQuery('#bomb-ratio-number'),
   bombRatioSlider: domQuery('#bomb-ratio-slider'),
   squareWidthInput: domQuery('#square-width-number'),
   squareWidthSlider: domQuery('#square-width-slider'),
-  previewSquare: domQuery('.preview-square'),
   settingsButton: domQuery('#settings-button'),
+  previewSquare: domQuery('.preview-square'),
   previewWrapper: domQuery('.preview-wrapper'),
   smileSpan: domQuery('#smile'),
+
+  // At ./gridContainer/manager/managerFunctions.js
   timerCounter: domQuery('#number-timer'),
   bombCounter: domQuery('#number-count-bombs'),
-  gameBody: domQuery('.game-body')
+  gameBody: domQuery('.game-body'),
+  
+  // At ./configContainer/getParams.js
+  row: domQuery('#row'),
+  column: domQuery('#column'),
+  bombRatioNumber: domQuery('#bomb-ratio-number'),
+  squareWidthNumber: domQuery('#square-width-number')
 }
 
 function domQuery(query) {
