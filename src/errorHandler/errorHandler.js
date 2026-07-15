@@ -2,15 +2,8 @@ import DOMElementAssertError from "./DOMElementAssertError.js";
 import ExpansionBlankError from "./ExpansionBlankError.js";
 import RemoveGridContainerError from "./removeGridContainerError.js";
 
-function handleCatchError(err) {
-  let userMessage = '';
-
-  if(err.isFatal) {
-    userMessage += ` FATAL ERROR: \n`;
-  }
-  userMessage += `${err.stack}:`;
-
-  console.error(userMessage);
+function formatFatalError(isFatal) {
+  return isFatal ? `[FATAL ERROR]: ` : ``;
 }
 
 export const errorHandler = (callback) => (...args) => {
@@ -18,15 +11,26 @@ export const errorHandler = (callback) => (...args) => {
     return callback(...args);
   } catch(err) {
     if(err instanceof ExpansionBlankError) {
-      handleCatchError(err);
+      let userMessage = formatFatalError(err);
+      userMessage += err.stack;
+
+      console.error(userMessage);
       return;
     }
     if(err instanceof DOMElementAssertError) {
-      handleCatchError(err);
+      let userMessage = formatFatalError(err.isFatal);
+      userMessage += `${err}\n`;
+      userMessage += `Query: [${err.domQuery}]\n`;
+      userMessage += err.stack;
+
+      console.error(userMessage);
       return;
     }
     if(err instanceof RemoveGridContainerError) {
-      handleCatchError(err);
+      let userMessage = formatFatalError(err);
+      userMessage += err.stack;
+
+      console.error(userMessage);
       return;
     }
 

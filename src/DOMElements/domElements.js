@@ -4,6 +4,9 @@ import { errorHandler } from "../errorHandler/errorHandler.js";
 
 export default {
   // At ./app.js
+  mainWrapper: domQuery('.main-wrapper'),
+  gameOverModal: domQuery('.game-over-modal'),
+  gameOverModalText: domQuery('#game-over-modal-text'),
   mainContainer: domQuery('.main-container'),
   bombRatioInput: domQuery('#bomb-ratio-number'),
   bombRatioSlider: domQuery('#bomb-ratio-slider'),

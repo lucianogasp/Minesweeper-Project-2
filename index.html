@@ -14,11 +14,13 @@
   <title>Minesweeper</title>
 </head>
 <body>
+  <main class="main-wrapper">
   <!-- Main Container -->
-  <div class="main-container
+  <div class="main-container 
               back-c-gray
               border-base border-c-1
               padding-base
+              pos-rel
               d-flex flex-d-column gap-p5"
   >
 
@@ -91,7 +93,7 @@
                    class="padding-p1" 
                    name="rows" 
                    type="number" 
-                   value="16"
+                   value="7"
             >
           </div>
           <!-- Columns -->
@@ -103,7 +105,7 @@
                    class="padding-p1" 
                    name="columns" 
                    type="number" 
-                   value="16"
+                   value="7"
             >
           </div>
 
@@ -183,11 +185,28 @@
           </div>
         </div>
 
+      </div>
       <!-- Game Body > Grid Container -->
       <!-- ... -->
 
     </div>
-
+    
+  </div>
+  
+  </main>
+  <!-- HIDDEN CONTENT:  Game Over Modal -->
+  <div class="game-over-modal hidden
+              back-c-gray
+              padding-1p5 border-base border-c-1
+              d-flex flex-d-column al-i-center jc-space_evenly gap-1
+              pos-abs"
+  >
+    <div class="font-orbitron
+                d-flex flex-d-column al-i-center jc-center t-al-center gap-p5">
+      <h1 id="game-over-modal-text">${texto}</h1>
+      <p>Gostaria de tentar novamente?</p>
+    </div>
+    <button>Start Game</button>
   </div>
   <script type="module" src="./src/app.js"></script>
 </body>
