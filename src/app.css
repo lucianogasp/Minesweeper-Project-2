@@ -300,27 +300,32 @@ p {
 /* Hidden game-over-modal */
 .game-over-modal {
   width: 35rem;
-  height: 18em;
+  height: 18rem;
   padding-bottom: 3rem;
   box-shadow: 0 0 2rem 1rem gray;
 
-  top: calc(50% - 20rem / 2);
+  position: absolute;
+  top: calc(50% - 18rem / 2);
   left: calc(50% - 35rem / 2);
 }
 .game-over-modal.hidden {
-  display: none;
+  visibility: hidden;
   opacity: 0;
 
-  transition: opacity .2 ease;
+  transition: opacity .2s ease,
+              visibility .2s ease;
 }
 .game-over-modal.revealed {
-  display: flex;
+  visibility: visible;
   opacity: 1;
 
-  transition: opacity .2s ease;
+  transition: opacity .2s ease,
+              visibility .2s ease;
 }
 .container-filter {
   filter: blur(.1rem) brightness(70%);
+
+  transition: filter .2s ease;
 }
 
 /* ELEMENTS STYLE BUILT VIA JS ============================================================= */
