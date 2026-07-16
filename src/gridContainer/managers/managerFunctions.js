@@ -14,7 +14,7 @@ import domElements from '../../DOMElements/domElements.js';
 
 import { fisherYatesShuffle, computeTargetCoords, patternsOperation } from '../../utils/utilitiesFunctions.js';
 import { userMessage } from '../../utils/userMessage.js';
-import { updateSadFace } from '../../headerContainer/toggleSmileFace.js';
+import { switchFaceToSad } from '../../headerContainer/switchSmileFace.js';
 
 // Define Event Managers Functions
 
@@ -114,7 +114,7 @@ function verifyClickBomb(element, gameover, timer) {
     gameover.revealingBombSquares();
     gameover.handleIncorrectFlagSquare();
     stopHeaderTimer(timer);
-    updateSadFace();
+    switchFaceToSad();
     const message = `Sorry... The game was ended. Please, try again!`;
     userMessage(message);
   }

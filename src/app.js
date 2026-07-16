@@ -6,7 +6,7 @@ import { linkElementValue } from './configContainer/linkInputSliders.js';
 import { linkElementSize } from './configContainer/linkInputPreviewBox.js';
 import { handleSettingsToggle } from './configContainer/settings.js';
 import { errorHandler } from './errorHandler/errorHandler.js';
-import { dismissAlertMessage } from './utils/userMessage.js';
+import { dismissAlertMessage } from './mainWrapperContainer/dismissAlertMessage.js';
 
 document.addEventListener('DOMContentLoaded', () => {
 

@@ -1,10 +1,10 @@
 // Import modules
 import domElements from "../DOMElements/domElements.js";
 
-export function updateSmileFace() {
+export function switchFaceToSmile() {
   domElements.smileFace.src = `./assets/smile-face3.png`;
 }
 
-export function updateSadFace() {
+export function switchFaceToSad() {
   domElements.smileFace.src = `./assets/sad-face2.png`;
 }

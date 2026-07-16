@@ -1,5 +1,6 @@
-export function handleSettingsToggle(previewWrapper) {
+// Import modules
+import { toggleClassList } from "../utils/toggleClassList.js";
 
-  const isHidden = previewWrapper.classList.toggle('hidden');
-  previewWrapper.classList.toggle('revealed', !isHidden);
+export function handleSettingsToggle(previewWrapper) {
+  toggleClassList(previewWrapper, 'hidden', 'revealed');
 }

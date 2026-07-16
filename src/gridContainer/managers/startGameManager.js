@@ -5,7 +5,7 @@ import managerFn from './managerFunctions.js';
 import RemoveGridContainerError from '../../errorHandler/removeGridContainerError.js';
 
 import { getParams } from '../../configContainer/getParams.js';
-import { updateSmileFace } from '../../headerContainer/toggleSmileFace.js';
+import { switchFaceToSmile } from '../../headerContainer/switchSmileFace.js';
 import { errorHandler } from '../../errorHandler/errorHandler.js';
 
 export function startGame() {
@@ -110,7 +110,7 @@ export function startGame() {
 
   // INITIALIZATION :===================================================================:
 
-  updateSmileFace();
+  switchFaceToSmile();
 
   // Define object params from the app's front-end
   gameState.currentParams = getParams();
