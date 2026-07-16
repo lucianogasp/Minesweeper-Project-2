@@ -4,7 +4,7 @@ import domElements from "../DOMElements/domElements.js";
 export async function userMessage(message) {
 
   await delay(0);
-  popUpMessage(message);
+  alertMessage(message);
 }
 
 function delay(ms) {
@@ -13,11 +13,18 @@ function delay(ms) {
   });
 }
 
-function popUpMessage(message) {
+function alertMessage(message) {
   domElements.mainWrapper.classList.toggle('container-filter');
 
   const isHidden = domElements.gameOverModal.classList.toggle('hidden');
   domElements.gameOverModal.classList.toggle('revealed', !isHidden);
 
   domElements.gameOverModalText.innerHTML = `${message}`;
+}
+
+export function dismissAlertMessage() {
+  domElements.mainWrapper.classList.toggle('container-filter');
+
+  const isHidden = domElements.gameOverModal.classList.toggle('hidden');
+  domElements.gameOverModal.classList.toggle('revealed', !isHidden);
 }

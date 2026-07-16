@@ -6,6 +6,7 @@ import { linkElementValue } from './configContainer/linkInputSliders.js';
 import { linkElementSize } from './configContainer/linkInputPreviewBox.js';
 import { handleSettingsToggle } from './configContainer/settings.js';
 import { errorHandler } from './errorHandler/errorHandler.js';
+import { dismissAlertMessage } from './utils/userMessage.js';
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -28,6 +29,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Enable click listener to restart game
   domElements.smileSpan.addEventListener('click', errorHandler(handleRestart));
+  domElements.gameOverModalRestartButton.addEventListener('click', e => {
+    dismissAlertMessage();
+    errorHandler(handleRestart)(e);
+  });
 
   // Define a method to handle the restart game method
   let currentGame;

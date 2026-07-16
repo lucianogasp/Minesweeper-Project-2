@@ -7,6 +7,7 @@ export default {
   mainWrapper: domQuery('.main-wrapper'),
   gameOverModal: domQuery('.game-over-modal'),
   gameOverModalText: domQuery('#game-over-modal-text'),
+  gameOverModalRestartButton: domQuery('#game-over-modal-restart-button'),
   mainContainer: domQuery('.main-container'),
   bombRatioInput: domQuery('#bomb-ratio-number'),
   bombRatioSlider: domQuery('#bomb-ratio-slider'),
