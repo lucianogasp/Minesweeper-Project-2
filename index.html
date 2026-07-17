@@ -61,24 +61,23 @@
     <div class="game-body
                 back-c-gray font-orbitron font-s-1p2
                 border-base border-c-2 padding-base
-                d-flex jc-center al-i-start gap-p5"
+                d-grid ji-center al-i-start jc-space_between gap-p5"
     >
 
-      <!-- Game Body > Settings Container-->
-      <div id="settings-button" 
-           class="settings
-                  border-w-p3 border-s-sol border-c-1 padding-p1
-                  d-flex al-s-start"
-      >
-        <img src="./assets/settings.png" alt="settings">
-      </div>
-
-      <!-- Game Body > Config Container -->
+      <!-- Config Container -->
       <div class="config
                   border-base border-c-2 padding-base
-                  d-flex flex-d-column gap-1"
+                  d-flex flex-d-column gap-1 js-start"
       >
 
+        <!-- Config > Settings Container -->
+        <div id="settings-button" 
+             class="settings
+                    border-w-p3 border-s-sol border-c-1 padding-p1
+                    d-flex al-s-start"
+        >
+          <img src="./assets/settings.png" alt="settings">
+        </div>
         <!-- Config > Rows and Columns -->
         <div class="row-col-container 
                     d-flex flex-d-row jc-space_between gap-p5"
@@ -90,7 +89,6 @@
           >
             <label for="row">Rows</label>
             <input id="row"
-                   class="padding-p1" 
                    name="rows" 
                    type="number" 
                    value="7"
@@ -102,7 +100,6 @@
           >
             <label for="column">Columns</label>
             <input id="column"
-                   class="padding-p1" 
                    name="columns" 
                    type="number" 
                    value="7"
@@ -118,7 +115,6 @@
                       d-flex flex-d-row al-i-center gap-p5"
           >
             <input id="bomb-ratio-number" 
-                  class="padding-p1"
                   name="bomb-ratio-number" 
                   type="number" min="1" max="50" step="1" value="10"
             >
@@ -145,7 +141,6 @@
                         d-flex flex-d-row al-i-center gap-p5"
             >
               <input id="square-width-number"
-                     class="padding-p1"
                      name="square-width-number" 
                      type="number" min="15" max="45" step="1" value="20"
               >
@@ -161,7 +156,7 @@
             </div>
 
           </div>
-          <!-- HIDDEN CONTENT: Config > Square Width Container > Preview-Box -->
+          <!-- HIDDEN CONTENT: Square Width Container > Preview-Box -->
           <div class="preview-wrapper hidden
                       d-grid"
           >
@@ -198,17 +193,26 @@
   <div class="game-over-modal hidden
               back-c-gray
               padding-1p5 border-base border-c-1
-              d-flex flex-d-column al-i-center jc-space_evenly gap-1
+              d-flex flex-d-column al-i-center jc-space_evenly
               pos-abs"
   >
 
-    <div class="font-orbitron
+    <div class="game-over-modal-x-mark">
+      <img id="game-over-modal-x-mark" src="./assets/x-mark.png" alt="x-mark">
+    </div>
+    <div class="game-over-modal-text
+                font-orbitron
                 d-flex flex-d-column al-i-center jc-center t-al-center gap-p5">
       <h1 id="game-over-modal-text">${texto}</h1>
-      <p>Gostaria de tentar novamente?</p>
+      <p>Would you like to try again?</p>
     </div>
-    <button id="game-over-modal-restart-button">Start Game</button>
-    
+    <button id="game-over-modal-restart-button"
+            class="font-orbitron back-c-gray
+                   border-base border-c-1"
+    >
+      Start Game
+    </button>
+
   </div>
   <script type="module" src="./src/app.js"></script>
 </body>

@@ -11,8 +11,21 @@ html {
 main {
   padding: 15rem 20rem;
   color: black;
-  background-color: antiquewhite;
+  background-color: #FAF3E3;
 }
+/* Color sugestion
+    #306060 -> #008080  Verde
+    #0b0914 -> #4f2a5a  Roxo
+    #3a3a3a -> #5a5a5a -> #9a9a9a  Cinzas
+    #334c4c
+
+    Color Retro Default
+    #eeeeee -> #636E80 claro
+    #c0c0c0 -> #4C5462 / 3E4651 médio
+    #888888 -> #2A2F37 escuro
+    #334c4c / #1E293B / #0F172A fundo escuro
+    #D9CCBB -> #ECE5DC -> FAF3E3 fundo claro
+*/
 h1 {
   font-size: 2rem;
   font-weight: 500;
@@ -28,7 +41,7 @@ p {
   background-color: #FFFFFF;
 }
 .back-c-gray {
-  background-color: #C0C0C0;
+  background-color: #c0c0c0;
 }
 
 /* Padding */
@@ -82,10 +95,10 @@ p {
   border-color: gray;
 }
 .border-c-1 {
-  border-color: #EEEEEE #888888 #888888 #EEEEEE;
+  border-color: #eeeeee #888888 #888888 #eeeeee;
 }
 .border-c-2 {
-  border-color: #888888 #EEEEEE #EEEEEE #888888;
+  border-color: #888888 #eeeeee #eeeeee #888888;
 }
 
 /* Font */
@@ -149,12 +162,17 @@ p {
 .jc-space_evenly {
   justify-content: space-evenly;
 }
-.ji-space_around {
-  justify-items: space-around;
+
+.ji-center {
+  justify-items: center;
 }
 .ji-space_between {
   justify-items: space-between;
 }
+.ji-space_around {
+  justify-items: space-around;
+}
+
 .js-center {
   justify-self: center;
 }
@@ -164,23 +182,45 @@ p {
 .js-end {
   justify-self: end;
 }
+
 .al-i-center {
   align-items: center; 
 }
 .al-i-start {
   align-items: start;
 }
-.al-c-end {
+.al-i-end {
   align-items: end;
 }
+
 .al-c-center {
-  align-content: center;
+  align-items: center;
+}
+.al-c-start {
+  align-items: start;
+}
+.al-c-end {
+  align-content: end;
+}
+
+.al-s-center {
+  align-self: center;
 }
 .al-s-start {
   align-self: start;
 }
+.al-s-end {
+  align-self: end;
+}
+
 .t-al-center {
   text-align: center;
+}
+.t-al-start {
+  text-align: start;
+}
+.t-al-end {
+  text-align: end;
 }
 
 /* Position */
@@ -198,12 +238,8 @@ p {
 
 /* PRESET ELEMENTS STYLE ============================================================= */
 
-.main-container img {
-  width: 2rem;
-}
-
 .header {
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 .header .count-bombs {
   width: 7rem;
@@ -211,58 +247,75 @@ p {
 .header .timer {
   width: 10rem;
 }
+.header img, .config img {
+  width: 2rem;
+}
 
+.game-body {
+  grid-auto-flow: column;
+  grid-template-columns: 1fr 1fr 1fr;
+}
 .game-body .config {
   max-width: 21rem;
-  
-  label {
-    padding-bottom: .3rem;
-  }
-  input[type="number"] {
-    width: 100%;
-    outline: none;
-  }
-  .bomb-ratio-container .input-field input,
-  .square-width-container .input-field input {
-    width: 3rem;
-  }
-  .bomb-ratio-container input[type="number"]::-webkit-outer-spin-button,
-  .bomb-ratio-container input[type="number"]::-webkit-inner-spin-button,
-  .square-width-container input[type="number"]::-webkit-outer-spin-button,
-  .square-width-container input[type="number"]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-  }
+  min-width: 13rem;
+}
+.game-body .config label {
+  padding-bottom: .3rem;
+}
+.game-body .config input[type="number"] {
+  background-color: #FAF3E3;
+  width: 100%;
+  padding: .2rem .5rem;
 
-  /* Input Slider Style */
-  input[type="range"] {
-    -webkit-appearance: none;
-    appearance: none;
-  
-    background: transparent;
-    width: 100%;
-    height: 1.5rem;
-  }
-  input[type="range"]::-webkit-slider-runnable-track {
-    height: .5rem;
-    background-color: #888888;
-    border-radius: .5rem;
-  }
-  input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-  
-    height: 1.3rem;
-    width: 1.3rem;
-    border-radius: 50%;
-    border: 1px solid #444444;
-    background-image: linear-gradient(
-      to right,
-      #C0C0C0 50%,
-      #888888 50%
-    );
-    translate: 0 calc(-50% + .5rem / 2);
-    cursor: pointer;
-  }
+  border: none;
+  box-shadow: inset 0 0 .2rem .1rem #888888;
+  outline: none;
+}
+/* ========================================================= */
+/* ========================================================= */
+
+.bomb-ratio-container .input-field input,
+.square-width-container .input-field input {
+  width: 3rem;
+}
+.bomb-ratio-container input[type="number"]::-webkit-outer-spin-button,
+.bomb-ratio-container input[type="number"]::-webkit-inner-spin-button,
+.square-width-container input[type="number"]::-webkit-outer-spin-button,
+.square-width-container input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+/* Input Slider Style */
+.game-body .config input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+
+  background: transparent;
+  width: 100%;
+  height: 1.5rem;
+}
+.game-body .config input[type="range"]::-webkit-slider-runnable-track {
+  height: .5rem;
+  background-color: #888888;
+  border-radius: .5rem;
+}
+.game-body .config input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+
+  height: 1.3rem;
+  width: 1.3rem;
+  border-radius: 50%;
+  /* border: 1px solid #444444; */
+  background-image: linear-gradient(
+    to right,
+    /* #C0C0C0 50%,
+    #888888 50% */
+    #E7E7E7 50%,
+    #c0c0c0 50%
+  );
+  translate: 0 calc(-50% + .5rem / 2);
+  cursor: pointer;
 }
 
 /* DINAMIC PRESET ELEMENTS STYLE ============================================================= */
@@ -322,6 +375,30 @@ p {
   transition: opacity .2s ease,
               visibility .2s ease;
 }
+.game-over-modal button {
+  width: 15rem;
+  height: 4rem;
+  padding: .3rem;
+}
+.game-over-modal button:hover {
+  font-size: 1.6rem;
+  transition: font-size .2s ease;
+}
+.game-over-modal button:active {
+  border-color: #888888 #eeeeee #eeeeee #888888;
+  transition: border-color .2s ease;
+}
+.game-over-modal-x-mark {
+  align-self: flex-end;
+  height: 2rem;
+  margin-bottom: 0;
+}
+.game-over-modal-x-mark img {
+  width: 2rem;
+}
+.game-over-modal-text {
+  margin-bottom: 2rem;
+}
 .container-filter {
   filter: blur(.1rem) brightness(70%);
 
@@ -331,11 +408,11 @@ p {
 /* ELEMENTS STYLE BUILT VIA JS ============================================================= */
 
 .game-body .grid {
-  background-color: #C0C0C0;
+  background-color: #c0c0c0;
 
   border: .5rem solid;
   border-radius: 0;
-  border-color: #888888 #EEEEEE #EEEEEE #888888;
+  border-color: #888888 #eeeeee #eeeeee #888888;
 
   display: grid;
   justify-content: center;
@@ -344,11 +421,11 @@ p {
 }
 
 .square.hidden{
-  background-color: #C0C0C0;
+  background-color: #c0c0c0;
 
   border: .3rem solid;
   border-radius: 0;
-  border-color: #EEEEEE #888888 #888888 #EEEEEE;
+  border-color: #eeeeee #888888 #888888 #eeeeee;
 
   span {
     visibility: hidden;
@@ -364,7 +441,7 @@ p {
   }
 }
 .square.revealed{
-  background-color: #C0C0C0;
+  background-color: #c0c0c0;
 
   border: .1rem solid gray;
   

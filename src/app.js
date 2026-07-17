@@ -29,6 +29,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Enable click listener to restart game
   domElements.smileSpan.addEventListener('click', errorHandler(handleRestart));
+
+  // Enable click listener to close game over modal window and/or restart game
+  domElements.gameOverModalXMark.addEventListener('click', e => {
+    dismissAlertMessage();
+  });
+
   domElements.gameOverModalRestartButton.addEventListener('click', e => {
     dismissAlertMessage();
     errorHandler(handleRestart)(e);
