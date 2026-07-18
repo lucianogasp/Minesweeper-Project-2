@@ -8,24 +8,19 @@
 html {
   font-size: 62.5%;
 }
-main {
-  padding: 15rem 20rem;
-  color: black;
+body {
   background-color: #FAF3E3;
 }
-/* Color sugestion
-    #306060 -> #008080  Verde
-    #0b0914 -> #4f2a5a  Roxo
-    #3a3a3a -> #5a5a5a -> #9a9a9a  Cinzas
-    #334c4c
-
-    Color Retro Default
-    #eeeeee -> #636E80 claro
-    #c0c0c0 -> #4C5462 / 3E4651 médio
-    #888888 -> #2A2F37 escuro
-    #334c4c / #1E293B / #0F172A fundo escuro
-    #D9CCBB -> #ECE5DC -> FAF3E3 fundo claro
-*/
+main {
+  width: 100vw;
+  height: auto;
+  padding: 10rem 10% 0 10%;
+  color: black;
+}
+.main-container {
+  width: 100%;
+  height: 100%;
+}
 h1 {
   font-size: 2rem;
   font-weight: 500;
@@ -237,6 +232,10 @@ p {
 }
 
 /* PRESET ELEMENTS STYLE ============================================================= */
+.main-container {
+  width: 100%;
+  height: 100%;
+}
 
 .header {
   grid-template-columns: 1fr 1fr 1fr;
@@ -252,6 +251,8 @@ p {
 }
 
 .game-body {
+  width: 100%;
+  height: 100%;
   grid-auto-flow: column;
   grid-template-columns: 1fr 1fr 1fr;
 }

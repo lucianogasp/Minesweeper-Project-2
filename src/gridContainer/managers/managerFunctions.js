@@ -13,7 +13,7 @@ import FlagCounter from '../models/FlagCounter.js';
 import domElements from '../../DOMElements/domElements.js';
 
 import { fisherYatesShuffle, computeTargetCoords, patternsOperation } from '../../utils/utilitiesFunctions.js';
-import { userMessage } from '../../utils/userMessage.js';
+import { userMessage } from '../../mainWrapperContainer/userMessage.js';
 import { switchFaceToSad } from '../../headerContainer/switchSmileFace.js';
 
 // Define Event Managers Functions
