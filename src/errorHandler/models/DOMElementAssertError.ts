@@ -1,6 +1,10 @@
 class DOMElementAssertError extends Error {
 
-  constructor(message, domQuery, isFatal=false) {
+  public name: string;
+  public domQuery: string;
+  public isFatal: boolean;
+
+  constructor(message: string, domQuery: string, isFatal: boolean = false) {
     super(message);
     this.name = this.constructor.name;
     this.domQuery = domQuery;

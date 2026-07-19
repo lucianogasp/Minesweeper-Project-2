@@ -2,16 +2,17 @@ import DOMElementAssertError from "./models/DOMElementAssertError.js";
 import ExpansionBlankError from "./models/ExpansionBlankError.js";
 import RemoveGridContainerError from "./models/RemoveGridContainerError.js";
 
-function formatFatalError(isFatal) {
+function formatFatalError(isFatal: boolean): string {
   return isFatal ? `[FATAL ERROR]: ` : ``;
 }
 
-export const errorHandler = (callback) => (...args) => {
+type errorHandlerCallback = (...args: any) => any;
+export const errorHandler = <T extends errorHandlerCallback>(callback: T) => (...args: Parameters<T>): ReturnType<T> | void => {
   try {
     return callback(...args);
   } catch(err) {
-    if(err instanceof ExpansionBlankError) {
-      let userMessage = formatFatalError(err);
+    if(err instanceof ExpansionBlankError || err instanceof RemoveGridContainerError) {
+      let userMessage = formatFatalError(err.isFatal);
       userMessage += err.stack;
 
       console.error(userMessage);
@@ -21,13 +22,6 @@ export const errorHandler = (callback) => (...args) => {
       let userMessage = formatFatalError(err.isFatal);
       userMessage += `${err}\n`;
       userMessage += `Query: [${err.domQuery}]\n`;
-      userMessage += err.stack;
-
-      console.error(userMessage);
-      return;
-    }
-    if(err instanceof RemoveGridContainerError) {
-      let userMessage = formatFatalError(err);
       userMessage += err.stack;
 
       console.error(userMessage);
