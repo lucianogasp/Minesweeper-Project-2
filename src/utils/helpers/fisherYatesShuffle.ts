@@ -1,5 +1,4 @@
-// Shuffled method to shuffle squares list using Fisher Yates' shuffle algoritm
-export const fisherYatesShuffle = arr => {
+export const fisherYatesShuffle = (arr: HTMLElement[]): HTMLElement[] => {
 
   const shuffledArr = Array.from(arr);
 

@@ -1,5 +1,10 @@
 // patters of the compute target coords method (Options Object)
-export const patternsOperation = {
+export const patternsOperation: {
+  y_patternSkip: number[],
+  x_patternSkip: number[],
+  y_patternOperation: number[],
+  x_patternOperation: number[]
+} = {
   y_patternSkip: [0],
   x_patternSkip: [0],
   y_patternOperation: [-1, 0, 1],

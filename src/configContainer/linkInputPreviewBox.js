@@ -1,4 +1,4 @@
-import { validateInputSliderValue } from '../utils/helpers/validateInputSliderValue.js';
+import { validateInputSliderValue } from '../utils/helpers/validateInputSliderValue.ts';
 import { updateElementSize } from '../utils/helpers/updateElementSize.js';
 
 export const linkElementSize = (squareWidthSlider, previewSquare) => {

@@ -13,7 +13,6 @@ import FlagCounter from '../models/FlagCounter.js';
 import domElements from '../../DOMElements/domElements.js';
 
 import { fisherYatesShuffle } from '../../utils/helpers/fisherYatesShuffle.js';
-import { computeTargetCoords } from '../../utils/helpers/computeTargetCoords.js';
 import { patternsOperation } from '../../utils/helpers/patternsOperation.js';
 
 import { userMessage } from '../../mainWrapperContainer/userMessage.js';
@@ -70,7 +69,7 @@ function prepareMinefild(element, currentParams, grid, gridContainer, timer) {
   // Instantiate objects
   const squares = new Squares(Array.from(gridContainer.children));
   const bomb = new Bomb(currentParams.bomb_ratio, grid.getN_Square(), squares);
-  const findNeighboringSquares = new FindNeighboringSquares(Transcription, FilterSquares, squares, computeTargetCoords, patternsOperation);
+  const findNeighboringSquares = new FindNeighboringSquares(Transcription, FilterSquares, squares, patternsOperation);
   const digit = new Digit(FilterSquares, findNeighboringSquares, squares);
 
   const gameover = new GameOver(squares);
