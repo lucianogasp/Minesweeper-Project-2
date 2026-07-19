@@ -1,5 +1,5 @@
 // Import modules
-import DOMElementAssertError from "../errorHandler/DOMElementAssertError.js";
+import DOMElementAssertError from "../errorHandler/models/DOMElementAssertError.js";
 
 export function assertDomElement(domElement, query) {
 

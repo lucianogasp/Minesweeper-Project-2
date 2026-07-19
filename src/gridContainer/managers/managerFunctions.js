@@ -6,13 +6,16 @@ import Bomb from '../models/Bomb.js';
 import Digit from '../models/Digit.js';
 import GameOver from '../models/GameOver.js';
 import ExpansionBlank from '../models/ExpansionBlank.js';
-import Transcription from '../../utils/Transcription.js';
-import FilterSquares from '../../utils/FilterSquares.js';
+import Transcription from '../../utils/models/Transcription.js';
+import FilterSquares from '../../utils/models/FilterSquares.js';
 import FindNeighboringSquares from '../models/FindNeighboringSquares.js';
 import FlagCounter from '../models/FlagCounter.js';
 import domElements from '../../DOMElements/domElements.js';
 
-import { fisherYatesShuffle, computeTargetCoords, patternsOperation } from '../../utils/utilitiesFunctions.js';
+import { fisherYatesShuffle } from '../../utils/helpers/fisherYatesShuffle.js';
+import { computeTargetCoords } from '../../utils/helpers/computeTargetCoords.js';
+import { patternsOperation } from '../../utils/helpers/patternsOperation.js';
+
 import { userMessage } from '../../mainWrapperContainer/userMessage.js';
 import { switchFaceToSad } from '../../headerContainer/switchSmileFace.js';
 

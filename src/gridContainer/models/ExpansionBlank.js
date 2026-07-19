@@ -1,5 +1,5 @@
 //Import modules
-import ExpansionBlankError from "../../errorHandler/ExpansionBlankError.js";
+import ExpansionBlankError from "../../errorHandler/models/ExpansionBlankError.js";
 
 class ExpansionBlank {
 

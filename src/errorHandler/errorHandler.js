@@ -1,6 +1,6 @@
-import DOMElementAssertError from "./DOMElementAssertError.js";
-import ExpansionBlankError from "./ExpansionBlankError.js";
-import RemoveGridContainerError from "./removeGridContainerError.js";
+import DOMElementAssertError from "./models/DOMElementAssertError.js";
+import ExpansionBlankError from "./models/ExpansionBlankError.js";
+import RemoveGridContainerError from "./models/RemoveGridContainerError.js";
 
 function formatFatalError(isFatal) {
   return isFatal ? `[FATAL ERROR]: ` : ``;

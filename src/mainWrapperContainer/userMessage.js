@@ -1,5 +1,5 @@
 // Import modules
-import { delay } from "../utils/delay.js";
+import { delay } from "../utils/helpers/delay.js";
 import { alertMessage } from './alertMessage.js';
 
 export async function userMessage(message) {

@@ -1,5 +1,5 @@
-import { validateInputSliderValue } from '../utils/validateInputSliderValue.js';
-import { updateElementValue } from '../utils/updateElementValue.js';
+import { validateInputSliderValue } from '../utils/helpers/validateInputSliderValue.js';
+import { updateElementValue } from '../utils/helpers/updateElementValue.js';
 
 export const linkElementValue = domElement => e => {
 

@@ -2,7 +2,7 @@
 import FlagCounter from '../models/FlagCounter.js';
 import domElements from '../../DOMElements/domElements.js';
 import managerFn from './managerFunctions.js';
-import RemoveGridContainerError from '../../errorHandler/removeGridContainerError.js';
+import RemoveGridContainerError from '../../errorHandler/models/RemoveGridContainerError.js';
 
 import { getParams } from '../../configContainer/getParams.js';
 import { switchFaceToSmile } from '../../headerContainer/switchSmileFace.js';

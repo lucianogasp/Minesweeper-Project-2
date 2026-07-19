@@ -433,11 +433,11 @@ p {
   }
 
   &[data-is-flagged="true"] {
-    background-image: url('../assets/flag.png');
+    background-image: url('./assets/flag.png');
     background-size: cover;
 
     &.incorrect-flag-square {
-      background-image: url('../assets/x-mark2.png'), url('../assets/flag.png');
+      background-image: url('./assets/x-mark2.png'), url('./assets/flag.png');
     }
   }
 }
@@ -458,7 +458,7 @@ p {
   }
   
   &[data-type="bomb"] {
-    background-image: url('../assets/bomb.png');
+    background-image: url('./assets/bomb.png');
     background-size: cover;
 
     &.bomb-square-red {

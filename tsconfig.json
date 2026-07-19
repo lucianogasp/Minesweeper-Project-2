@@ -1,14 +1,31 @@
 {
   "compilerOptions": {
-    "target": "es2023",
+    "target": "es2022",
     "module": "esnext",
     "lib": ["ES2023", "DOM"],
     "types": ["vite/client"],
     "allowArbitraryExtensions": true,
     "skipLibCheck": true,
 
+    // File Layout
+    "rootDir": "./src",
+    "outDir": "./dir",
+
+    // Permitir transpilação de projeto em linguagem híbrida - .js .ts
+    "allowJs": true,
+    "checkJs": false,
+    "noImplicitAny": true,
+    "strict": true,
+
+    //tsconfig-paths
+    "ignoreDeprecations": "6.0",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+
     /* Bundler mode */
-    "moduleResolution": "bundler",
+    "moduleResolution": "node",
     "allowImportingTsExtensions": true,
     "verbatimModuleSyntax": true,
     "moduleDetection": "force",

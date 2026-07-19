@@ -1,6 +1,6 @@
 // Import modules
 import domElements from "../DOMElements/domElements.js";
-import { toggleClassList } from "../utils/toggleClassList.js";
+import { toggleClassList } from "../utils/helpers/toggleClassList.js";
 
 export function alertMessage(message) {
   toggleClassList(domElements.mainWrapper, 'container-filter');
