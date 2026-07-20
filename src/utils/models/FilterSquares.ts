@@ -7,18 +7,15 @@ class FilterSquares {
     return squaresArr.filter(element => element !== clickedSquare);
   }
 
+  private static handleUndefinedCoords(coords: string | undefined): string {
+    if(coords === undefined) throw new SquareElementCoordAttrError(``);
+    return coords;
+  }
+
   // Filtering any squares list by neighboring squares
   static filterByNeighboringSquares(squaresArr: HTMLElement[], targetArr: string[]): HTMLElement[] {
-    
-    const validSquares = squaresArr.map( element => {
-      const coords = element.dataset.coords;
-      if(coords === undefined) {
-        throw new SquareElementCoordAttrError('');
-      }
-      return element; 
-    });
 
-    return validSquares.filter(square => targetArr.includes(square.dataset.coords));
+    return squaresArr.filter(square => targetArr.includes(FilterSquares.handleUndefinedCoords(square.dataset.coords)));
   }
 
   // Filtering any squares list by not bomb squares
