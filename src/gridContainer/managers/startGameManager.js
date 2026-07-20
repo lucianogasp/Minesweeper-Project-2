@@ -1,5 +1,5 @@
 // import modules
-import FlagCounter from '../models/FlagCounter.js';
+import FlagCounter from '../models/FlagCounter.ts';
 import domElements from '../../DOMElements/domElements.js';
 import managerFn from './managerFunctions.js';
 import RemoveGridContainerError from '../../errorHandler/models/RemoveGridContainerError.js';

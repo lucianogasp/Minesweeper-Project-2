@@ -1,6 +1,9 @@
-import DOMElementAssertError from "./models/DOMElementAssertError.js";
-import ExpansionBlankError from "./models/ExpansionBlankError.js";
-import RemoveGridContainerError from "./models/RemoveGridContainerError.js";
+import DOMElementAssertError from "./models/DOMElementAssertError.ts";
+import ExpansionBlankError from "./models/ExpansionBlankError.ts";
+import SquareElementCoordAttrError from "./models/SquareElementCoordAttrError.ts";
+import GetSquareListError from "./models/GetSquareListError.ts";
+import IncrementDigitError from "./models/IncrementDigitError.ts";
+import RemoveGridContainerError from "./models/RemoveGridContainerError.ts";
 
 function formatFatalError(isFatal: boolean): string {
   return isFatal ? `[FATAL ERROR]: ` : ``;
@@ -11,7 +14,13 @@ export const errorHandler = <T extends errorHandlerCallback>(callback: T) => (..
   try {
     return callback(...args);
   } catch(err) {
-    if(err instanceof ExpansionBlankError || err instanceof RemoveGridContainerError) {
+    if(
+      err instanceof ExpansionBlankError 
+      || err instanceof RemoveGridContainerError
+      || err instanceof IncrementDigitError
+      || err instanceof SquareElementCoordAttrError
+      || err instanceof GetSquareListError
+    ) {
       let userMessage = formatFatalError(err.isFatal);
       userMessage += err.stack;
 

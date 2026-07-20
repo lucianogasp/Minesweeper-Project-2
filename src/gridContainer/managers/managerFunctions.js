@@ -1,15 +1,15 @@
 // Import modules
-import HeaderTimer from '../models/HeaderTimer.js';
-import Grid from '../models/Grid.js';
-import Squares from '../models/Squares.js';
-import Bomb from '../models/Bomb.js';
-import Digit from '../models/Digit.js';
-import GameOver from '../models/GameOver.js';
-import ExpansionBlank from '../models/ExpansionBlank.js';
-import Transcription from '../../utils/models/Transcription.js';
-import FilterSquares from '../../utils/models/FilterSquares.js';
-import FindNeighboringSquares from '../models/FindNeighboringSquares.js';
-import FlagCounter from '../models/FlagCounter.js';
+import HeaderTimer from '../models/HeaderTimer.ts';
+import Grid from '../models/Grid.ts';
+import Squares from '../models/Squares.ts';
+import Bomb from '../models/Bomb.ts';
+import Digit from '../models/Digit.ts';
+import GameOver from '../models/GameOver.ts';
+import ExpansionBlank from '../models/ExpansionBlank.ts';
+import Transcription from '../../utils/models/Transcription.ts';
+import FilterSquares from '../../utils/models/FilterSquares.ts';
+import FindNeighboringSquares from '../models/FindNeighboringSquares.ts';
+import FlagCounter from '../models/FlagCounter.ts';
 import domElements from '../../DOMElements/domElements.js';
 
 import { fisherYatesShuffle } from '../../utils/helpers/fisherYatesShuffle.js';
@@ -22,13 +22,12 @@ import { switchFaceToSad } from '../../headerContainer/switchSmileFace.js';
 
 function buildGrid(currentParams) {
 
-  // instantiate grid and config gridContainer
   const grid = new Grid(currentParams.n_row, currentParams.n_col, currentParams.width_square);
   const gridContainer = grid.createGridContainer();
   grid.setTemplateGrid(gridContainer);
   grid.createGrid(gridContainer);
 
-  // Indent grid at its parant container
+  // Indent Grid Container at its parant container GameBody Container
   domElements.gameBody.appendChild(gridContainer);
 
   return { grid, gridContainer };

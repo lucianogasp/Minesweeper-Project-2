@@ -8,8 +8,8 @@ class Transcription {
   }
 
   // Transcribe Matrix (type number) to Data Coord formated (type string)
-  static transcribeMatrixToDataCoord(matrix: number[][]) {
-    let dataCoordArr: string[] = [];
+  static transcribeMatrixToDataCoord(matrix: number[][]): string[] {
+    let dataCoordArr = [];
     for (let [x, y] of matrix) {
       dataCoordArr.push(`${x}-${y}`);
     }
