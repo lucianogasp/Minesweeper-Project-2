@@ -23,6 +23,7 @@ export function startGame() {
     gridContainer: null,
     timer: null,
     gameover: null,
+    endgame: null,
     expansion: null,
     flagCounter: null,
 
@@ -44,7 +45,7 @@ export function startGame() {
 
     // If is the first click of grid container
     if (gameState.isFirstClick) {
-      const { gameover, expansion, flagCounter } = managerFn.prepareMinefild(
+      const { gameover, endgame, expansion, flagCounter } = managerFn.prepareMinefild(
         e.target,
         gameState.currentParams,
         gameState.grid,
@@ -52,6 +53,7 @@ export function startGame() {
         gameState.timer,
       );
       gameState.gameover = gameover;
+      gameState.endgame = endgame;
       gameState.expansion = expansion;
       gameState.flagCounter = flagCounter;
 
@@ -70,7 +72,7 @@ export function startGame() {
     isGameOver = managerFn.verifyClickBomb(e.target, gameState.gameover, gameState.timer);
     gameState.verifyGameOver(isGameOver);
 
-    isGameOver = managerFn.verifyEndGame(gameState.gameover, gameState.timer);
+    isGameOver = managerFn.verifyEndGame(gameState.endgame, gameState.timer);
     gameState.verifyGameOver(isGameOver);
   };
 
@@ -89,7 +91,7 @@ export function startGame() {
     if (gameState.flagCounter instanceof FlagCounter) {
       managerFn.placeFlag(e, gameState.flagCounter);
 
-      isGameOver = managerFn.verifyEndGame(gameState.gameover, gameState.timer);
+      isGameOver = managerFn.verifyEndGame(gameState.endgame, gameState.timer);
       gameState.verifyGameOver(isGameOver);
 
     } else {

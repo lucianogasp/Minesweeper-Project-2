@@ -5,6 +5,7 @@ import Squares from '../models/Squares.ts';
 import Bomb from '../models/Bomb.ts';
 import Digit from '../models/Digit.ts';
 import GameOver from '../models/GameOver.ts';
+import EndGame from '../models/EndGame.ts';
 import ExpansionBlank from '../models/ExpansionBlank.ts';
 import Transcription from '../../utils/models/Transcription.ts';
 import FilterSquares from '../../utils/models/FilterSquares.ts';
@@ -72,6 +73,7 @@ function prepareMinefild(element, currentParams, grid, gridContainer, timer) {
   const digit = new Digit(FilterSquares, findNeighboringSquares, squares);
 
   const gameover = new GameOver(squares);
+  const endgame = new EndGame(squares);
   const expansion = new ExpansionBlank(findNeighboringSquares);
   const flagCounter = new FlagCounter(domElements.bombCounter, squares, bomb.getN_Bomb());
 
@@ -96,13 +98,20 @@ function prepareMinefild(element, currentParams, grid, gridContainer, timer) {
   digit.setDigits();
 
   // Return instances to save the config object gameState
-  return { gameover, expansion, flagCounter };
+  return { gameover, endgame, expansion, flagCounter };
 }
 
 function revealSquare(element) {
 
   // Reveal squares clicked
   element.classList.replace('hidden', 'revealed');
+  return;
+}
+
+function verifyExpansionBlank(element, expansion) {
+
+  // Initialize expansion method to reveal neighboring blanked squares
+  expansion.validateExpansionBlank(element); // Recursive Method
   return;
 }
 
@@ -123,24 +132,17 @@ function verifyClickBomb(element, gameover, timer) {
   return isGameOver;
 }
 
-function verifyExpansionBlank(element, expansion) {
-
-  // Initialize expansion method to reveal neighboring blanked squares
-  expansion.validateExpansionBlank(element); // Recursive Function
-  return;
-}
-
-function verifyEndGame(gameover, timer) {
+function verifyEndGame(endgame, timer) {
 
   // Validate if the game was ended
-  const isGameOver = gameover.validateEndGame();
-  if (isGameOver) {
+  const isEndGame = endgame.validateEndGame();
+  if (isEndGame) {
     stopHeaderTimer(timer);
     const message = `Congrats!!! You have finished the game...`;
     userMessage(message);
   }
 
-  return isGameOver;
+  return isEndGame;
 }
 
 function placeFlag(e, flagCounter) {
