@@ -17,7 +17,7 @@ import { fisherYatesShuffle } from '../../utils/helpers/fisherYatesShuffle.js';
 import { patternsOperation } from '../../utils/helpers/patternsOperation.js';
 
 import { userMessage } from '../../mainWrapperContainer/userMessage.js';
-import { switchFaceToSad } from '../../headerContainer/switchSmileFace.js';
+import { switchFaceToSad } from '../../headerContainer/switchSmileFace.ts';
 
 // Define Event Managers Functions
 
