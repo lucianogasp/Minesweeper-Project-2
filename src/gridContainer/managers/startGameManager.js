@@ -5,7 +5,7 @@ import managerFn from './managerFunctions.js';
 import RemoveGridContainerError from '../../errorHandler/models/RemoveGridContainerError.js';
 
 import { getParams } from '../../configContainer/getParams.js';
-import { switchFaceToSmile } from '../../headerContainer/switchSmileFace.js';
+import { switchFaceToSmile } from '../../headerContainer/switchSmileFace.ts';
 import { errorHandler } from '../../errorHandler/errorHandler.js';
 
 export function startGame() {
