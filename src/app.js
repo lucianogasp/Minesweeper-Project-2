@@ -2,9 +2,9 @@
 import domElements from './DOMElements/domElements.ts';
 
 import { startGame } from './gridContainer/managers/startGameManager.js';
-import { linkElementValue } from './configContainer/linkInputSliders.js';
-import { linkElementSize } from './configContainer/linkInputPreviewBox.js';
-import { handleSettingsToggle } from './configContainer/settings.js';
+import { linkElementValue } from './configContainer/linkInputSliders.ts';
+import { linkElementSize } from './configContainer/linkInputPreviewBox.ts';
+import { handleSettingsToggle } from './configContainer/settings.ts';
 import { errorHandler } from './errorHandler/errorHandler.js';
 import { dismissAlertMessage } from './mainWrapperContainer/dismissAlertMessage.ts';
 
