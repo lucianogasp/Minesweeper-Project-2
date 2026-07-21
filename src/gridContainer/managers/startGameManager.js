@@ -45,7 +45,7 @@ export function startGame() {
 
     // If is the first click of grid container
     if (gameState.isFirstClick) {
-      const { gameover, endgame, expansion, flagCounter } = managerFn.prepareMinefild(
+      const { gameover, endgame, expansion, flagCounter } = managerFn.prepareMinefield(
         e.target,
         gameState.currentParams,
         gameState.grid,

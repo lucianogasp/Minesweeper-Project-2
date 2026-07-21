@@ -2,14 +2,18 @@ import type Squares from "./Squares.ts";
 
 class FlagCounter {
 
-  private bombDiv: HTMLDivElement;
+  private bombDiv: HTMLSpanElement;
   private squares: Squares;
   private n_bombs: number;
 
-  constructor(bombDiv: HTMLDivElement, squares: Squares, n_bombs: number) {
+  constructor(bombDiv: HTMLSpanElement, squares: Squares, n_bombs: number) {
     this.bombDiv = bombDiv;
     this.squares = squares;
     this.n_bombs = n_bombs;
+  }
+
+  getNBombs(): number {
+    return this.n_bombs;
   }
 
   countFlaggedSquares(): number {

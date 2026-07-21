@@ -3,19 +3,21 @@ import SquareElementCoordAttrError from "@/errorHandler/models/SquareElementCoor
 class FilterSquares {
 
   // Filtering any squares list by not clicked squares
-  static filterByNotClickedSquare(squaresArr, clickedSquare) {
-    return squaresArr.filter(element => element !== clickedSquare);
-  }
-
-  private static handleUndefinedCoords(coords: string | undefined): string {
-    if(coords === undefined) throw new SquareElementCoordAttrError(``);
-    return coords;
+  static filterByNotClickedSquare(squaresArr: HTMLElement[], clickedSquare: EventTarget): HTMLElement[] {
+    const targetSquare = clickedSquare as HTMLElement;
+    return squaresArr.filter(element => element !== targetSquare);
   }
 
   // Filtering any squares list by neighboring squares
   static filterByNeighboringSquares(squaresArr: HTMLElement[], targetArr: string[]): HTMLElement[] {
 
     return squaresArr.filter(square => targetArr.includes(FilterSquares.handleUndefinedCoords(square.dataset.coords)));
+  }
+
+  // Validate if the coords attribute from a square is undefined
+  private static handleUndefinedCoords(coords: string | undefined): string {
+    if(coords === undefined) throw new SquareElementCoordAttrError(``);
+    return coords;
   }
 
   // Filtering any squares list by not bomb squares

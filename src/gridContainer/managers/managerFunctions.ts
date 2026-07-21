@@ -19,9 +19,10 @@ import { patternsOperation } from '../../utils/helpers/patternsOperation.js';
 import { userMessage } from '../../mainWrapperContainer/userMessage.js';
 import { switchFaceToSad } from '../../headerContainer/switchSmileFace.ts';
 
-// Define Event Managers Functions
+import type { DefaultParams } from '@/configContainer/getParams.ts';
+import type { GridBuilder, Timer, MinefieldObjects } from './managerFunctions.types.ts';
 
-function buildGrid(currentParams) {
+function buildGrid(currentParams: DefaultParams): GridBuilder {
 
   const grid = new Grid(currentParams.n_row, currentParams.n_col, currentParams.width_square);
   const gridContainer = grid.createGridContainer();
@@ -30,44 +31,37 @@ function buildGrid(currentParams) {
 
   // Indent Grid Container at its parant container GameBody Container
   domElements.gameBody.appendChild(gridContainer);
-
   return { grid, gridContainer };
 }
 
-function setHeaderTimer() {
+function setHeaderTimer(): Timer {
 
-  // Set the timer at header
   const timer = new HeaderTimer(domElements.timerCounter);
-
   return { timer };
 }
 
-function resetHeaderTimer(timer) {
+function resetHeaderTimer(timer: HeaderTimer): void {
 
-  // Reset the timer at header
   timer.reset();
   return;
 }
 
-function stopHeaderTimer(timer) {
+function stopHeaderTimer(timer: HeaderTimer): void {
 
-  // Stop the timer at header
   timer.stop();
   return;
 }
 
-function resetCounterBombs() {
+function resetCounterBombs(): void {
   
-  // Reset the number of bombs of header
   domElements.bombCounter.textContent = '00';
-
   return;
 };
 
-function prepareMinefild(element, currentParams, grid, gridContainer, timer) {
+function prepareMinefield(element: EventTarget, currentParams: DefaultParams, grid: Grid, gridContainer: HTMLDivElement, timer: HeaderTimer): MinefieldObjects {
 
   // Instantiate objects
-  const squares = new Squares(Array.from(gridContainer.children));
+  const squares = new Squares(Array.from(gridContainer.children) as HTMLElement[]);
   const bomb = new Bomb(currentParams.bomb_ratio, grid.getN_Square(), squares);
   const findNeighboringSquares = new FindNeighboringSquares(Transcription, FilterSquares, squares, patternsOperation);
   const digit = new Digit(FilterSquares, findNeighboringSquares, squares);
@@ -77,7 +71,6 @@ function prepareMinefild(element, currentParams, grid, gridContainer, timer) {
   const expansion = new ExpansionBlank(findNeighboringSquares);
   const flagCounter = new FlagCounter(domElements.bombCounter, squares, bomb.getN_Bomb());
 
-  // Starting a timer at header
   timer.start();
 
   // Starting the bombs counter at header
@@ -89,36 +82,34 @@ function prepareMinefild(element, currentParams, grid, gridContainer, timer) {
   const localShuffledSquareList = bomb.shuffleSquareMethod(excludedFirstClickSquareList, fisherYatesShuffle);
   squares.setShuffledSquareList(localShuffledSquareList);
 
-  // Setting bombs at squares list and implanting it at the DOM elements
   squares.setBombsList(bomb.sliceBombsList());
   bomb.setBombs();
 
-  // Setting digits on neighboring bomb squares and implanting it at the DOM elements
   digit.applyDigitsMethod();
   digit.setDigits();
 
-  // Return instances to save the config object gameState
   return { gameover, endgame, expansion, flagCounter };
 }
 
-function revealSquare(element) {
+function revealSquare(eventTarget: EventTarget): void {
 
-  // Reveal squares clicked
+  const element = eventTarget as HTMLElement;
   element.classList.replace('hidden', 'revealed');
   return;
 }
 
-function verifyExpansionBlank(element, expansion) {
+function verifyExpansionBlank(eventTarget: EventTarget, expansion: ExpansionBlank): void {
 
-  // Initialize expansion method to reveal neighboring blanked squares
+  const element = eventTarget as HTMLElement;
   expansion.validateExpansionBlank(element); // Recursive Method
   return;
 }
 
-function verifyClickBomb(element, gameover, timer) {
+function verifyClickBomb(eventTarget: EventTarget, gameover: GameOver, timer: HeaderTimer): boolean {
 
-  // Validate if bomb was clicked
+  const element = eventTarget as HTMLElement;
   const isGameOver = gameover.validateClickBomb(element);
+
   if (isGameOver) {
     gameover.handleBombRedSquare(element);
     gameover.revealingBombSquares();
@@ -128,48 +119,43 @@ function verifyClickBomb(element, gameover, timer) {
     const message = `Sorry... The game was ended. Please, try again!`;
     userMessage(message);
   }
-  
   return isGameOver;
 }
 
-function verifyEndGame(endgame, timer) {
+function verifyEndGame(endgame: EndGame, timer: HeaderTimer): boolean {
 
-  // Validate if the game was ended
   const isEndGame = endgame.validateEndGame();
+
   if (isEndGame) {
     stopHeaderTimer(timer);
     const message = `Congrats!!! You have finished the game...`;
     userMessage(message);
   }
-
   return isEndGame;
 }
 
-function placeFlag(e, flagCounter) {
+function placeFlag(event: Event, flagCounter: FlagCounter): void {
 
-  // Counting number of flags remaining to place on grid
+  const eventTarget = event.target as HTMLElement;
   let flagsRemaining = flagCounter.countFlaggedSquares();
   
-  // Switch the flagged status' right clicked square
-  switch (e.target.dataset.isFlagged) {
+  switch (eventTarget.dataset.isFlagged) {
     case 'false':
-      if ( flagsRemaining <= 0 ) { return; }
+      if ( flagsRemaining <= 0 ) return;
 
-      e.target.dataset.isFlagged = 'true';
+      eventTarget.dataset.isFlagged = 'true';
       flagsRemaining--;
       break;
     
     case 'true':
-      if ( flagsRemaining >= flagCounter.n_bombs ) { return; }
+      if ( flagsRemaining >= flagCounter.getNBombs() ) return;
 
-      e.target.dataset.isFlagged = 'false';
+      eventTarget.dataset.isFlagged = 'false';
       flagsRemaining++;
       break;
   }
 
-  // Update number of bombs remainig at header
   flagCounter.update(flagsRemaining);
-
   return;
 }
 
@@ -179,7 +165,7 @@ export default {
   resetHeaderTimer,
   stopHeaderTimer,
   resetCounterBombs,
-  prepareMinefild,
+  prepareMinefield,
   revealSquare,
   verifyClickBomb,
   verifyExpansionBlank,

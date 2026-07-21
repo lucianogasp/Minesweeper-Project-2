@@ -1,9 +1,9 @@
 class HeaderTimer {
 
-  private timerDiv: HTMLDivElement;
+  private timerDiv: HTMLSpanElement;
   private id: number | undefined;
 
-  constructor(timerDiv: HTMLDivElement) {
+  constructor(timerDiv: HTMLSpanElement) {
     this.timerDiv = timerDiv;
     this.id = undefined;
   }

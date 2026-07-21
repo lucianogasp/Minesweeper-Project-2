@@ -18,7 +18,7 @@ class Bomb {
   }
 
   // Suffle squares list using a shuffled method
-  shuffleSquareMethod<T extends (...args: any) => any>(arr: Parameters<T>, method: T): ReturnType<T> {
+  shuffleSquareMethod<T>(arr: T[], method: (args: T[]) => T[] ): T[] {
 
     return method(arr);
   }
