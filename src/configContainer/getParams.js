@@ -1,5 +1,5 @@
 // Import modules
-import domElements from "../DOMElements/domElements.js";
+import domElements from "../DOMElements/domElements.ts";
 
 export const getParams = () => ({
   n_row: parseInt(domElements.row.value),

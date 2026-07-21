@@ -1,12 +1,12 @@
 // import modules
-import domElements from './DOMElements/domElements.js';
+import domElements from './DOMElements/domElements.ts';
 
 import { startGame } from './gridContainer/managers/startGameManager.js';
 import { linkElementValue } from './configContainer/linkInputSliders.js';
 import { linkElementSize } from './configContainer/linkInputPreviewBox.js';
 import { handleSettingsToggle } from './configContainer/settings.js';
 import { errorHandler } from './errorHandler/errorHandler.js';
-import { dismissAlertMessage } from './mainWrapperContainer/dismissAlertMessage.js';
+import { dismissAlertMessage } from './mainWrapperContainer/dismissAlertMessage.ts';
 
 document.addEventListener('DOMContentLoaded', () => {
 

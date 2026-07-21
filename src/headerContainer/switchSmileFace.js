@@ -1,5 +1,5 @@
 // Import modules
-import domElements from "../DOMElements/domElements.js";
+import domElements from "../DOMElements/domElements.ts";
 
 export function switchFaceToSmile() {
   domElements.smileFace.src = `./src/assets/smile-face3.png`;
