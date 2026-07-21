@@ -2,6 +2,13 @@
 import { assertDomElement } from "./assertDomElement.js";
 import { errorHandler } from "../errorHandler/errorHandler.js";
 
+function domQuery(query: string): HTMLElement {
+  
+  const domElementOrNull = document.querySelector<HTMLElement>(query);
+  const domElement = errorHandler(assertDomElement)(domElementOrNull, query);
+  return domElement;
+}
+
 export default {
   // imported at ./app.js
   mainWrapper: domQuery('.main-wrapper'),
@@ -32,11 +39,4 @@ export default {
   column: domQuery('#column'),
   bombRatioNumber: domQuery('#bomb-ratio-number'),
   squareWidthNumber: domQuery('#square-width-number')
-}
-
-function domQuery(query) {
-  
-  const domElement = document.querySelector(query);
-  errorHandler(assertDomElement)(domElement, query);
-  return domElement;
 }

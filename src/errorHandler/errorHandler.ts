@@ -10,33 +10,33 @@ function formatFatalError(isFatal: boolean): string {
 }
 
 type errorHandlerCallback = (...args: any) => any;
-export const errorHandler = <T extends errorHandlerCallback>(callback: T) => (...args: Parameters<T>): ReturnType<T> | void => {
+export const errorHandler = <T extends errorHandlerCallback>(callback: T) => (...args: Parameters<T>): ReturnType<T> => {
   try {
     return callback(...args);
   } catch(err) {
-    if(
-      err instanceof ExpansionBlankError 
-      || err instanceof RemoveGridContainerError
-      || err instanceof IncrementDigitError
-      || err instanceof SquareElementCoordAttrError
-      || err instanceof GetSquareListError
-    ) {
-      let userMessage = formatFatalError(err.isFatal);
-      userMessage += err.stack;
+    let userMessage: string = '';
+    switch(true) {
+      case err instanceof ExpansionBlankError:
+      case err instanceof RemoveGridContainerError:
+      case err instanceof IncrementDigitError:
+      case err instanceof SquareElementCoordAttrError:
+      case err instanceof GetSquareListError:
+        userMessage = formatFatalError(err.isFatal);
+        userMessage += err.stack;
 
-      console.error(userMessage);
-      return;
+        console.error(userMessage);
+        break;
+      
+      case err instanceof DOMElementAssertError:
+        userMessage = formatFatalError(err.isFatal);
+        userMessage += `${err}\n`;
+        userMessage += `Query: [${err.domQuery}]\n`;
+        userMessage += err.stack;
+
+        console.error(userMessage);
+        break;
     }
-    if(err instanceof DOMElementAssertError) {
-      let userMessage = formatFatalError(err.isFatal);
-      userMessage += `${err}\n`;
-      userMessage += `Query: [${err.domQuery}]\n`;
-      userMessage += err.stack;
-
-      console.error(userMessage);
-      return;
-    }
-
+    
     throw err;
   }
 }
