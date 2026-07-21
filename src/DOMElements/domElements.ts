@@ -1,6 +1,6 @@
 // Import modules
-import { assertDomElement } from "./assertDomElement.js";
-import { errorHandler } from "../errorHandler/errorHandler.js";
+import { assertDomElement } from "./assertDomElement.ts";
+import { errorHandler } from "../errorHandler/errorHandler.ts";
 
 function domQuery(query: string): HTMLElement {
   
