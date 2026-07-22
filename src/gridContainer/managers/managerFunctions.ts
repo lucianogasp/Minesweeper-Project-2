@@ -1,26 +1,36 @@
 // Import modules
-import HeaderTimer from '../models/HeaderTimer.ts';
-import Grid from '../models/Grid.ts';
-import Squares from '../models/Squares.ts';
-import Bomb from '../models/Bomb.ts';
-import Digit from '../models/Digit.ts';
-import GameOver from '../models/GameOver.ts';
-import EndGame from '../models/EndGame.ts';
-import ExpansionBlank from '../models/ExpansionBlank.ts';
-import Transcription from '../../utils/models/Transcription.ts';
-import FilterSquares from '../../utils/models/FilterSquares.ts';
-import FindNeighboringSquares from '../models/FindNeighboringSquares.ts';
-import FlagCounter from '../models/FlagCounter.ts';
-import domElements from '../../DOMElements/domElements.js';
+import {
+  HeaderTimer,
+  Grid,
+  Squares,
+  Bomb,
+  Digit,
+  GameOver,
+  EndGame,
+  ExpansionBlank,
+  FindNeighboringSquares,
+  FlagCounter
+} from "@/gridContainer/models";
+import {
+  Transcription,
+  FilterSquares
+} from "@/utils/models";
+import {
+  fisherYatesShuffle,
+  patternsOperation
+} from "@/utils/helpers";
 
-import { fisherYatesShuffle } from '../../utils/helpers/fisherYatesShuffle.js';
-import { patternsOperation } from '../../utils/helpers/patternsOperation.js';
+import domElements from '@/DOMElements/domElements.ts';
+import { userMessage } from '@/mainWrapperContainer/userMessage.ts';
+import { switchFaceToSad } from '@/headerContainer/switchSmileFace.ts';
 
-import { userMessage } from '../../mainWrapperContainer/userMessage.js';
-import { switchFaceToSad } from '../../headerContainer/switchSmileFace.ts';
-
+// import types
 import type { DefaultParams } from '@/configContainer/getParams.ts';
-import type { GridBuilder, Timer, MinefieldObjects } from './managerFunctions.types.ts';
+import type { 
+  GridBuilder, 
+  Timer, 
+  MinefieldObjects 
+} from './managerFunctions.types.ts';
 
 function buildGrid(currentParams: DefaultParams): GridBuilder {
 

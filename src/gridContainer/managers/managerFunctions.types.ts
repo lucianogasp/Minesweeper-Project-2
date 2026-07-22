@@ -1,10 +1,14 @@
-import type Grid from "../models/Grid.ts";
-import type HeaderTimer from "../models/HeaderTimer.ts";
-import type GameOver from "../models/GameOver.ts";
-import type EndGame from "../models/EndGame.ts";
-import type ExpansionBlank from "../models/ExpansionBlank.ts";
-import type FlagCounter from "../models/FlagCounter.ts";
+// import types
+import type {
+  Grid,
+  HeaderTimer,
+  GameOver,
+  EndGame,
+  ExpansionBlank,
+  FlagCounter
+} from "@/gridContainer/models";
 
+// export types
 export type GridBuilder = {
   grid: Grid,
   gridContainer: HTMLDivElement

@@ -1,19 +1,23 @@
 // import modules
-import FlagCounter from '../models/FlagCounter.ts';
-import domElements from '../../DOMElements/domElements.ts';
+import domElements from '@/DOMElements/domElements.ts';
 import managerFn from './managerFunctions.ts';
 
-import { getParams, type DefaultParams } from '../../configContainer/getParams.ts';
-import { switchFaceToSmile } from '../../headerContainer/switchSmileFace.ts';
-import { errorHandler } from '../../errorHandler/errorHandler.ts';
-import { assertGameStateProp } from '@/errorHandler/assertValues/assertGameStateProp.ts';
+import { FlagCounter } from "@/gridContainer/models";
+import { getParams } from '@/configContainer/getParams.ts';
+import { switchFaceToSmile } from '@/headerContainer/switchSmileFace.ts';
+import { errorHandler } from "@/errorHandler/errorHandler.ts";
+import { assertGameStateProp } from '@/errorHandler/assertValues';
 
+// import types
 import type { GameStateObject, StartGameObject } from './startGameManager.types.ts';
-import type HeaderTimer from '../models/HeaderTimer.ts';
-import type ExpansionBlank from '../models/ExpansionBlank.ts';
-import type GameOver from '../models/GameOver.ts';
-import type EndGame from '../models/EndGame.ts';
-import type Grid from '../models/Grid.ts';
+import type { DefaultParams } from "@/configContainer/getParams.ts";
+import type {
+  HeaderTimer,
+  ExpansionBlank,
+  GameOver,
+  EndGame,
+  Grid
+} from "@/gridContainer/models";
 
 export function startGame(): StartGameObject {
 

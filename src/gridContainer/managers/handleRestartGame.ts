@@ -1,5 +1,5 @@
-import { startGame } from "./startGameManager";
-import type { StartGameObject } from "./startGameManager.types";
+import { startGame } from "./startGameManager.ts";
+import type { StartGameObject } from "./startGameManager.types.ts";
 
 export function handleRestartGame(currentGame: StartGameObject | undefined): StartGameObject {
   if(currentGame) {

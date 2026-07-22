@@ -1,6 +1,6 @@
 // Import modules
-import domElements from "../DOMElements/domElements.ts";
-import { toggleClassList } from "../utils/helpers/toggleClassList.ts";
+import domElements from "@/DOMElements/domElements.ts";
+import { toggleClassList } from "@/utils/helpers";
 
 export function dismissAlertMessage(): void {
   toggleClassList(domElements.mainWrapper, 'container-filter');

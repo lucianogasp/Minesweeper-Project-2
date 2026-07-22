@@ -1,13 +1,19 @@
-import type EndGame from "../models/EndGame.ts";
-import type ExpansionBlank from "../models/ExpansionBlank.ts";
-import type FlagCounter from "../models/FlagCounter.ts";
-import type GameOver from "../models/GameOver.ts";
-import type Grid from "../models/Grid.ts";
-import type HeaderTimer from "../models/HeaderTimer.ts";
-import type { DefaultParams } from "@/configContainer/getParams.ts";
+// import types
+import type {
+  EndGame,
+  ExpansionBlank,
+  FlagCounter,
+  GameOver,
+  Grid,
+  HeaderTimer
+} from "@/gridContainer/models";
+import type {
+  DefaultParams
+} from "@/configContainer/getParams.ts";
 
+// export types
 export type StartGameObject = {
-  restart: Function
+  restart: () => void;
 }
 
 export type GameStateObject = {
@@ -24,5 +30,4 @@ export type GameStateObject = {
     flagCounter: FlagCounter | null,
 
     verifyGameOver: (isGameOver: boolean) => void
-
 }

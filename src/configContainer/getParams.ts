@@ -1,5 +1,4 @@
-// Import modules
-import domElements from "../DOMElements/domElements.ts";
+import domElements from "@/DOMElements/domElements.ts";
 
 export type DefaultParams = {
     n_row: number,

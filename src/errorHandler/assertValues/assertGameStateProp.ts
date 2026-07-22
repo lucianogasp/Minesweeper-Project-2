@@ -1,4 +1,4 @@
-import GameStatePropAssertError from "../models/GameStatePropAssertError.ts";
+import GameStatePropAssertError from "@/errorHandler/models/GameStatePropAssertError.ts";
 
 export function assertGameStateProp<T>(gameStateProp: T | null): T {
 

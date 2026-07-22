@@ -1,5 +1,4 @@
-import { validateInputSliderValue } from '../utils/helpers/validateInputSliderValue.ts';
-import { updateElementValue } from '../utils/helpers/updateElementValue.ts';
+import { validateInputSliderValue, updateElementValue } from '@/utils/helpers';
 
 export const linkElementValue = (domElement: HTMLInputElement) => (e: Event): void => {
 
