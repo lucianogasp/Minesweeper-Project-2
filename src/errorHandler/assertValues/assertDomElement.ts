@@ -1,4 +1,4 @@
-import DOMElementAssertError from "../errorHandler/models/DOMElementAssertError.ts";
+import DOMElementAssertError from "../models/DOMElementAssertError.ts";
 
 export function assertDomElement<T extends HTMLElement>(domElement: T | null, query: string): T {
 
