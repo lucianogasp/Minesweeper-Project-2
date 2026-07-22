@@ -9,7 +9,7 @@ import { errorHandler } from './errorHandler/errorHandler.ts';
 import { dismissAlertMessage } from './mainWrapperContainer/dismissAlertMessage.ts';
 
 import type { StartGameObject } from './gridContainer/managers/startGameManager.types.ts';
-import { handleRestartGame } from './gridContainer/managers/handleRestartGame.ts';
+import { handleRestartGame } from './gridContainer/handleRestartGame.ts';
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -31,7 +31,10 @@ document.addEventListener('DOMContentLoaded', () => {
   domElements.settingsButton.addEventListener('click', () => handleSettingsToggle(domElements.previewWrapper));
 
   // Enable click listener to restart game
-  domElements.smileSpan.addEventListener('click', () => errorHandler(handleRestartGame)(currentGame));
+  domElements.smileSpan.addEventListener('click', () => {
+    // debugger;
+    currentGame = errorHandler(handleRestartGame)(currentGame)
+  });
 
   // Enable click listener to close game over modal window and/or restart game
   domElements.gameOverModalXMark.addEventListener('click', () => {
@@ -40,8 +43,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Enable click listener to retart game by the game over modal window
   domElements.gameOverModalRestartButton.addEventListener('click', () => {
+    // debugger;
     dismissAlertMessage();
-    errorHandler(handleRestartGame)(currentGame);
+    currentGame = errorHandler(handleRestartGame)(currentGame);
   });
 
   let currentGame: StartGameObject | undefined;
