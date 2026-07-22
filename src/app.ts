@@ -1,12 +1,15 @@
 // import modules
 import domElements from './DOMElements/domElements.ts';
 
-import { startGame } from './gridContainer/managers/startGameManager.js';
+import { startGame } from './gridContainer/managers/startGameManager.ts';
 import { linkElementValue } from './configContainer/linkInputSliders.ts';
 import { linkElementSize } from './configContainer/linkInputPreviewBox.ts';
 import { handleSettingsToggle } from './configContainer/settings.ts';
-import { errorHandler } from './errorHandler/errorHandler.js';
+import { errorHandler } from './errorHandler/errorHandler.ts';
 import { dismissAlertMessage } from './mainWrapperContainer/dismissAlertMessage.ts';
+
+import type { StartGameObject } from './gridContainer/managers/startGameManager.types.ts';
+import { handleRestartGame } from './gridContainer/managers/handleRestartGame.ts';
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -28,26 +31,20 @@ document.addEventListener('DOMContentLoaded', () => {
   domElements.settingsButton.addEventListener('click', () => handleSettingsToggle(domElements.previewWrapper));
 
   // Enable click listener to restart game
-  domElements.smileSpan.addEventListener('click', errorHandler(handleRestart));
+  domElements.smileSpan.addEventListener('click', () => errorHandler(handleRestartGame)(currentGame));
 
   // Enable click listener to close game over modal window and/or restart game
-  domElements.gameOverModalXMark.addEventListener('click', e => {
+  domElements.gameOverModalXMark.addEventListener('click', () => {
     dismissAlertMessage();
   });
 
-  domElements.gameOverModalRestartButton.addEventListener('click', e => {
+  // Enable click listener to retart game by the game over modal window
+  domElements.gameOverModalRestartButton.addEventListener('click', () => {
     dismissAlertMessage();
-    errorHandler(handleRestart)(e);
+    errorHandler(handleRestartGame)(currentGame);
   });
 
-  // Define a method to handle the restart game method
-  let currentGame;
-  function handleRestart() {
-    if(currentGame) {
-      currentGame.restart();
-    }
-    currentGame = startGame(); // Start a New Game
-  }
+  let currentGame: StartGameObject | undefined;
 
   linkElementSize(domElements.squareWidthInput, domElements.previewSquare) // Link the first squareWidth input value to its box preview
   currentGame = startGame(); // Start the First Game
