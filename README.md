@@ -10,7 +10,7 @@ GitHub repository: [/Minesweeper_Typescript](https://github.com/lucianogasp/Mine
 
 ## Run app locally
 
-*Node.js is required*
+> Node.js is required
 
 ```bash
 # Clone repository
