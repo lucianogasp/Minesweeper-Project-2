@@ -14,7 +14,10 @@ GitHub repository: [/Minesweeper_Typescript](https://github.com/lucianogasp/Mine
 
 ```bash
 # Clone repository
-git clone https://github.com/lucianogasp/Minesweeper_Typescript
+git clone https://github.com/lucianogasp/Minesweeper_TypeScript
+
+# Access Project
+cd ./Minesweeper_TypeScript
 
 # Install dependencies
 npm install
