@@ -1,7 +1,24 @@
 # Minesweeper_TypeScript
 
-A web reinterpretation of the classic Windows Minesweeper. Initially built in Vanilla JavaScript, the project was later refactored and migrated to TypeScript to enforce static typing, improve architecture, and adopt Object-Oriented programming with the SOLID and Clean Code principles. Powered by Vite and Node.js, and deployed on Vercel
+A web reinterpretation of the classic Windows Minesweeper. Initially built in **Vanilla JavaScript**, the project was later refactored and migrated to **TypeScript** to enforce static typing, improve architecture, and adopt *Object-Oriented Programming* with the *SOLID* and *Clean Code* principles. Powered by **Vite** and **Node.js**, and deployed on **Vercel**
 
-Vercel link: (link)
+## Run app remotely
 
-GitHub repository: [/Minesweeper-Project-2](https://github.com/lucianogasp/Minesweeper-Project-2)
+Vercel link: (/link)
+
+GitHub repository: [/Minesweeper_Typescript](https://github.com/lucianogasp/Minesweeper_Typescript)
+
+## Run app locally
+
+*Node.js is required*
+
+```bash
+# Clone repository
+git clone https://github.com/lucianogasp/Minesweeper_Typescript
+
+# Install dependencies
+npm install
+
+# Start a local development server
+npm run dev
+```
