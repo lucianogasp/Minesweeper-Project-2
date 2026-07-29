@@ -1,9 +1,12 @@
 // Import modules
 import domElements from "@/DOMElements/domElements.ts";
 
+import smileFaceSource from '@/assets/smile-face3.png';
+import sadFaceSource from '@/assets/sad-face2.png';
+
 export function switchFaceToSmile(): void {
-  domElements.smileFace.src = `./src/assets/smile-face3.png`;
+  domElements.smileFace.src = smileFaceSource;
 }
 export function switchFaceToSad(): void {
-  domElements.smileFace.src = `./src/assets/sad-face2.png`;
+  domElements.smileFace.src = sadFaceSource;
 }

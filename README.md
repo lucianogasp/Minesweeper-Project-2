@@ -4,7 +4,7 @@ A web reinterpretation of the classic Windows Minesweeper. Initially built in **
 
 ## Run app remotely
 
-Vercel link: (/link)
+Vercel link: [/minesweepertypescript.vercel.app](https://minesweepertypescript.vercel.app/)
 
 GitHub repository: [/Minesweeper_Typescript](https://github.com/lucianogasp/Minesweeper_Typescript)
 
